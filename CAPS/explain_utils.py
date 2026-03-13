@@ -5,9 +5,18 @@ from data import InstanceData
 
 
 def cluster_data(translator, abstraction_helper, dataset, attr_names, alpha, num_actions, lmbda, k, max_height=20, model_path=None, env='grid'):
-    cluster_data = InstanceData(dataset.cluster_input, dataset.num_feats+2, attr_names)
+    num_feats__in_cluster = dataset.num_feats+2
+    cluster_data = InstanceData(dataset.cluster_input, num_feats__in_cluster, attr_names)
     cltree = CLTree(cluster_data)     
     cltree.buildTree()
+
+    print('\n\n\n\n\n Tree built, starting pruning... \n')
+    print('Tree info: ', 
+          'Nr of clusters: ', len(cltree.getClustersList(min_nr_instances=1)), '\n', 
+          #'example of cluster: ', cltree.getClustersList(min_nr_instances=1)[0].getInstanceIds(),
+          #'example of cluster boundaries: ', cltree.getClustersList(min_nr_instances=1)[0].getBoundaries(),
+          '\n\n\n\n\n'
+            )
                     
 
     height = max_height
@@ -31,6 +40,16 @@ def cluster_data(translator, abstraction_helper, dataset, attr_names, alpha, num
         cltree.pruneTree(interactive, interactive_config)        
         clusters = cltree.getClustersList(min_nr_instances=1)
         all_clusters.append(clusters)
+
+        print('\n\n Tree info: ', 
+          'Nr of clusters: ', len(clusters), '\n', 
+            )
+        for i in range(len(clusters)):
+            print(' cluster Nr: ', i, 'states: ', clusters[i].getInstanceIds(), ' \n boundaries: ')
+            for j in range(num_feats__in_cluster):
+                print('Feature {} boundaries: '.format(attr_names[j]), clusters[i].get_bounds(j))
+            print('\n\n')
+        print('--------------------------------------------- \n\n\n\n')
         
         c = 0
         cluster_state_indices = []

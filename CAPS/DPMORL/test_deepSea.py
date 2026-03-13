@@ -33,6 +33,8 @@ import argparse
 from datetime import date
 import glob
 
+pol_idx = 0  # index of utility function / policy to test; can vary this to test different policies
+
 def make_eval_env(gym_id_name, utility_function, reward_shape, reward_dim_indices, seed=0, augment_state=False):
     # For DeepSeaTreasure, expose any notion of horizon/episode limit if available.
     meta = {"horizon": None}
@@ -139,7 +141,6 @@ def compute_entropy_sb3(model, obs, action):
 
     return float(entropy.item())
 
-pol_idx = 2
 
 def test(model_path, num_episodes=10, mode='ppo', augment_state=False, deterministic=True):
     print(f'Starting Test') 
@@ -147,7 +148,7 @@ def test(model_path, num_episodes=10, mode='ppo', augment_state=False, determini
     policy_name = f'program-{pol_idx}'
 
     # Use DeepSeaTreasure experiment folder
-    utility_dir = 'DPMORL/experiments/dpmorl/DPMORL.DeepSeaTreasure.LossNormLamda_0.1'
+    utility_dir = 'DPMORL/experiments/DeepSeaTreasure_test/DPMORL.DeepSeaTreasure.LossNormLamda_0.1'
     os.makedirs(utility_dir, exist_ok=True)
     
     reward_shape = 2

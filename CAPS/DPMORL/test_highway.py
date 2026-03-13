@@ -37,7 +37,7 @@ import glob
 GYM_ID = "mo-highway-fast-v0"
 REWARD_SHAPE = 3
 UTILITY_DIR = 'DPMORL/experiments/Highway_test/DPMORL.Highway.LossNormLamda_0.2'
-pol_idx = 5
+pol_idx = 0
 
 def make_eval_env(gym_id_name, utility_function, reward_shape, reward_dim_indices, seed=0, augment_state=False):
     def _env_fn():
