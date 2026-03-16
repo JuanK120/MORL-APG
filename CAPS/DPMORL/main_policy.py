@@ -276,7 +276,7 @@ def get_id_name(env_name):
     elif env_name == "FruitTree":
         return "fruit-tree-v0"
     elif env_name == "Highway":
-        return "mo-highway-v0"
+        return "mo-highway-fast-v0"
     elif env_name == "LunarLander":
         return "mo-lunar-lander-v2"
     elif env_name == "SuperMarioBros":
@@ -294,9 +294,7 @@ def get_id_name(env_name):
     elif env_name == "WaterReservoir":
         return "water-reservoir-v0"
     elif env_name == 'Minecart':
-        return "minecart-v0"
-    elif env_name == 'highway':
-        return "mo-highway-v0"
+        return "minecart-v0" 
     elif env_name == "DiverseGoal":
         return DiverseGoalEnv
     else:
