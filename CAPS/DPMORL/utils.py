@@ -80,7 +80,7 @@ class DummyVecEnv(VecEnv):
             env.close()
 
     def get_images(self) -> Sequence[np.ndarray]:
-        return [env.render(mode="rgb_array") for env in self.envs]
+        return [env.render() for env in self.envs]
 
     def render(self, mode: str = "human") -> Optional[np.ndarray]:
         """

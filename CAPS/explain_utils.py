@@ -44,11 +44,26 @@ def cluster_data(translator, abstraction_helper, dataset, attr_names, alpha, num
         print('\n\n Tree info: ', 
           'Nr of clusters: ', len(clusters), '\n', 
             )
-        for i in range(len(clusters)):
-            print(' cluster Nr: ', i, 'states: ', clusters[i].getInstanceIds(), ' \n boundaries: ')
-            for j in range(num_feats__in_cluster):
-                print('Feature {} boundaries: '.format(attr_names[j]), clusters[i].get_bounds(j))
-            print('\n\n')
+        if (env in ['MO_highway', 'traffic_junction']):
+            for i in range(len(clusters)):
+                attr_names = []
+                for j in range(num_feats__in_cluster-2):
+                    feat_name = f"Feature_{j}"
+                    attr_names.append(feat_name)
+                attr_names.append("State Value")
+                attr_names.append("Action")
+                print(' cluster Nr: ', i, 'states: ', clusters[i].getInstanceIds(), ' \n boundaries: ')
+                for j in range(num_feats__in_cluster):
+                    feat_name = attr_names[j] if j < len(attr_names) else f"Feature_{j}"
+                    print('Feature {} boundaries: '.format(feat_name), clusters[i].get_bounds(j))
+                print('\n\n')
+        else:
+            for i in range(len(clusters)):
+                print(' cluster Nr: ', i, 'states: ', clusters[i].getInstanceIds(), ' \n boundaries: ')
+                for j in range(num_feats__in_cluster):
+                    feat_name = attr_names[j] if j < len(attr_names) else f"Feature_{j}"
+                    print('Feature {} boundaries: '.format(feat_name), clusters[i].get_bounds(j))
+                print('\n\n')
         print('--------------------------------------------- \n\n\n\n')
         
         c = 0

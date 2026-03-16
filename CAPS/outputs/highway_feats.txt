@@ -1,0 +1,7 @@
+[
+ [presence, x, y, vx, vy],   # vehicle 0
+ [presence, x, y, vx, vy],   # vehicle 1
+ [presence, x, y, vx, vy],   # vehicle 2
+ [presence, x, y, vx, vy],   # vehicle 3
+ [presence, x, y, vx, vy]    # vehicle 4
+]

@@ -1,0 +1,1198 @@
+/mnt/c/Users/juanc/OneDrive/Escritorio/MORL-APG/MORL-APG/.venvs/caps_3.9/lib/python3.9/site-packages/stable_baselines3/common/save_util.py:437: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  th_object = th.load(file_content, map_location=device)
+running MO_fruitTree
+Starting Test
+reward_dim_indices = [0, 1, 2, 3, 4, 5], reward_shape = 6
+reward_shape in get_utility_function:  6
+initializing linear utility function
+reward_shape in Utility_Function_Linear 6
+num_total_policies = 6
+initializing linear utility function
+reward_shape in Utility_Function_Linear 6
+Tree Depth:  6
+Num episodes:  30
+episode length (steps):  5
+Reward:  2.931569696447855
+episode length (steps):  5
+Reward:  2.931569696447855
+episode length (steps):  5
+Reward:  2.931569696447855
+episode length (steps):  5
+Reward:  2.931569696447855
+episode length (steps):  5
+Reward:  2.931569696447855
+episode length (steps):  5
+Reward:  2.931569696447855
+episode length (steps):  5
+Reward:  2.931569696447855
+episode length (steps):  5
+Reward:  2.931569696447855
+episode length (steps):  5
+Reward:  2.931569696447855
+episode length (steps):  5
+Reward:  2.931569696447855
+episode length (steps):  5
+Reward:  2.931569696447855
+episode length (steps):  5
+Reward:  2.931569696447855
+episode length (steps):  5
+Reward:  2.931569696447855
+episode length (steps):  5
+Reward:  2.931569696447855
+episode length (steps):  5
+Reward:  2.931569696447855
+episode length (steps):  5
+Reward:  2.931569696447855
+episode length (steps):  5
+Reward:  2.931569696447855
+episode length (steps):  5
+Reward:  2.931569696447855
+episode length (steps):  5
+Reward:  2.931569696447855
+episode length (steps):  5
+Reward:  2.931569696447855
+episode length (steps):  5
+Reward:  2.931569696447855
+episode length (steps):  5
+Reward:  2.931569696447855
+episode length (steps):  5
+Reward:  2.931569696447855
+episode length (steps):  5
+Reward:  2.931569696447855
+episode length (steps):  5
+Reward:  2.931569696447855
+episode length (steps):  5
+Reward:  2.931569696447855
+episode length (steps):  5
+Reward:  2.931569696447855
+episode length (steps):  5
+Reward:  2.931569696447855
+episode length (steps):  5
+Reward:  2.931569696447855
+episode length (steps):  5
+Reward:  2.931569696447855
+30
+
+
+
+
+
+ Tree built, starting pruning... 
+
+Tree info:  Nr of clusters:  0 
+ 
+
+
+
+
+
+Starting graph generation...
+Height:  1
+
+
+ Tree info:  Nr of clusters:  1 
+
+ cluster Nr:  0 states:  [  0  90  84  12 108  48 102 144  60 150 162  30   6 156 120  66 132  24
+ 174 126 114  72  36  18  78 168 138  96  42  54   1 115  31 145  91 163
+  19   7  43 151 103 139 175 127  13  37  73  25 157 109 169 121  97  61
+  85  55  49 133  79  67  99  81  87  57  15  45  51  69 135 159 105 117
+ 123 147  75 141  39  93 153 111   9 165 171  63   3  33 129  21  27 177
+   8 164 176  86 152  38 116  68   2 134 146  32  62  14 104  26  80 140
+  98 110  74  92  20 170 128  50 158  56  44 122  22 100 142 148  10   4
+  28  16  46 136 154  34  40 130 172 106 112 160  76 118 166  58  52 124
+  88  70 178  64  82  94 149  11  65  77  83  95 137 107 119 125 131  59
+ 101  53   5 113  89  35  71 167 161 173 155  47 143  29  17  23  41 179]  
+ boundaries: 
+Feature Level boundaries:  (5.0, 0.0)
+Feature Position boundaries:  (4.0, 0.0)
+Feature State Value boundaries:  (1.0, 0.0)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+--------------------------------------------- 
+
+
+
+
+Height:  2
+
+
+ Tree info:  Nr of clusters:  2 
+
+ cluster Nr:  0 states:  [  0  60  42  84  78  85 145 157  91  19   1  43 151 150 103 175   7  73
+   6  30 174 144 102 120 156  36  66 139 163 162 122  50   2 128 170 164
+  74 110  98 140  20  68 104  86  26  14 116  56 134 146  44  62 158  32
+ 152 176   8  80 132  38  24 126  61  13 127  37 115  31  25 121  49 109
+ 169  97  67 133  92 138  79  48  18 108  12  55 114  72 168  54  90  96
+  93  57  87  81  33  27 177 165 111  45 153  99  51  69 135 159 105 117
+   9 123 147 171  75  63  21 129   3  39  15 141  22 100]  
+ boundaries: 
+Feature Level boundaries:  (5.0, 0.0)
+Feature Position boundaries:  (4.0, 0.0)
+Feature State Value boundaries:  (0.9469040256477302, 0.0)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+ cluster Nr:  1 states:  [142  88 112  94  82  64 166 178 118  76 124  16 160 154  58 172  70  46
+ 106 148   4  34  10  40 130 136  52  28 155 167 161  35  71  53 149 143
+  29  17  47 173  23 113 101 137  95 107 131 125 119   5  41  77  65  11
+  83  89  59 179]  
+ boundaries: 
+Feature Level boundaries:  (5.0, 0.0)
+Feature Position boundaries:  (4.0, 0.0)
+Feature State Value boundaries:  (1.0, 0.9469040256477302)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+--------------------------------------------- 
+
+
+
+
+Height:  3
+
+
+ Tree info:  Nr of clusters:  4 
+
+ cluster Nr:  0 states:  [  0  66 162 126  90 120  54  72 114  12 108 168  96 138  18  30 102 132
+ 156 174  78  84  24   6  60  42 150 144  36  48  43  55 157  79   1  91
+ 163  37 139 133  13  85  97  61 145 115 121  73  25  19   7 151  49 103
+ 169 175  67 127  31 109 177  57  81  87  33  93  27  80 122  50   2 128
+   8 152 134  86 158 170  32 176  26 146  20  68 110  44  14  56 116  74
+ 164  92  98 140  38 104  62]  
+ boundaries: 
+Feature Level boundaries:  (5.0, 0.0)
+Feature Position boundaries:  (1.0, 0.0)
+Feature State Value boundaries:  (0.9469040256477302, 0.0)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+ cluster Nr:  1 states:  [165 123 141  15  39   3 129  21  63  75 171 147 105 159 135  69  51  99
+ 153  45 111   9 117  22 100]  
+ boundaries: 
+Feature Level boundaries:  (5.0, 0.0)
+Feature Position boundaries:  (2.0, 1.0)
+Feature State Value boundaries:  (0.9469040256477302, 0.0)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+ cluster Nr:  2 states:  [142]  
+ boundaries: 
+Feature Level boundaries:  (4.0, 4.0)
+Feature Position boundaries:  (4.0, 0.0)
+Feature State Value boundaries:  (1.0, 0.9469040256477302)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+ cluster Nr:  3 states:  [ 88  34  28  52 136  40 148   4 106  46  70  10 172 130 154  64  58 112
+  94 166  76  82 118 124  16 160 178  95 113 131 125  41 119  77 137  65
+  11 167   5  89  83  59 149  53 101  17  29 173 143 155  23  35 161 107
+  71  47 179]  
+ boundaries: 
+Feature Level boundaries:  (5.0, 4.0)
+Feature Position boundaries:  (4.0, 0.0)
+Feature State Value boundaries:  (1.0, 0.9469040256477302)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+--------------------------------------------- 
+
+
+
+
+Height:  4
+
+
+ Tree info:  Nr of clusters:  5 
+
+ cluster Nr:  0 states:  [  0 150  42  60   6  48  24 174 156 132 102  78  90 138  30 120 162  18
+  36 114  12 168  96  72  54  66 108 126 144  84  13  91 163 145 133   1
+  25 151 115  37  19 157 121  73  79  49 175  61  67 139  43  85 127  97
+ 109  55 169   7 103  31  27  87  57  81 177  33  93 146  20  68 110  14
+ 158 170  26  80 122 140  62 104   2   8  32  38 164 128  86 152 134  74
+ 116  44  92  98 176  56  50]  
+ boundaries: 
+Feature Level boundaries:  (5.0, 0.0)
+Feature Position boundaries:  (1.0, 0.0)
+Feature State Value boundaries:  (0.2825542001568877, 0.0)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+ cluster Nr:  1 states:  [165 105 117   9 111  45 153  99  51  69 135 159  75  63  21 129   3  39
+  15 141 123 147 171  22 100]  
+ boundaries: 
+Feature Level boundaries:  (5.0, 0.0)
+Feature Position boundaries:  (2.0, 1.0)
+Feature State Value boundaries:  (0.9469040256477302, 0.0)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  2 states:  [142]  
+ boundaries: 
+Feature Level boundaries:  (4.0, 4.0)
+Feature Position boundaries:  (2.0, 2.0)
+Feature State Value boundaries:  (1.0, 0.9469040256477302)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+ cluster Nr:  3 states:  [88]  
+ boundaries: 
+Feature Level boundaries:  (5.0, 4.0)
+Feature Position boundaries:  (2.0, 2.0)
+Feature State Value boundaries:  (1.0, 0.9469040256477302)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+ cluster Nr:  4 states:  [ 34 124 154 178 160  16  94 112  58  82 148  64 106 166 172 118  40 130
+  28 136  52  70  10   4  76  46 155  29  83 101  17  53 149  35 161 107
+ 113 143  71  23  41  77 119  59 167  11  65   5  95 125 131  47 173  89
+ 137 179]  
+ boundaries: 
+Feature Level boundaries:  (5.0, 4.0)
+Feature Position boundaries:  (4.0, 2.0)
+Feature State Value boundaries:  (1.0, 0.9469040256477302)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+--------------------------------------------- 
+
+
+
+
+Height:  5
+
+
+ Tree info:  Nr of clusters:  8 
+
+ cluster Nr:  0 states:  [  0  84 144 126 108  66  72  96 168  12 114  36 120  54 138  30 150  42
+   6  48  24  60  18 162 156  78  90 174 132 102  61  19 175  49  79  73
+ 121 157  37 163 151  25   1 133 145  91  13  67 115 139]  
+ boundaries: 
+Feature Level boundaries:  (5.0, 0.0)
+Feature Position boundaries:  (1.0, 0.0)
+Feature State Value boundaries:  (0.11154943668216596, 0.0)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+ cluster Nr:  1 states:  [ 43  31 109  85  97 103  55 169 127   7  27  81 177  33  93  57  87 110
+ 152  38 128  44  68   8  86  32   2  92  62 164 176 140  98  56 170 122
+  20 134 146 116 104  50  14  80  26 158  74]  
+ boundaries: 
+Feature Level boundaries:  (5.0, 0.0)
+Feature Position boundaries:  (1.0, 0.0)
+Feature State Value boundaries:  (0.2825542001568877, 0.11154943668216596)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+ cluster Nr:  2 states:  [165]  
+ boundaries: 
+Feature Level boundaries:  (3.0, 3.0)
+Feature Position boundaries:  (2.0, 1.0)
+Feature State Value boundaries:  (0.9469040256477302, 0.0)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  3 states:  [105 171 147 123 141  15  39   3 129  21  63  75 159 135  69  51  99 153
+  45 111   9 117  22 100]  
+ boundaries: 
+Feature Level boundaries:  (4.0, 3.0)
+Feature Position boundaries:  (2.0, 1.0)
+Feature State Value boundaries:  (0.9469040256477302, 0.0)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  4 states:  [142]  
+ boundaries: 
+Feature Level boundaries:  (4.0, 4.0)
+Feature Position boundaries:  (2.0, 2.0)
+Feature State Value boundaries:  (0.9469040256477302, 0.9469040256477302)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+ cluster Nr:  5 states:  [88]  
+ boundaries: 
+Feature Level boundaries:  (4.0, 4.0)
+Feature Position boundaries:  (2.0, 2.0)
+Feature State Value boundaries:  (1.0, 0.9469040256477302)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+ cluster Nr:  6 states:  [ 34  70  52 136  28 130  40 118 172 166 106  64 148  82  58 112  94  16
+ 160 178 154 124  10   4]  
+ boundaries: 
+Feature Level boundaries:  (4.0, 4.0)
+Feature Position boundaries:  (4.0, 2.0)
+Feature State Value boundaries:  (1.0, 0.9469040256477302)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+ cluster Nr:  7 states:  [ 76  46  89 173  47 131 125  95   5  65  11 167  59 119  77  41  23  71
+ 143 113 107 161  35 149  53  17 101  83  29 155 137 179]  
+ boundaries: 
+Feature Level boundaries:  (5.0, 4.0)
+Feature Position boundaries:  (4.0, 2.0)
+Feature State Value boundaries:  (1.0, 0.9469040256477302)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+--------------------------------------------- 
+
+
+
+
+Height:  6
+
+
+ Tree info:  Nr of clusters:  11 
+
+ cluster Nr:  0 states:  [  0 132 174  90  78 162  18  60  24  48  37   6  30 156  54 138  84 144
+ 108  66  72 126 102  42 168 114 120  96  12  67 151  13  91 145 133   1
+ 150  25 175 157 121  73  79  49  19  61 115  36 163 139]  
+ boundaries: 
+Feature Level boundaries:  (1.0, 0.0)
+Feature Position boundaries:  (1.0, 0.0)
+Feature State Value boundaries:  (0.11154943668216596, 0.0)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+ cluster Nr:  1 states:  [ 43  31 109  85  97 103  55 169 127   7]  
+ boundaries: 
+Feature Level boundaries:  (5.0, 0.0)
+Feature Position boundaries:  (1.0, 0.0)
+Feature State Value boundaries:  (0.11154943668216596, 0.11154943668216596)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+ cluster Nr:  2 states:  [ 27  81  87 177  93  33  57 176 104  80 170 122  56 116 146  14  98  50
+  20 134  62  74 110  44  26 164  86   2 158  92  38 128 152  68   8  32
+ 140]  
+ boundaries: 
+Feature Level boundaries:  (5.0, 0.0)
+Feature Position boundaries:  (1.0, 0.0)
+Feature State Value boundaries:  (0.2825542001568877, 0.11154943668216596)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+ cluster Nr:  3 states:  [165]  
+ boundaries: 
+Feature Level boundaries:  (3.0, 3.0)
+Feature Position boundaries:  (1.0, 1.0)
+Feature State Value boundaries:  (0.9469040256477302, 0.0)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  4 states:  [105 111  45 153  99  51  69 135 159  75  63  21 129   3  39  15 141 123
+ 147 171   9 117]  
+ boundaries: 
+Feature Level boundaries:  (3.0, 3.0)
+Feature Position boundaries:  (2.0, 1.0)
+Feature State Value boundaries:  (0.9469040256477302, 0.0)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  5 states:  [ 22 100]  
+ boundaries: 
+Feature Level boundaries:  (4.0, 3.0)
+Feature Position boundaries:  (2.0, 1.0)
+Feature State Value boundaries:  (0.9469040256477302, 0.0)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  6 states:  [142]  
+ boundaries: 
+Feature Level boundaries:  (4.0, 4.0)
+Feature Position boundaries:  (2.0, 2.0)
+Feature State Value boundaries:  (0.9469040256477302, 0.9469040256477302)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  7 states:  [88]  
+ boundaries: 
+Feature Level boundaries:  (4.0, 4.0)
+Feature Position boundaries:  (2.0, 2.0)
+Feature State Value boundaries:  (0.9469040256477302, 0.9469040256477302)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+ cluster Nr:  8 states:  [ 34 124 154 178 160  16  94 112  58  82 148  64 106 166 172 118  40 130
+  28 136  52  70  10   4]  
+ boundaries: 
+Feature Level boundaries:  (4.0, 4.0)
+Feature Position boundaries:  (2.0, 2.0)
+Feature State Value boundaries:  (1.0, 0.9469040256477302)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+ cluster Nr:  9 states:  [76 46]  
+ boundaries: 
+Feature Level boundaries:  (4.0, 4.0)
+Feature Position boundaries:  (4.0, 2.0)
+Feature State Value boundaries:  (1.0, 0.9469040256477302)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+ cluster Nr:  10 states:  [ 89 173  47 131 125  95   5  65  11 167  59 119  77  41  23  71 143 113
+ 107 161  35 149  53  17 101  83  29 155 137 179]  
+ boundaries: 
+Feature Level boundaries:  (5.0, 4.0)
+Feature Position boundaries:  (4.0, 2.0)
+Feature State Value boundaries:  (1.0, 0.9469040256477302)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+--------------------------------------------- 
+
+
+
+
+Height:  7
+
+
+ Tree info:  Nr of clusters:  12 
+
+ cluster Nr:  0 states:  [  0 150  12  96 120 114  42 102 126  72 175  66  84 168  54 138  90  78
+ 174  18  60 162  36 108  48   6 156  24 132 115  61  19  49  79  73 121
+ 144 157  25   1 133 145  13 151  67 163  37  30  91 139]  
+ boundaries: 
+Feature Level boundaries:  (1.0, 0.0)
+Feature Position boundaries:  (0.0, 0.0)
+Feature State Value boundaries:  (0.11154943668216596, 0.0)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+ cluster Nr:  1 states:  [ 43  31 109  85  97 103  55 169 127   7]  
+ boundaries: 
+Feature Level boundaries:  (1.0, 1.0)
+Feature Position boundaries:  (1.0, 0.0)
+Feature State Value boundaries:  (0.11154943668216596, 0.11154943668216596)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+ cluster Nr:  2 states:  [27]  
+ boundaries: 
+Feature Level boundaries:  (5.0, 0.0)
+Feature Position boundaries:  (1.0, 0.0)
+Feature State Value boundaries:  (0.2734777344504951, 0.2734777344504951)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+ cluster Nr:  3 states:  [158  38  20 170  44  26   8  56  86   2  92 110 128 152  62 164  32  74
+ 134  14 146 140  80  68 116 176 104  98  50 122  33  93 177  57  87  81]  
+ boundaries: 
+Feature Level boundaries:  (5.0, 0.0)
+Feature Position boundaries:  (1.0, 0.0)
+Feature State Value boundaries:  (0.2825542001568877, 0.2734777344504951)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+ cluster Nr:  4 states:  [165]  
+ boundaries: 
+Feature Level boundaries:  (3.0, 3.0)
+Feature Position boundaries:  (1.0, 1.0)
+Feature State Value boundaries:  (0.2734777344504951, 0.2734777344504951)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  5 states:  [105 171 147 123 141  15  39   3 129  21  63  75 159 135  69  51  99 153
+  45 111   9 117]  
+ boundaries: 
+Feature Level boundaries:  (3.0, 3.0)
+Feature Position boundaries:  (1.0, 1.0)
+Feature State Value boundaries:  (0.9469040256477302, 0.0)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  6 states:  [ 22 100]  
+ boundaries: 
+Feature Level boundaries:  (4.0, 3.0)
+Feature Position boundaries:  (2.0, 1.0)
+Feature State Value boundaries:  (0.9469040256477302, 0.0)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  7 states:  [142]  
+ boundaries: 
+Feature Level boundaries:  (4.0, 4.0)
+Feature Position boundaries:  (2.0, 2.0)
+Feature State Value boundaries:  (0.9469040256477302, 0.9469040256477302)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  8 states:  [88]  
+ boundaries: 
+Feature Level boundaries:  (4.0, 4.0)
+Feature Position boundaries:  (2.0, 2.0)
+Feature State Value boundaries:  (0.9469040256477302, 0.9469040256477302)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  9 states:  [ 34  70  52 136  28 130  40 118 172 166 106  64 148  82  58 112  94  16
+ 160 178 154 124  10   4]  
+ boundaries: 
+Feature Level boundaries:  (4.0, 4.0)
+Feature Position boundaries:  (2.0, 2.0)
+Feature State Value boundaries:  (0.9469040256477302, 0.9469040256477302)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+ cluster Nr:  10 states:  [76 46]  
+ boundaries: 
+Feature Level boundaries:  (4.0, 4.0)
+Feature Position boundaries:  (2.0, 2.0)
+Feature State Value boundaries:  (1.0, 0.9469040256477302)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+ cluster Nr:  11 states:  [ 89 173  47 131 125  95   5  65  11 167  59 119  77  41  23  71 143 113
+ 107 161  35 149  53  17 101  83  29 155 137 179]  
+ boundaries: 
+Feature Level boundaries:  (5.0, 4.0)
+Feature Position boundaries:  (4.0, 2.0)
+Feature State Value boundaries:  (1.0, 0.9469040256477302)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+--------------------------------------------- 
+
+
+
+
+Height:  8
+
+
+ Tree info:  Nr of clusters:  12 
+
+ cluster Nr:  0 states:  [  0  30 144 132  24 156   6 108  36 162  60  18  90  48  54 138  96 120
+  12  42 102 114 174  78  72  84 168 126 150  66  37 163  67 151  13 145
+ 133   1  49 157 121  73  79  19  61 115  91 175  25 139]  
+ boundaries: 
+Feature Level boundaries:  (1.0, 0.0)
+Feature Position boundaries:  (0.0, 0.0)
+Feature State Value boundaries:  (0.11154943668216596, 0.0)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  1 states:  [ 43  31 109  85  97 103  55 169 127   7]  
+ boundaries: 
+Feature Level boundaries:  (1.0, 1.0)
+Feature Position boundaries:  (0.0, 0.0)
+Feature State Value boundaries:  (0.11154943668216596, 0.11154943668216596)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+ cluster Nr:  2 states:  [27]  
+ boundaries: 
+Feature Level boundaries:  (3.0, 3.0)
+Feature Position boundaries:  (1.0, 0.0)
+Feature State Value boundaries:  (0.2734777344504951, 0.2734777344504951)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+ cluster Nr:  3 states:  [ 74 146 158   8  98 104 164  56 116  80 140  50  14 134  68 176  62 122
+ 152 110  92  38  86  32   2 170  44 128  20  26  33  93 177  87  57  81]  
+ boundaries: 
+Feature Level boundaries:  (3.0, 2.0)
+Feature Position boundaries:  (1.0, 0.0)
+Feature State Value boundaries:  (0.2825542001568877, 0.2734777344504951)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+ cluster Nr:  4 states:  [165]  
+ boundaries: 
+Feature Level boundaries:  (3.0, 3.0)
+Feature Position boundaries:  (1.0, 1.0)
+Feature State Value boundaries:  (0.2734777344504951, 0.2734777344504951)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  5 states:  [105 171 147 123 141  15  39   3 129  21  63  75 159 135  69  51  99 153
+  45 111   9 117]  
+ boundaries: 
+Feature Level boundaries:  (3.0, 3.0)
+Feature Position boundaries:  (1.0, 1.0)
+Feature State Value boundaries:  (0.2734777344504951, 0.2734777344504951)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  6 states:  [ 22 100]  
+ boundaries: 
+Feature Level boundaries:  (4.0, 3.0)
+Feature Position boundaries:  (2.0, 1.0)
+Feature State Value boundaries:  (0.9469040256477302, 0.0)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  7 states:  [142]  
+ boundaries: 
+Feature Level boundaries:  (4.0, 4.0)
+Feature Position boundaries:  (2.0, 2.0)
+Feature State Value boundaries:  (0.9469040256477302, 0.9469040256477302)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  8 states:  [88]  
+ boundaries: 
+Feature Level boundaries:  (4.0, 4.0)
+Feature Position boundaries:  (2.0, 2.0)
+Feature State Value boundaries:  (0.9469040256477302, 0.9469040256477302)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  9 states:  [ 34  70  52 136  28 130  40 118 172 166 106  64 148  82  58 112  94  16
+ 160 178 154 124  10   4]  
+ boundaries: 
+Feature Level boundaries:  (4.0, 4.0)
+Feature Position boundaries:  (2.0, 2.0)
+Feature State Value boundaries:  (0.9469040256477302, 0.9469040256477302)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  10 states:  [76 46]  
+ boundaries: 
+Feature Level boundaries:  (4.0, 4.0)
+Feature Position boundaries:  (2.0, 2.0)
+Feature State Value boundaries:  (0.9469040256477302, 0.9469040256477302)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+ cluster Nr:  11 states:  [ 89 173  47 131 125  95   5  65  11 167  59 119  77  41  23  71 143 113
+ 107 161  35 149  53  17 101  83  29 155 137 179]  
+ boundaries: 
+Feature Level boundaries:  (5.0, 4.0)
+Feature Position boundaries:  (4.0, 2.0)
+Feature State Value boundaries:  (1.0, 0.9469040256477302)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+--------------------------------------------- 
+
+
+
+
+Height:  9
+
+
+ Tree info:  Nr of clusters:  14 
+
+ cluster Nr:  0 states:  [  0  84  72  78 174 114 102  42  12 120  96 138  54  48  90  18  60 162
+  36 108   6 156  24 132 144  30 168 126]  
+ boundaries: 
+Feature Level boundaries:  (0.0, 0.0)
+Feature Position boundaries:  (0.0, 0.0)
+Feature State Value boundaries:  (0.11154943668216596, 0.0)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  1 states:  [150  66 175  91 115  61  19  79  73 121 157  49   1 133 145  13 151  67
+ 163  37  25 139]  
+ boundaries: 
+Feature Level boundaries:  (1.0, 0.0)
+Feature Position boundaries:  (0.0, 0.0)
+Feature State Value boundaries:  (0.11154943668216596, 0.0)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  2 states:  [ 43  31 109  85  97 103  55 169 127   7]  
+ boundaries: 
+Feature Level boundaries:  (1.0, 1.0)
+Feature Position boundaries:  (0.0, 0.0)
+Feature State Value boundaries:  (0.11154943668216596, 0.11154943668216596)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  3 states:  [27]  
+ boundaries: 
+Feature Level boundaries:  (3.0, 3.0)
+Feature Position boundaries:  (1.0, 0.0)
+Feature State Value boundaries:  (0.2734777344504951, 0.2734777344504951)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  4 states:  [ 74 146 158   8  98 104 164  56]  
+ boundaries: 
+Feature Level boundaries:  (2.0, 2.0)
+Feature Position boundaries:  (1.0, 0.0)
+Feature State Value boundaries:  (0.2825542001568877, 0.2734777344504951)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+ cluster Nr:  5 states:  [176 110  26  20 128  44 170   2  92 116  32  38 122  86  68 134  14  50
+ 140  80 152  62 177  87  57  33  93  81]  
+ boundaries: 
+Feature Level boundaries:  (3.0, 2.0)
+Feature Position boundaries:  (1.0, 0.0)
+Feature State Value boundaries:  (0.2825542001568877, 0.2734777344504951)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+ cluster Nr:  6 states:  [165]  
+ boundaries: 
+Feature Level boundaries:  (3.0, 3.0)
+Feature Position boundaries:  (1.0, 1.0)
+Feature State Value boundaries:  (0.2734777344504951, 0.2734777344504951)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  7 states:  [105 171 147 123 141  15  39   3 129  21  63  75 159 135  69  51  99 153
+  45 111   9 117]  
+ boundaries: 
+Feature Level boundaries:  (3.0, 3.0)
+Feature Position boundaries:  (1.0, 1.0)
+Feature State Value boundaries:  (0.2734777344504951, 0.2734777344504951)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  8 states:  [ 22 100]  
+ boundaries: 
+Feature Level boundaries:  (4.0, 3.0)
+Feature Position boundaries:  (2.0, 1.0)
+Feature State Value boundaries:  (0.9469040256477302, 0.0)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  9 states:  [142]  
+ boundaries: 
+Feature Level boundaries:  (4.0, 4.0)
+Feature Position boundaries:  (2.0, 2.0)
+Feature State Value boundaries:  (0.9469040256477302, 0.9469040256477302)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  10 states:  [88]  
+ boundaries: 
+Feature Level boundaries:  (4.0, 4.0)
+Feature Position boundaries:  (2.0, 2.0)
+Feature State Value boundaries:  (0.9469040256477302, 0.9469040256477302)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  11 states:  [ 34  70  52 136  28 130  40 118 172 166 106  64 148  82  58 112  94  16
+ 160 178 154 124  10   4]  
+ boundaries: 
+Feature Level boundaries:  (4.0, 4.0)
+Feature Position boundaries:  (2.0, 2.0)
+Feature State Value boundaries:  (0.9469040256477302, 0.9469040256477302)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  12 states:  [76 46]  
+ boundaries: 
+Feature Level boundaries:  (4.0, 4.0)
+Feature Position boundaries:  (2.0, 2.0)
+Feature State Value boundaries:  (0.9469040256477302, 0.9469040256477302)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  13 states:  [ 89 173  47 131 125  95   5  65  11 167  59 119  77  41  23  71 143 113
+ 107 161  35 149  53  17 101  83  29 155 137 179]  
+ boundaries: 
+Feature Level boundaries:  (5.0, 4.0)
+Feature Position boundaries:  (4.0, 2.0)
+Feature State Value boundaries:  (1.0, 0.9469040256477302)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+--------------------------------------------- 
+
+
+
+
+Height:  10
+
+
+ Tree info:  Nr of clusters:  16 
+
+ cluster Nr:  0 states:  [  0  84  72  78 174 114 102  42  12 120  96 138  54  48  90  18  60 162
+  36 108   6 156  24 132 144  30 168 126]  
+ boundaries: 
+Feature Level boundaries:  (0.0, 0.0)
+Feature Position boundaries:  (0.0, 0.0)
+Feature State Value boundaries:  (0.0, 0.0)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  1 states:  [150  66]  
+ boundaries: 
+Feature Level boundaries:  (0.0, 0.0)
+Feature Position boundaries:  (0.0, 0.0)
+Feature State Value boundaries:  (0.11154943668216596, 0.0)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  2 states:  [175  91 115  61  19  79  73 121 157  49   1 133 145  13 151  67 163  37
+  25 139]  
+ boundaries: 
+Feature Level boundaries:  (1.0, 0.0)
+Feature Position boundaries:  (0.0, 0.0)
+Feature State Value boundaries:  (0.11154943668216596, 0.0)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  3 states:  [ 43  31 109  85  97 103  55 169 127   7]  
+ boundaries: 
+Feature Level boundaries:  (1.0, 1.0)
+Feature Position boundaries:  (0.0, 0.0)
+Feature State Value boundaries:  (0.11154943668216596, 0.11154943668216596)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  4 states:  [27]  
+ boundaries: 
+Feature Level boundaries:  (3.0, 3.0)
+Feature Position boundaries:  (1.0, 0.0)
+Feature State Value boundaries:  (0.2734777344504951, 0.2734777344504951)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  5 states:  [ 74 146 158   8  98 104 164  56]  
+ boundaries: 
+Feature Level boundaries:  (2.0, 2.0)
+Feature Position boundaries:  (0.0, 0.0)
+Feature State Value boundaries:  (0.2825542001568877, 0.2734777344504951)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+ cluster Nr:  6 states:  [176 140  50  14 134  68  86 122  38  80  32  92   2 170  44 128  20  26
+ 110 116 152]  
+ boundaries: 
+Feature Level boundaries:  (2.0, 2.0)
+Feature Position boundaries:  (1.0, 0.0)
+Feature State Value boundaries:  (0.2825542001568877, 0.2734777344504951)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+ cluster Nr:  7 states:  [177  87  57  33  93  81  62]  
+ boundaries: 
+Feature Level boundaries:  (3.0, 2.0)
+Feature Position boundaries:  (1.0, 0.0)
+Feature State Value boundaries:  (0.2825542001568877, 0.2734777344504951)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+ cluster Nr:  8 states:  [165]  
+ boundaries: 
+Feature Level boundaries:  (3.0, 3.0)
+Feature Position boundaries:  (1.0, 1.0)
+Feature State Value boundaries:  (0.2734777344504951, 0.2734777344504951)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  9 states:  [105 171 147 123 141  15  39   3 129  21  63  75 159 135  69  51  99 153
+  45 111   9 117]  
+ boundaries: 
+Feature Level boundaries:  (3.0, 3.0)
+Feature Position boundaries:  (1.0, 1.0)
+Feature State Value boundaries:  (0.2734777344504951, 0.2734777344504951)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  10 states:  [ 22 100]  
+ boundaries: 
+Feature Level boundaries:  (4.0, 3.0)
+Feature Position boundaries:  (2.0, 1.0)
+Feature State Value boundaries:  (0.9469040256477302, 0.0)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  11 states:  [142]  
+ boundaries: 
+Feature Level boundaries:  (4.0, 4.0)
+Feature Position boundaries:  (2.0, 2.0)
+Feature State Value boundaries:  (0.9469040256477302, 0.9469040256477302)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  12 states:  [88]  
+ boundaries: 
+Feature Level boundaries:  (4.0, 4.0)
+Feature Position boundaries:  (2.0, 2.0)
+Feature State Value boundaries:  (0.9469040256477302, 0.9469040256477302)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  13 states:  [ 34  70  52 136  28 130  40 118 172 166 106  64 148  82  58 112  94  16
+ 160 178 154 124  10   4]  
+ boundaries: 
+Feature Level boundaries:  (4.0, 4.0)
+Feature Position boundaries:  (2.0, 2.0)
+Feature State Value boundaries:  (0.9469040256477302, 0.9469040256477302)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  14 states:  [76 46]  
+ boundaries: 
+Feature Level boundaries:  (4.0, 4.0)
+Feature Position boundaries:  (2.0, 2.0)
+Feature State Value boundaries:  (0.9469040256477302, 0.9469040256477302)
+Feature Action boundaries:  (0.0, 0.0)
+
+
+
+ cluster Nr:  15 states:  [ 89 173  47 131 125  95   5  65  11 167  59 119  77  41  23  71 143 113
+ 107 161  35 149  53  17 101  83  29 155 137 179]  
+ boundaries: 
+Feature Level boundaries:  (5.0, 4.0)
+Feature Position boundaries:  (4.0, 2.0)
+Feature State Value boundaries:  (1.0, 0.9469040256477302)
+Feature Action boundaries:  (1.0, 0.0)
+
+
+
+--------------------------------------------- 
+
+
+
+
+***********************************************
+Clusters at height 6
+Group 1 to Group 2 with p=0.6000000000000002 and action 0
+Group 1 to Group 3 with p=0.4000000000000001 and action 0
+Group 2 to Group 3 with p=0.9999999999999999 and action 0
+Group 3 to Group 5 with p=0.8108108108108103 and action 1
+Group 3 to Group 10 with p=0.1891891891891892 and action 0
+Group 4 to Group 10 with p=1.0 and action 0
+Group 5 to Group 10 with p=0.9999999999999997 and action 0
+Group 6 to Group 11 with p=1.0 and action 0
+Group 7 to Group 11 with p=1.0 and action 0
+Group 8 to Group 11 with p=1.0 and action 0
+Group 9 to Group 11 with p=0.9999999999999996 and action 0
+Group 10 to Group 11 with p=1.0 and action 0
+Group 11 to Group 12 with p=0.9999999999999999 and action 1
+----------------------------------------
+[0.6 0.  0.  0.6 0.4 0.  0.  0.  0.  0.4 0.  0.  0.  0.4 0.  0.  0.  0.6
+ 0.4]
+[0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 1. 0. 0. 0. 0. 1.]
+[0.         0.         0.         0.         0.         0.81081081
+ 0.18918919 0.         0.         0.81081081 0.         0.
+ 1.         0.         0.         0.         0.         0.81081081
+ 0.18918919]
+[0. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 1.]
+[0. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 1.]
+[0. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0.]
+[0. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0.]
+[0. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0.]
+[0. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0.]
+[0. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0.]
+[0. 1. 0. 0. 0. 0. 0. 0. 1. 0. 0. 1. 0. 0. 0. 0. 0. 0. 1.]
+Group 1: ((In vertical band 2 and On left edge and On horizontal band 3 and At odd level) or (At root and In vertical band 1 and At even level)) and 
+Critical value: 0.0. Entropy: 0.27
+Group 2: (In vertical band 2) and (On left edge) and (On horizontal band 3) and (At odd level)
+Critical value: 0.0. Entropy: 0.67
+Group 3: ((In vertical band 3 and On left edge and At even level)) and (On horizontal band 2)
+Critical value: 0.0. Entropy: 0.62
+Group 4: (In vertical band 4) and (On horizontal band 2) and (At odd level)
+Critical value: 0.0. Entropy: 0.58
+Group 5: (In vertical band 4) and (On horizontal band 2) and (At odd level)
+Critical value: 0.0. Entropy: 0.58
+Group 6: (Near leaf) and (In vertical band 5) and (On horizontal band 2) and (At even level)
+Critical value: 1.0. Entropy: 0.00
+Group 7: (Near leaf) and (In vertical band 5) and (On horizontal band 2) and (At even level)
+Critical value: 0.0. Entropy: 0.00
+Group 8: (Near leaf) and (In vertical band 5) and (On horizontal band 2) and (At even level)
+Critical value: 0.0. Entropy: 0.00
+Group 9: (Near leaf) and (In vertical band 5) and (On horizontal band 2) and (At even level)
+Critical value: 0.0. Entropy: 0.00
+Group 10: (Near leaf) and (In vertical band 5) and (On horizontal band 2) and (At even level)
+Critical value: 0.0. Entropy: 0.00
+Group 11: (At leaf) and (In vertical band 6) and (On horizontal band 1) and (At odd level)
+Critical value: 1.0. Entropy: 0.00
+----------------------------------------
+***********************************************
+Clusters at height 7
+Group 1 to Group 2 with p=0.6000000000000002 and action 0
+Group 1 to Group 4 with p=0.4000000000000001 and action 0
+Group 2 to Group 4 with p=0.9999999999999999 and action 0
+Group 3 to Group 11 with p=1.0 and action 0
+Group 4 to Group 6 with p=0.8333333333333336 and action 1
+Group 4 to Group 11 with p=0.16666666666666669 and action 0
+Group 5 to Group 11 with p=1.0 and action 0
+Group 6 to Group 11 with p=0.9999999999999997 and action 0
+Group 7 to Group 12 with p=1.0 and action 0
+Group 8 to Group 12 with p=1.0 and action 0
+Group 9 to Group 12 with p=1.0 and action 0
+Group 10 to Group 12 with p=0.9999999999999996 and action 0
+Group 11 to Group 12 with p=1.0 and action 0
+Group 12 to Group 13 with p=0.9999999999999999 and action 1
+----------------------------------------
+[0.6 0.  0.  0.6 0.4 0.  0.  0.  0.  0.4 0.  0.  0.  0.4 0.  0.  0.  0.6
+ 0.4]
+[0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 1. 0. 0. 0. 0. 1.]
+[0. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 1.]
+[0.         0.         0.         0.         0.         0.83333333
+ 0.16666667 0.         0.         0.83333333 0.         0.
+ 1.         0.         0.         0.         0.         0.83333333
+ 0.16666667]
+[0. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 1.]
+[0. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 1.]
+[0. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0.]
+[0. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0.]
+[0. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0.]
+[0. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0.]
+[0. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0.]
+[0. 1. 0. 0. 0. 0. 0. 0. 1. 0. 0. 1. 0. 0. 0. 0. 0. 0. 1.]
+Group 1: ((In vertical band 2 and On left edge and On horizontal band 3 and At odd level) or (At root and In vertical band 1 and At even level)) and 
+Critical value: 0.0. Entropy: 0.27
+Group 2: (In vertical band 2) and (On left edge) and (On horizontal band 3) and (At odd level)
+Critical value: 0.0. Entropy: 0.67
+Group 3: (In vertical band 4) and (On horizontal band 2) and (At odd level)
+Critical value: 0.0. Entropy: 0.58
+Group 4: ((In vertical band 3 and On left edge and At even level)) and (On horizontal band 2)
+Critical value: 0.0. Entropy: 0.62
+Group 5: (In vertical band 4) and (On horizontal band 2) and (At odd level)
+Critical value: 0.0. Entropy: 0.58
+Group 6: (In vertical band 4) and (On horizontal band 2) and (At odd level)
+Critical value: 0.0. Entropy: 0.58
+Group 7: (Near leaf) and (In vertical band 5) and (On horizontal band 2) and (At even level)
+Critical value: 1.0. Entropy: 0.00
+Group 8: (Near leaf) and (In vertical band 5) and (On horizontal band 2) and (At even level)
+Critical value: 0.0. Entropy: 0.00
+Group 9: (Near leaf) and (In vertical band 5) and (On horizontal band 2) and (At even level)
+Critical value: 0.0. Entropy: 0.00
+Group 10: (Near leaf) and (In vertical band 5) and (On horizontal band 2) and (At even level)
+Critical value: 0.0. Entropy: 0.00
+Group 11: (Near leaf) and (In vertical band 5) and (On horizontal band 2) and (At even level)
+Critical value: 0.0. Entropy: 0.00
+Group 12: (At leaf) and (In vertical band 6) and (On horizontal band 1) and (At odd level)
+Critical value: 1.0. Entropy: 0.00
+----------------------------------------
+***********************************************
+Clusters at height 8
+Group 1 to Group 2 with p=0.6000000000000002 and action 0
+Group 1 to Group 4 with p=0.4000000000000001 and action 0
+Group 2 to Group 4 with p=0.9999999999999999 and action 0
+Group 3 to Group 11 with p=1.0 and action 0
+Group 4 to Group 6 with p=0.8333333333333336 and action 1
+Group 4 to Group 11 with p=0.16666666666666669 and action 0
+Group 5 to Group 11 with p=1.0 and action 0
+Group 6 to Group 11 with p=0.9999999999999997 and action 0
+Group 7 to Group 12 with p=1.0 and action 0
+Group 8 to Group 12 with p=1.0 and action 0
+Group 9 to Group 12 with p=1.0 and action 0
+Group 10 to Group 12 with p=0.9999999999999996 and action 0
+Group 11 to Group 12 with p=1.0 and action 0
+Group 12 to Group 13 with p=0.9999999999999999 and action 1
+----------------------------------------
+[0.6 0.  0.  0.6 0.4 0.  0.  0.  0.  0.4 0.  0.  0.  0.4 0.  0.  0.  0.6
+ 0.4]
+[0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 1. 0. 0. 0. 0. 1.]
+[0. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 1.]
+[0.         0.         0.         0.         0.         0.83333333
+ 0.16666667 0.         0.         0.83333333 0.         0.
+ 1.         0.         0.         0.         0.         0.83333333
+ 0.16666667]
+[0. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 1.]
+[0. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 1. 0. 0. 0. 0. 0. 1.]
+[0. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0.]
+[0. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0.]
+[0. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0.]
+[0. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0.]
+[0. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0. 0. 0. 0. 1. 0.]
+[0. 1. 0. 0. 0. 0. 0. 0. 1. 0. 0. 1. 0. 0. 0. 0. 0. 0. 1.]
+Group 1: ((In vertical band 2 and On left edge and On horizontal band 3 and At odd level) or (At root and In vertical band 1 and At even level)) and 
+Critical value: 0.0. Entropy: 0.27
+Group 2: (In vertical band 2) and (On left edge) and (On horizontal band 3) and (At odd level)
+Critical value: 0.0. Entropy: 0.67
+Group 3: (In vertical band 4) and (On horizontal band 2) and (At odd level)
+Critical value: 0.0. Entropy: 0.58
+Group 4: ((In vertical band 3 and On left edge and At even level)) and (On horizontal band 2)
+Critical value: 0.0. Entropy: 0.62
+Group 5: (In vertical band 4) and (On horizontal band 2) and (At odd level)
+Critical value: 0.0. Entropy: 0.58
+Group 6: (In vertical band 4) and (On horizontal band 2) and (At odd level)
+Critical value: 0.0. Entropy: 0.58
+Group 7: (Near leaf) and (In vertical band 5) and (On horizontal band 2) and (At even level)
+Critical value: 1.0. Entropy: 0.00
+Group 8: (Near leaf) and (In vertical band 5) and (On horizontal band 2) and (At even level)
+Critical value: 0.0. Entropy: 0.00
+Group 9: (Near leaf) and (In vertical band 5) and (On horizontal band 2) and (At even level)
+Critical value: 0.0. Entropy: 0.00
+Group 10: (Near leaf) and (In vertical band 5) and (On horizontal band 2) and (At even level)
+Critical value: 0.0. Entropy: 0.00
+Group 11: (Near leaf) and (In vertical band 5) and (On horizontal band 2) and (At even level)
+Critical value: 0.0. Entropy: 0.00
+Group 12: (At leaf) and (In vertical band 6) and (On horizontal band 1) and (At odd level)
+Critical value: 1.0. Entropy: 0.00
+----------------------------------------

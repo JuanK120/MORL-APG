@@ -36,14 +36,15 @@ import glob
 # ====== CONFIG FOR MO-HIGHWAY ======
 GYM_ID = "mo-highway-fast-v0"
 REWARD_SHAPE = 3
-UTILITY_DIR = 'DPMORL/experiments/Highway_test/DPMORL.Highway.LossNormLamda_0.2'
+UTILITY_DIR = 'DPMORL/experiments/Highway_test/DPMORL.Highway.LossNormLamda_0.1'
 pol_idx = 0
 
 def make_eval_env(gym_id_name, utility_function, reward_shape, reward_dim_indices, seed=0, augment_state=False):
     def _env_fn():
-        env = mo_gymnasium.make(gym_id_name, render_mode="human")
+        env = mo_gymnasium.make(gym_id_name) # no rendering
+        # env = mo_gymnasium.make(gym_id_name, render_mode="human") # rendering
         env.name = gym_id_name 
-        base = getattr(env, "unwrapped", env)
+        """base = getattr(env, "unwrapped", env)
         cfg = getattr(base, "config", {})
         cfg.update({
                 # fewer cars/lanes/steps
@@ -61,7 +62,7 @@ def make_eval_env(gym_id_name, utility_function, reward_shape, reward_dim_indice
                 "screen_height": 100,
             })
         base.config = cfg
-        print(f"Env config: {cfg}")
+        print(f"Env config: {cfg}")"""
 
         env = ObsInfoWrapper(env, reward_dim=reward_shape, reward_dim_indices=reward_dim_indices)
         return env
@@ -191,7 +192,6 @@ def test(model_path, num_episodes=10, mode='ppo', augment_state=False, determini
     
             
             obs, reward, done, infos = env.step(action) 
-            env.render() 
 
             # scalarized reward from the wrapper
             r = float(reward[0])
