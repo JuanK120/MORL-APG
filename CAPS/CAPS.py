@@ -2,7 +2,7 @@ import torch
 import numpy as np
 import matplotlib.pyplot as plt
 from explain_utils import graph_scores
-from explain_utils import cluster_data
+from explain_utils import cluster_data, cluster_data_with_boundaries
 
 
 """
@@ -124,10 +124,11 @@ def explain(args, dataset, model_path, translator, num_feats, num_actions, fidel
                 print('Critical value: {}. Entropy: {:.2f}'.format(critical_values[j], group_ent[j]))
             print('----------------------------------------')
 
-def explain_auto_pred(args, dataset, model_path, translator, num_feats, num_actions, fidelity_fn=None, apg_baseline=None, mode="PPO"):
+def explain_auto_pred(args, dataset, model_path, translator, num_actions, attr_names, fidelity_fn=None, apg_baseline=None, mode="PPO", num_feats=0):
 
-
-    attr_names = translator.attr_names
+    print("apg_baseline inside explain_auto_pred:", apg_baseline)
+    print("type(apg_baseline):", type(apg_baseline))
+    attr_names = translator.feature_names
     attr_names.append('State Value')
     attr_names.append('Action')
     
@@ -137,7 +138,7 @@ def explain_auto_pred(args, dataset, model_path, translator, num_feats, num_acti
     ls = []
     e_scores = []
     for run in range(num_runs):
-        all_clusters, best_heights, cluster_scores, value_scores, entropy_scores, lengths = cluster_data(translator, 
+        all_clusters, best_heights, cluster_scores, value_scores, entropy_scores, lengths, selected_cluster_boundaries, feature_names = cluster_data_with_boundaries(translator, 
                                                                                                         apg_baseline, 
                                                                                                         dataset,
                                                                                                         attr_names,
@@ -193,18 +194,18 @@ def explain_auto_pred(args, dataset, model_path, translator, num_feats, num_acti
             abstract_binary_state_groups = []
             for cluster in cluster_state_indices:
                 abs_t = []
-                bin_t = []
+                #bin_t = []
                 for idx in cluster:
                     idx = int(idx)
                     abs_t.append((dataset.states[idx], dataset.actions[idx], dataset.next_states[idx], dataset.dones[idx], dataset.entropies[idx], dataset.rewards[idx]))
-                    binary = translator.state_to_binary(dataset.states[idx])
-                    bin_t.append((binary, dataset.actions[idx]))
+                    #binary = translator.state_to_binary(dataset.states[idx])
+                    #bin_t.append((binary, dataset.actions[idx]))
                 abstract_state_groups.append(abs_t)
-                abstract_binary_state_groups.append(bin_t)
+                #abstract_binary_state_groups.append(bin_t)
             
 
             abs_t = abstract_state_groups
-            bin_t = abstract_binary_state_groups
+            #bin_t = abstract_binary_state_groups
             
 
             critical_values, group_ent = apg_baseline.get_critical_groups(abs_t)
@@ -217,16 +218,16 @@ def explain_auto_pred(args, dataset, model_path, translator, num_feats, num_acti
                 for idx in nonzero_idx:
                     print('Group {} to Group {} with p={} and action {}'.format(j+1, idx+1, transitions[j][idx], int(np.mean(taken_actions[j][idx]))))
             
-            if args.hayes_baseline: #Hayes and Shah baseline
-                hayes_translations = translator.reduce_logic(bin_t)
+            #if args.hayes_baseline: #Hayes and Shah baseline
+            #    hayes_translations = translator.reduce_logic(bin_t)
             
             #CAPS explanation producer
             print('----------------------------------------')
-            translations = translator.my_translation_algo(bin_t)
+            cluster_boundaries = selected_cluster_boundaries[h]
+            translations = translator.my_translation_algo(cluster_boundaries)
             for j, t in enumerate(translations):
                 print('Group {}: {}'.format(j+1, t))
-                if args.hayes_baseline:
-                    print('(Hayes) Group {}: {}'.format(j+1, hayes_translations[j]))
+                #if args.hayes_baseline:
+                   # print('(Hayes) Group {}: {}'.format(j+1, hayes_translations[j]))
                 print('Critical value: {}. Entropy: {:.2f}'.format(critical_values[j], group_ent[j]))
             print('----------------------------------------')
-

@@ -218,3 +218,173 @@ def graph_scores(env, alpha, lengths, cluster_scores=None, value_scores=None, en
         plt.title('Fidelity vs Graph Size')
         plt.savefig('results/heuristic_graphs/{}_fidelity_vs_size.png'.format(env))
         plt.clf()
+
+def cluster_data_with_boundaries(
+    translator,
+    abstraction_helper,
+    dataset,
+    attr_names,
+    alpha,
+    num_actions,
+    lmbda,
+    k,
+    max_height=20,
+    model_path=None,
+    env='grid'
+):
+    num_feats__in_cluster = dataset.num_feats + 2
+    cluster_data_obj = InstanceData(dataset.cluster_input, num_feats__in_cluster, attr_names)
+    cltree = CLTree(cluster_data_obj)
+    cltree.buildTree()
+
+    print('\n\n\n\n\n Tree built, starting pruning... \n')
+    print(
+        'Tree info: ',
+        'Nr of clusters: ', len(cltree.getClustersList(min_nr_instances=1)), '\n',
+        '\n\n\n\n\n'
+    )
+
+    height = max_height
+    interactive_config = {'height': height}
+    interactive = True
+
+    cluster_scores = []
+    lengths = []
+    value_scores = []
+    entropy_scores = []
+    all_clusters = []
+
+    # Build feature names once
+    if env in ['MO_highway', 'traffic_junction']:
+        feature_names = [f"Feature_{j}" for j in range(num_feats__in_cluster - 2)]
+        feature_names.append("State Value")
+        feature_names.append("Action")
+    else:
+        feature_names = []
+        for j in range(num_feats__in_cluster):
+            if j < len(attr_names):
+                feature_names.append(attr_names[j])
+            else:
+                feature_names.append(f"Feature_{j}")
+
+    test_alphas = np.arange(21)
+    test_alphas = test_alphas / 100
+    test_alpha_scores = []
+
+    print('Starting graph generation...')
+    for h in range(height):
+        print('Height: ', h + 1)
+        interactive_config = {'height': h + 1}
+        cltree.pruneTree(interactive, interactive_config)
+        clusters = cltree.getClustersList(min_nr_instances=1)
+        all_clusters.append(clusters)
+
+        print('\n\n Tree info: ',
+              'Nr of clusters: ', len(clusters), '\n')
+
+        # Optional: keep this if you still want debug output during development
+        for c_idx in range(len(clusters)):
+            print(' cluster Nr: ', c_idx, 'states: ', clusters[c_idx].getInstanceIds(), ' \n boundaries: ')
+            for j in range(num_feats__in_cluster):
+                print('Feature {} boundaries: '.format(feature_names[j]), clusters[c_idx].get_bounds(j))
+            print('\n\n')
+
+        print('--------------------------------------------- \n\n\n\n')
+
+        c = 0
+        cluster_state_indices = []
+        for i, node in enumerate(clusters):
+            c += node.getNrInstancesInNode()
+            cluster_state_indices.append(node.getInstanceIds())
+
+        abstract_state_groups = []
+        abstract_binary_state_groups = []
+        cluster_values = []
+        cluster_policies = []
+
+        for cluster in cluster_state_indices:
+            abs_t = []
+            #bin_t = []
+            v = []
+            a = np.zeros(num_actions)
+
+            for idx in cluster:
+                idx = int(idx)
+                val = dataset.values[idx]
+                v.append(val)
+                a[dataset.actions[idx]] += 1
+                abs_t.append((
+                    dataset.states[idx],
+                    dataset.actions[idx],
+                    dataset.next_states[idx],
+                    dataset.dones[idx],
+                    dataset.entropies[idx],
+                    dataset.rewards[idx]
+                ))
+                #binary = translator.state_to_binary(dataset.states[idx])
+                #bin_t.append((binary, dataset.actions[idx]))
+
+            abstract_state_groups.append(abs_t)
+            #abstract_binary_state_groups.append(bin_t)
+            cluster_values.append(sum(v) / len(v))
+            a = a / np.sum(a)
+            cluster_policies.append(a)
+
+        cluster_values = np.array(cluster_values)
+        pred_cluster_values = []
+        abs_t = abstract_state_groups
+        #bin_t = abstract_binary_state_groups
+        print("translator:", translator)
+        print("abstract_baseline:", abstraction_helper)
+        print("type(abstract_baseline):", type(abstraction_helper))
+        l, transitions, taken_actions = abstraction_helper.compute_graph_info(abs_t)
+        cl_entropies = []
+
+        for j, cluster in enumerate(clusters):
+            transition_probs = np.array(transitions[j][:-1])
+            pred_cluster_values.append(lmbda * sum(transition_probs * cluster_values))
+
+            cl_pol = np.array(cluster_policies[j])
+            cl_pol_nonzero = np.where(cl_pol != 0)[0]
+            cl_pol_nonzero = cl_pol[cl_pol_nonzero]
+            entr = -sum(cl_pol_nonzero * np.log2(cl_pol_nonzero))
+            cl_entropies.append(entr)
+
+        val_score = np.square(cluster_values - pred_cluster_values).mean()
+        entropy_score = sum(cl_entropies) / len(cl_entropies)
+        score = val_score + entropy_score
+        a_score = score + alpha * len(clusters)
+
+        value_scores.append(val_score)
+        entropy_scores.append(entropy_score)
+        cluster_scores.append(a_score)
+        lengths.append(len(clusters))
+
+    cluster_scores = np.array(cluster_scores)
+    lengths = np.array(lengths)
+
+    best_graph_idx = np.argsort(cluster_scores)
+    best_graphs = best_graph_idx[:k]
+    best_graphs = np.squeeze(best_graphs)
+    best_graphs = np.array(best_graphs, dtype=np.int32)
+
+    if best_graphs[0] == 0:  # Don't want to include the low graph since its value score is always low
+        best_graphs = best_graph_idx[1:k+1]
+
+    # Collect boundaries only for the selected graphs/clusters
+    selected_cluster_boundaries = []
+    for graph_idx in best_graphs:
+        graph_clusters = all_clusters[graph_idx]
+        graph_boundary_info = []
+
+        for cluster in graph_clusters:
+            cluster_boundary_dict = {
+                feature_names[j]: cluster.get_bounds(j)
+                for j in range(num_feats__in_cluster)
+            }
+            graph_boundary_info.append(cluster_boundary_dict)
+
+        selected_cluster_boundaries.append(graph_boundary_info)
+ 
+    return all_clusters, best_graphs, cluster_scores, value_scores, entropy_scores, lengths, selected_cluster_boundaries, feature_names
+    

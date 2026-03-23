@@ -4,7 +4,7 @@ from torch.autograd import Variable
 import numpy as np
 import random
 import ray
-from CAPS import explain
+from CAPS import explain, explain_auto_pred
 from topin_baseline import gen_apg
 from config import argparser
 from Cartpole.test_cartpole import calculate_fidelity as calculate_fidelity_cart
@@ -34,6 +34,7 @@ from translation import HighwayPredicates
 from DPMORL.test_highway import test as test_highway
 from DPMORL.test_highway import calculate_fidelity as calculate_fidelity_highway
 from translation import DeepSeaPredicates
+from auto_translation import AutoPred
 
 
 
@@ -127,6 +128,9 @@ if __name__ == '__main__':
         translator = BlackjackPredicates(num_feats=num_feats)
     
     elif args.env == 'MO_fruitTree':
+        feature_names = [
+            "lvl", "pos", 
+        ]
         print(f'running MO_fruitTree')
         data, model, num_feats, num_actions, depth = test_fruitTree(model_path, args.num_episodes, mode=args.alg)
         print(len(data))
@@ -145,6 +149,9 @@ if __name__ == '__main__':
         translator = FruitTreePredicates(num_feats=num_feats, depth= depth)
 
     elif args.env == 'MO_deepSea':
+        feature_names = [
+            "lvl", "pos", 
+        ]
         print(f'running MO_deepSea')
         data, model, num_feats, num_actions = test_deepSea(model_path, args.num_episodes, mode=args.alg)
         print(len(data))
@@ -163,6 +170,13 @@ if __name__ == '__main__':
         translator = DeepSeaPredicates(num_feats=num_feats)
 
     elif args.env == 'MO_highway':
+        feature_names = [
+            "egoExists", "xEgo", "yEgo", "vxEgo", "vyEgo",
+            "CloseCar1Exists", "xC1", "yC1", "vxC1", "vyC1",
+            "CloseCar2Exists", "xC2", "yC2", "vxC2", "vyC2",
+            "CloseCar3Exists", "xC3", "yC3", "vxC3", "vyC3",
+            "CloseCar4Exists", "xC4", "yC4", "vxC4", "vyC4"
+        ]
         print(f'running MO_highway')
         data, model, num_feats, num_actions, _ = test_highway(model_path, args.num_episodes, mode=args.alg)
         print(len(data))
@@ -190,6 +204,20 @@ if __name__ == '__main__':
         info = {'states': dataset.states, 'actions': dataset.actions, 'next_states': dataset.next_states, 'dones': dataset.dones, 'entropies': dataset.entropies}
         abstract_baseline = APG(num_actions, value_fn, translator, info=info)
         gen_apg(abstract_baseline, model_path, fidelity_fn, mode=args.alg)
+    elif args.autoPred:
+        translator = AutoPred(num_feats=num_feats, feature_names=feature_names)
+        abstract_baseline = APG(num_actions, value_fn, translator)
+        explain_auto_pred(
+            args,
+            dataset,
+            model_path,
+            translator,
+            num_feats,
+            num_actions,
+            fidelity_fn,
+            abstract_baseline,
+            mode=args.alg
+        )
     else:
         abstract_baseline = APG(num_actions, value_fn, translator)
         explain(args, dataset, model_path, translator, num_feats, num_actions, fidelity_fn, abstract_baseline, mode=args.alg)
