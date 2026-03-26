@@ -4,7 +4,7 @@ from qm import QuineMcCluskey
 from condense_ex import Explainer
 
 class AutoPred:
-    def __init__(self, num_feats=3, feature_names=None):
+    def __init__(self, num_feats=0, feature_names=None):
         self.num_feats = num_feats
         self.feature_names = feature_names
 

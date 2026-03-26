@@ -179,6 +179,7 @@ if __name__ == '__main__':
         ]
         print(f'running MO_highway')
         data, model, num_feats, num_actions, _ = test_highway(model_path, args.num_episodes, mode=args.alg)
+        print(f'num_actions: {num_actions}')
         print(len(data))
         if args.calc_fidelity:
             fidelity_fn = calculate_fidelity_highway
@@ -207,15 +208,19 @@ if __name__ == '__main__':
     elif args.autoPred:
         translator = AutoPred(num_feats=num_feats, feature_names=feature_names)
         abstract_baseline = APG(num_actions, value_fn, translator)
+        print('Running AutoPred')
+        print(f'num_actions: {num_actions}')
+        print(f'num_feats: {num_feats}')
         explain_auto_pred(
-            args,
-            dataset,
-            model_path,
-            translator,
-            num_feats,
-            num_actions,
-            fidelity_fn,
-            abstract_baseline,
+            args=args,
+            dataset=dataset,
+            attr_names=feature_names,
+            model_path=model_path,
+            translator=translator,
+            num_actions=num_actions,
+            fidelity_fn=fidelity_fn,
+            apg_baseline=abstract_baseline,
+            num_feats=num_feats,
             mode=args.alg
         )
     else:

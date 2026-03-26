@@ -126,8 +126,8 @@ def explain(args, dataset, model_path, translator, num_feats, num_actions, fidel
 
 def explain_auto_pred(args, dataset, model_path, translator, num_actions, attr_names, fidelity_fn=None, apg_baseline=None, mode="PPO", num_feats=0):
 
-    print("apg_baseline inside explain_auto_pred:", apg_baseline)
-    print("type(apg_baseline):", type(apg_baseline))
+    #print("apg_baseline inside explain_auto_pred:", apg_baseline)
+    #print("type(apg_baseline):", type(apg_baseline))
     attr_names = translator.feature_names
     attr_names.append('State Value')
     attr_names.append('Action')

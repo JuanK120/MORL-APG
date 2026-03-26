@@ -237,11 +237,11 @@ def cluster_data_with_boundaries(
     cltree = CLTree(cluster_data_obj)
     cltree.buildTree()
 
-    print('\n\n\n\n\n Tree built, starting pruning... \n')
+    print('\n\n Tree built, starting pruning... \n')
     print(
         'Tree info: ',
         'Nr of clusters: ', len(cltree.getClustersList(min_nr_instances=1)), '\n',
-        '\n\n\n\n\n'
+        '\n\n'
     )
 
     height = max_height
@@ -283,13 +283,13 @@ def cluster_data_with_boundaries(
               'Nr of clusters: ', len(clusters), '\n')
 
         # Optional: keep this if you still want debug output during development
-        for c_idx in range(len(clusters)):
-            print(' cluster Nr: ', c_idx, 'states: ', clusters[c_idx].getInstanceIds(), ' \n boundaries: ')
-            for j in range(num_feats__in_cluster):
-                print('Feature {} boundaries: '.format(feature_names[j]), clusters[c_idx].get_bounds(j))
-            print('\n\n')
+        #for c_idx in range(len(clusters)):
+        #    print(' cluster Nr: ', c_idx, 'states: ', clusters[c_idx].getInstanceIds(), ' \n boundaries: ')
+        #    for j in range(num_feats__in_cluster):
+        #        print('Feature {} boundaries: '.format(feature_names[j]), clusters[c_idx].get_bounds(j))
+        #    print('\n\n')
 
-        print('--------------------------------------------- \n\n\n\n')
+        print('--------------------------------------------- \n\n')
 
         c = 0
         cluster_state_indices = []
@@ -312,10 +312,19 @@ def cluster_data_with_boundaries(
                 idx = int(idx)
                 val = dataset.values[idx]
                 v.append(val)
-                a[dataset.actions[idx]] += 1
+
+                action = int(dataset.actions[idx])
+
+                if action < 0 or action >= num_actions:
+                    raise ValueError(
+                        f"Action {action} out of bounds for num_actions={num_actions}. "
+                        f"Unique dataset actions: {np.unique(dataset.actions)}. idx={idx}"
+                    )
+
+                a[action] += 1
                 abs_t.append((
                     dataset.states[idx],
-                    dataset.actions[idx],
+                    action,
                     dataset.next_states[idx],
                     dataset.dones[idx],
                     dataset.entropies[idx],
@@ -334,9 +343,9 @@ def cluster_data_with_boundaries(
         pred_cluster_values = []
         abs_t = abstract_state_groups
         #bin_t = abstract_binary_state_groups
-        print("translator:", translator)
-        print("abstract_baseline:", abstraction_helper)
-        print("type(abstract_baseline):", type(abstraction_helper))
+        #print("translator:", translator)
+        #print("abstract_baseline:", abstraction_helper)
+        #print("type(abstract_baseline):", type(abstraction_helper))
         l, transitions, taken_actions = abstraction_helper.compute_graph_info(abs_t)
         cl_entropies = []
 
