@@ -17,8 +17,6 @@ Episode 2: steps=7, Reward=11.899988100003402
 Episode 3: steps=7, Reward=11.899988100003402
 3
 Running AutoPred
-num_actions: 4
-num_feats: 2
 
 
  Tree built, starting pruning... 

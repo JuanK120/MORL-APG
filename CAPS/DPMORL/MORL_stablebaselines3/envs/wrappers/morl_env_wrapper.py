@@ -5,7 +5,7 @@ from typing import Optional
 from gym import Env
 import gym
 import gymnasium
-from DPMORL.MORL_stablebaselines3.envs.utils import Array
+from CAPS.DPMORL.MORL_stablebaselines3.envs.utils import Array
 #from MORL_stablebaselines3.envs.utils import Array
 import math
 # from MORL_stablebaselines3.morl.utility_function_torch import Utility_Function

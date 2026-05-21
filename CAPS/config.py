@@ -14,7 +14,10 @@ def argparser():
     parser.add_argument('--topin_baseline', default=False) #Whether to use Topin and Veloso 2019 baseline for apg gen
     parser.add_argument('--zahavy_baseline', default=False) #Whether to cluster states according to Zahavy methodology
     parser.add_argument('--alg', default='DQN') #Training algorithm. DQN and PPO supported currently
+    ############## AutoPred args ##############
     parser.add_argument('--autoPred', default=False) #Whether to use the automatic predicate generation algorithm instead of hand-crafted predicates
+    parser.add_argument('--shap_selection', default=False) #Whether to use SHAP for feature selection in AutoPred (if False, uses feature selection based on decision tree path instead)
+    ############## AutoPred args ##############
     args = parser.parse_args()
 
     return args

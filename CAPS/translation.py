@@ -1,7 +1,7 @@
 import numpy as np
 import math
-from qm import QuineMcCluskey
-from condense_ex import Explainer
+from CAPS.qm import QuineMcCluskey
+from CAPS.condense_ex import Explainer
 
 class PredicateTemplate:
     def __init__(self, num_feats):

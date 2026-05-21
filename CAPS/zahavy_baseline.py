@@ -1,7 +1,7 @@
 import numpy as np
 import torch
-from CLTree import CLTree
-from data import Data_binary, InstanceData
+from CAPS.CLTree import CLTree
+from CAPS.data import Data_binary, InstanceData
 
 def explain_zahavy(args, dataset, translator, abstraction_helper, num_actions, fidelity_fn=None, model_path=None, mode="PPO"):
     num_runs = 3

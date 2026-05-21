@@ -7,19 +7,19 @@ matplotlib.rcParams.update({'font.size': 22})
 
 from stable_baselines3 import PPO, SAC
 from stable_baselines3.common.vec_env import SubprocVecEnv
-from DPMORL.utils import DummyVecEnv
+from CAPS.DPMORL.utils import DummyVecEnv
 from stable_baselines3.common.env_util import make_vec_env
 from stable_baselines3.common.utils import set_random_seed
 import matplotlib.pyplot as plt
 import mo_gymnasium
 import gymnasium
 from gym.envs.classic_control.continuous_mountain_car import Continuous_MountainCarEnv
-from DPMORL.MORL_stablebaselines3.envs.wrappers.utility_env_wrapper import MultiEnv_UtilityFunction, ObsInfoWrapper
-from DPMORL.MORL_stablebaselines3.envs.wrappers.scalar_reward_wrapper import ScalarRewardEnv
-from DPMORL.MORL_stablebaselines3.utility_function.utility_function_parameterized import Utility_Function_Parameterized
-from DPMORL.MORL_stablebaselines3.utility_function.utility_function_programmed import Utility_Function_Programmed
-from DPMORL.MORL_stablebaselines3.utility_function.utility_function_programmed import Utility_Function_Linear
-from DPMORL.MORL_stablebaselines3.utility_function.utility_function_programmed import Utility_Function_Diverse_Goal
+from CAPS.DPMORL.MORL_stablebaselines3.envs.wrappers.utility_env_wrapper import MultiEnv_UtilityFunction, ObsInfoWrapper
+from CAPS.DPMORL.MORL_stablebaselines3.envs.wrappers.scalar_reward_wrapper import ScalarRewardEnv
+from CAPS.DPMORL.MORL_stablebaselines3.utility_function.utility_function_parameterized import Utility_Function_Parameterized
+from CAPS.DPMORL.MORL_stablebaselines3.utility_function.utility_function_programmed import Utility_Function_Programmed
+from CAPS.DPMORL.MORL_stablebaselines3.utility_function.utility_function_programmed import Utility_Function_Linear
+from CAPS.DPMORL.MORL_stablebaselines3.utility_function.utility_function_programmed import Utility_Function_Diverse_Goal
 from gymnasium.spaces import Discrete
 import math
 from os import path
@@ -36,7 +36,7 @@ import glob
 # ====== CONFIG FOR MO-HIGHWAY ======
 GYM_ID = "mo-highway-fast-v0"
 REWARD_SHAPE = 3
-UTILITY_DIR = 'DPMORL/experiments/Highway_test/DPMORL.Highway.LossNormLamda_0.1'
+UTILITY_DIR = 'CAPS/DPMORL/experiments/Highway_test/DPMORL.Highway.LossNormLamda_0.1' 
 pol_idx = 0
 
 def make_eval_env(gym_id_name, utility_function, reward_shape, reward_dim_indices, seed=0, augment_state=False):
@@ -93,10 +93,10 @@ def get_utility_function(reward_shape, idx=0,linear_utility=True, lamda=0.1, kee
     norm=True
     
     # Load pretrained utility functions
-    print(f'DPMORL/utility-model-selected/dim-{reward_shape}')
-    assert os.path.isdir(f'DPMORL/utility-model-selected/dim-{reward_shape}'), 'There is no pretrained utility functions provided. '
-    num_pretrained_utility = len(glob.glob(f'DPMORL/utility-model-selected/dim-{reward_shape}/*'))
-    pretrained_utility_paths = [f'DPMORL/utility-model-selected/dim-{reward_shape}/utility-{i}.pt'
+    print(f'CAPS/DPMORL/utility-model-selected/dim-{reward_shape}')
+    assert os.path.isdir(f'CAPS/DPMORL/utility-model-selected/dim-{reward_shape}'), 'There is no pretrained utility functions provided. '
+    num_pretrained_utility = len(glob.glob(f'CAPS/DPMORL/utility-model-selected/dim-{reward_shape}/*'))
+    pretrained_utility_paths = [f'CAPS/DPMORL/utility-model-selected/dim-{reward_shape}/utility-{i}.pt'
                                 for i in range(num_pretrained_utility)]
     
     pretrained_utility_functions = []
@@ -157,9 +157,7 @@ def test(model_path, num_episodes=10, mode='ppo', augment_state=False, determini
 
     print(f'Starting Test') 
 
-    policy_name = f'program-{pol_idx}'
-
-    os.makedirs(UTILITY_DIR, exist_ok=True)
+    policy_name = f'program-{pol_idx}' 
     
     reward_shape = REWARD_SHAPE
     reward_dim_indices = list(range(int(reward_shape)))
@@ -168,9 +166,9 @@ def test(model_path, num_episodes=10, mode='ppo', augment_state=False, determini
 
     env, _ = make_eval_env(GYM_ID, utility_function, reward_shape, reward_dim_indices, augment_state=augment_state)
      
-    if not os.path.exists(f'{UTILITY_DIR}/policy-{policy_name}.zip'): 
-        raise Exception(f'{policy_name} does not exist at {UTILITY_DIR}')
-    model = PPO.load(f'{UTILITY_DIR}/policy-{policy_name}')
+    if not os.path.exists(f'{model_path}.zip'): 
+        raise Exception(f'{model_path} does not exist')
+    model = PPO.load(f'{model_path}.zip')
     act_dim = env.action_space.n
     # observation space (vec env) -> single sub-env, use shape of env.observation_space
     obs = env.reset()
@@ -202,9 +200,9 @@ def test(model_path, num_episodes=10, mode='ppo', augment_state=False, determini
             total_reward += r 
 
             if done[0]:
-                print("episode length (steps): ",len(episode_data['rewards']))
+                #print("episode length (steps): ",len(episode_data['rewards']))
                 highlights_data.append(episode_data)
-                print("Reward: ", total_reward)   
+                #print("Reward: ", total_reward)   
                 total_reward = 0.0
                 episode_data = {'states': [], 'actions': [], 'entropy': [], 'dones': [], 'rewards': []}
                 obs = env.reset()
@@ -216,9 +214,7 @@ def calculate_fidelity(model_path, all_clusters, data, num_episodes=5, topin=Fal
     
     print(f'Starting Test') 
 
-    policy_name = f'program-{pol_idx}'
-
-    os.makedirs(UTILITY_DIR, exist_ok=True)
+    policy_name = f'program-{pol_idx}' 
     
     reward_shape = REWARD_SHAPE
     reward_dim_indices = list(range(int(reward_shape)))
@@ -227,9 +223,9 @@ def calculate_fidelity(model_path, all_clusters, data, num_episodes=5, topin=Fal
 
     env, _ = make_eval_env(GYM_ID, utility_function, reward_shape, reward_dim_indices, augment_state=augment_state)
      
-    if not os.path.exists(f'{UTILITY_DIR}/policy-{policy_name}.zip'): 
-        raise Exception(f'{policy_name} does not exist at {UTILITY_DIR}')
-    model = PPO.load(f'{UTILITY_DIR}/policy-{policy_name}')
+    if not os.path.exists(f'{model_path}.zip'): 
+        raise Exception(f'{model_path} does not exist')
+    model = PPO.load(f'{model_path}.zip')
     act_dim = env.action_space.n
 
     if not topin:
@@ -286,13 +282,11 @@ def calculate_fidelity(model_path, all_clusters, data, num_episodes=5, topin=Fal
     return fidelity
 
 def run_abstract_episode(all_clusters, data, utility_function, reward_shape, reward_dim_indices,
-                            num_episodes=3, augment_state=False):
+                            num_episodes=3, augment_state=False, 
+                            model_path='CAPS/DPMORL/experiments/Highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0', 
+                            deterministic=True):
 
-    print(f'Starting Test') 
-
-    policy_name = f'program-{pol_idx}'
-
-    os.makedirs(UTILITY_DIR, exist_ok=True)
+    print(f'Starting Test')   
     
     reward_shape = REWARD_SHAPE
     reward_dim_indices = list(range(int(reward_shape)))
@@ -301,12 +295,13 @@ def run_abstract_episode(all_clusters, data, utility_function, reward_shape, rew
 
     env,_ = make_eval_env(GYM_ID, utility_function, reward_shape, reward_dim_indices, augment_state=augment_state)
      
-    if not os.path.exists(f'{UTILITY_DIR}/policy-{policy_name}.zip'): 
-        raise Exception(f'{policy_name} does not exist at {UTILITY_DIR}')
-    model = PPO.load(f'{UTILITY_DIR}/policy-{policy_name}')
+    if not os.path.exists(f'{model_path}.zip'): 
+        raise Exception(f'{model_path} does not exist')
+    model = PPO.load(f'{model_path}.zip')
     act_dim = env.action_space.n
 
     all_actions = data.actions
+    num_feats = env.observation_space.shape[0]  # post-wrapper obs dim
 
     def get_cluster_action(clusters, num_feats, num_actions):
         if clusters == []:

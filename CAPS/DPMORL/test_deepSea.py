@@ -7,19 +7,19 @@ matplotlib.rcParams.update({'font.size': 22})
 
 from stable_baselines3 import PPO, SAC
 from stable_baselines3.common.vec_env import SubprocVecEnv
-from DPMORL.utils import DummyVecEnv
+from CAPS.DPMORL.utils import DummyVecEnv
 from stable_baselines3.common.env_util import make_vec_env
 from stable_baselines3.common.utils import set_random_seed
 import matplotlib.pyplot as plt
 import mo_gymnasium
 import gymnasium
 from gym.envs.classic_control.continuous_mountain_car import Continuous_MountainCarEnv
-from DPMORL.MORL_stablebaselines3.envs.wrappers.utility_env_wrapper import MultiEnv_UtilityFunction, ObsInfoWrapper
-from DPMORL.MORL_stablebaselines3.envs.wrappers.scalar_reward_wrapper import ScalarRewardEnv
-from DPMORL.MORL_stablebaselines3.utility_function.utility_function_parameterized import Utility_Function_Parameterized
-from DPMORL.MORL_stablebaselines3.utility_function.utility_function_programmed import Utility_Function_Programmed
-from DPMORL.MORL_stablebaselines3.utility_function.utility_function_programmed import Utility_Function_Linear
-from DPMORL.MORL_stablebaselines3.utility_function.utility_function_programmed import Utility_Function_Diverse_Goal
+from CAPS.DPMORL.MORL_stablebaselines3.envs.wrappers.utility_env_wrapper import MultiEnv_UtilityFunction, ObsInfoWrapper
+from CAPS.DPMORL.MORL_stablebaselines3.envs.wrappers.scalar_reward_wrapper import ScalarRewardEnv
+from CAPS.DPMORL.MORL_stablebaselines3.utility_function.utility_function_parameterized import Utility_Function_Parameterized
+from CAPS.DPMORL.MORL_stablebaselines3.utility_function.utility_function_programmed import Utility_Function_Programmed
+from CAPS.DPMORL.MORL_stablebaselines3.utility_function.utility_function_programmed import Utility_Function_Linear
+from CAPS.DPMORL.MORL_stablebaselines3.utility_function.utility_function_programmed import Utility_Function_Diverse_Goal
 from gymnasium.spaces import Discrete
 import math
 from os import path
@@ -80,9 +80,9 @@ def get_utility_function(reward_shape, idx=0, linear_utility=True, lamda=0.1, ke
     norm=True
     
     # Load pretrained utility functions
-    assert os.path.isdir(f'DPMORL/utility-model-selected/dim-{reward_shape}'), 'There is no pretrained utility functions provided. '
-    num_pretrained_utility = len(glob.glob(f'DPMORL/utility-model-selected/dim-{reward_shape}/*'))
-    pretrained_utility_paths = [f'DPMORL/utility-model-selected/dim-{reward_shape}/utility-{i}.pt'
+    assert os.path.isdir(f'CAPS/DPMORL/utility-model-selected/dim-{reward_shape}'), 'There is no pretrained utility functions provided. '
+    num_pretrained_utility = len(glob.glob(f'CAPS/DPMORL/utility-model-selected/dim-{reward_shape}/*'))
+    pretrained_utility_paths = [f'CAPS/DPMORL/utility-model-selected/dim-{reward_shape}/utility-{i}.pt'
                                 for i in range(num_pretrained_utility)]
     
     pretrained_utility_functions = []
@@ -148,7 +148,7 @@ def test(model_path, num_episodes=10, mode='ppo', augment_state=False, determini
     policy_name = f'program-{pol_idx}'
 
     # Use DeepSeaTreasure experiment folder
-    utility_dir = 'DPMORL/experiments/DeepSeaTreasure_test/DPMORL.DeepSeaTreasure.LossNormLamda_0.1'
+    utility_dir = 'CAPS/DPMORL/experiments/DeepSeaTreasure_test/DPMORL.DeepSeaTreasure.LossNormLamda_0.1'
     os.makedirs(utility_dir, exist_ok=True)
     
     reward_shape = 2
@@ -205,7 +205,7 @@ def calculate_fidelity(model_path, all_clusters, data, num_episodes=5, topin=Fal
 
     policy_name = f'program-{pol_idx}'
 
-    utility_dir = 'DPMORL/experiments/dpmorl/DPMORL.DeepSeaTreasure.LossNormLamda_0.1'
+    utility_dir = 'CAPS/DPMORL/experiments/dpmorl/DPMORL.DeepSeaTreasure.LossNormLamda_0.1'
     os.makedirs(utility_dir, exist_ok=True)
     
     reward_shape = 2
@@ -280,7 +280,7 @@ def run_abstract_episode(all_clusters, data, utility_function, reward_shape, rew
 
     policy_name = f'program-{pol_idx}'
 
-    utility_dir = 'DPMORL/experiments/dpmorl/DPMORL.DeepSeaTreasure.LossNormLamda_0.1'
+    utility_dir = 'CAPS/DPMORL/experiments/dpmorl/DPMORL.DeepSeaTreasure.LossNormLamda_0.1'
     os.makedirs(utility_dir, exist_ok=True)
     
     reward_shape = 2

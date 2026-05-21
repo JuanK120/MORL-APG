@@ -4,7 +4,7 @@ The code is adapted from https://github.com/dimitrs/CLTree
 """
 
 from math import sqrt as sqrt
-from data import InstanceData
+from CAPS.data import InstanceData
 import numpy as np
 
 def _relative_density(dataset):
@@ -45,6 +45,76 @@ class CLTree:
         self.clusters = list()
         self._getClustersList(self.root, min_nr_instances) 
         return self.clusters
+    
+    ################################################### 
+    ###################################################
+
+    """
+    storing the features used in the path from root 
+    to cluster, to be used for translation
+    """
+    def get_cluster_features(self, cluster_node, attr_names=None):
+        feats = []
+        node = cluster_node
+
+        while node is not None:
+            if node.feat is not None and node.feat != -1:
+                feats.append(node.feat)
+            node = node.parent
+
+        # reverse so it goes root -> cluster
+        feats = feats[::-1]
+
+        # remove duplicates but preserve order
+        seen = set()
+        unique_feats = []
+        for f in feats:
+            if f not in seen:
+                seen.add(f)
+                unique_feats.append(f)
+
+        if attr_names is not None:
+            return [attr_names[f] for f in unique_feats]
+        return unique_feats
+    
+    """
+    return the cluster a sample state belongs to, by traversing
+    the tree according to the feature values of the sample state
+    """
+
+    def get_cluster_for_sample(self, sample_state, attr_names=None):
+        node = self.root
+
+        while not node.isLeaf():
+            feat_idx = node.feat
+            if feat_idx == -1:
+                break
+            feat_value = sample_state[feat_idx]
+
+            # determine which child to go to based on the cut value
+            child_nodes = node.getChildNodes()
+            if len(child_nodes) < 2:
+                break
+            
+            # Assuming binary splits, check the cut value to decide which child to go to
+            cut_value = None
+            for child in child_nodes:
+                if child.dataset.get_min(feat_idx) <= feat_value <= child.dataset.get_max(feat_idx):
+                    cut_value = (child.dataset.get_min(feat_idx) + child.dataset.get_max(feat_idx)) / 2
+                    break
+            
+            if cut_value is None:
+                break
+            
+            if feat_value <= cut_value:
+                node = child_nodes[0]  # left child
+            else:
+                node = child_nodes[1]  # right child
+
+        return node
+
+    ###################################################
+    ###################################################
 
     def _getClustersList(self, node, min_nr_instances):
         if node.isPrune() and node.getNrInstancesInNode() >= min_nr_instances:            

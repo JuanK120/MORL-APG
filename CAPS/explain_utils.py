@@ -1,7 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from CLTree import CLTree
-from data import InstanceData
+from CAPS.CLTree import CLTree
+from CAPS.data import InstanceData
+import torch
 
 
 def cluster_data(translator, abstraction_helper, dataset, attr_names, alpha, num_actions, lmbda, k, max_height=20, model_path=None, env='grid'):
@@ -230,19 +231,20 @@ def cluster_data_with_boundaries(
     k,
     max_height=20,
     model_path=None,
-    env='grid'
+    env='grid',
+    cluster_features = False
 ):
     num_feats__in_cluster = dataset.num_feats + 2
     cluster_data_obj = InstanceData(dataset.cluster_input, num_feats__in_cluster, attr_names)
     cltree = CLTree(cluster_data_obj)
     cltree.buildTree()
 
-    print('\n\n Tree built, starting pruning... \n')
+    """print('\n\n Tree built, starting pruning... \n')
     print(
         'Tree info: ',
         'Nr of clusters: ', len(cltree.getClustersList(min_nr_instances=1)), '\n',
         '\n\n'
-    )
+    )"""
 
     height = max_height
     interactive_config = {'height': height}
@@ -255,7 +257,7 @@ def cluster_data_with_boundaries(
     all_clusters = []
 
     # Build feature names once
-    if env in ['MO_highway', 'traffic_junction']:
+    if env in ['traffic_junction']:
         feature_names = [f"Feature_{j}" for j in range(num_feats__in_cluster - 2)]
         feature_names.append("State Value")
         feature_names.append("Action")
@@ -279,17 +281,14 @@ def cluster_data_with_boundaries(
         clusters = cltree.getClustersList(min_nr_instances=1)
         all_clusters.append(clusters)
 
-        print('\n\n Tree info: ',
+        """print('\n\n Tree info: ',
               'Nr of clusters: ', len(clusters), '\n')
-
-        # Optional: keep this if you still want debug output during development
-        #for c_idx in range(len(clusters)):
-        #    print(' cluster Nr: ', c_idx, 'states: ', clusters[c_idx].getInstanceIds(), ' \n boundaries: ')
-        #    for j in range(num_feats__in_cluster):
-        #        print('Feature {} boundaries: '.format(feature_names[j]), clusters[c_idx].get_bounds(j))
-        #    print('\n\n')
-
-        print('--------------------------------------------- \n\n')
+        for c_idx in range(len(clusters)):
+            print(' cluster Nr: ', c_idx, 'states: ', clusters[c_idx].getInstanceIds(), ' \n boundaries: ')
+            for j in range(num_feats__in_cluster):
+                print('Feature {} boundaries: '.format(feature_names[j]), clusters[c_idx].get_bounds(j))
+            print('\n\n')
+        print('--------------------------------------------- \n\n')"""
 
         c = 0
         cluster_state_indices = []
@@ -381,7 +380,7 @@ def cluster_data_with_boundaries(
         best_graphs = best_graph_idx[1:k+1]
 
     # Collect boundaries only for the selected graphs/clusters
-    selected_cluster_boundaries = []
+    """selected_cluster_boundaries = []
     for graph_idx in best_graphs:
         graph_clusters = all_clusters[graph_idx]
         graph_boundary_info = []
@@ -394,6 +393,42 @@ def cluster_data_with_boundaries(
             graph_boundary_info.append(cluster_boundary_dict)
 
         selected_cluster_boundaries.append(graph_boundary_info)
- 
-    return all_clusters, best_graphs, cluster_scores, value_scores, entropy_scores, lengths, selected_cluster_boundaries, feature_names
+        
+    return all_clusters, best_graphs, cluster_scores, value_scores, entropy_scores, lengths, selected_cluster_boundaries, feature_names"""
     
+    ###################################################
+    ###################################################
+
+    selected_cluster_boundaries = []
+    selected_cluster_features = [] if cluster_features else None
+
+    for graph_idx in best_graphs:
+        graph_clusters = all_clusters[graph_idx]
+        graph_boundary_info = []
+        graph_feature_info = [] if cluster_features else None
+        print(f"\n\nSelected graph index: {graph_idx}, number of clusters: {len(graph_clusters)}\n")
+        for cluster in graph_clusters:
+            cluster_boundary_dict = {
+                feature_names[j]: cluster.get_bounds(j)
+                for j in range(num_feats__in_cluster)
+            }
+            graph_boundary_info.append(cluster_boundary_dict)
+
+            if cluster_features:
+                print(f"Getting cluster features for cluster with boundaries: {cluster_boundary_dict}")
+                cluster_feature_list = cltree.get_cluster_features(cluster, attr_names=feature_names)
+                graph_feature_info.append(cluster_feature_list)
+
+        selected_cluster_boundaries.append(graph_boundary_info)
+
+        if cluster_features:
+            selected_cluster_features.append(graph_feature_info)
+
+    
+    if cluster_features:
+        return all_clusters, best_graphs, cluster_scores, value_scores, entropy_scores, lengths, selected_cluster_boundaries, feature_names, selected_cluster_features
+    else: 
+        return all_clusters, best_graphs, cluster_scores, value_scores, entropy_scores, lengths, selected_cluster_boundaries, feature_names
+    
+    ###################################################
+    ###################################################

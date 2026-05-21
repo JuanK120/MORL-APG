@@ -1,4 +1,5 @@
 import sys
+import time
 import torch
 from torch.autograd import Variable
 import numpy as np
@@ -172,10 +173,10 @@ if __name__ == '__main__':
     elif args.env == 'MO_highway':
         feature_names = [
             "egoExists", "xEgo", "yEgo", "vxEgo", "vyEgo",
-            "CloseCar1Exists", "xC1", "yC1", "vxC1", "vyC1",
-            "CloseCar2Exists", "xC2", "yC2", "vxC2", "vyC2",
-            "CloseCar3Exists", "xC3", "yC3", "vxC3", "vyC3",
-            "CloseCar4Exists", "xC4", "yC4", "vxC4", "vyC4"
+            "1stClosestCarExists", "xC1", "yC1", "vxC1", "vyC1",
+            "2ndClosestCarExists", "xC2", "yC2", "vxC2", "vyC2",
+            "3rdClosestCarExists", "xC3", "yC3", "vxC3", "vyC3",
+            "4thClosestCarExists", "xC4", "yC4", "vxC4", "vyC4"
         ]
         print(f'running MO_highway')
         data, model, num_feats, num_actions, _ = test_highway(model_path, args.num_episodes, mode=args.alg)
@@ -186,12 +187,20 @@ if __name__ == '__main__':
         def value_fn(obs): 
             if not isinstance(obs, np.ndarray):
                 obs = np.array(obs, dtype=np.float32)
-            obs = np.reshape(obs, [1, -1]).astype(np.float32)
- 
+            else:
+                obs = obs.astype(np.float32)
+
+            if obs.ndim == 1:
+                obs = obs.reshape(1, -1)
+            elif obs.ndim != 2:
+                raise ValueError(f"Unexpected obs shape: {obs.shape}")
+
             with torch.no_grad():
                 obs_t = torch.as_tensor(obs, dtype=torch.float32, device=model.device)
                 value = model.policy.predict_values(obs_t)
-                return float(value.squeeze().cpu().numpy())
+                value = value.detach().cpu().numpy()
+
+            return value.reshape(-1, 1)
         dataset = Data(data, value_fn)
         translator = HighwayPredicates(num_feats=num_feats)
 
@@ -206,11 +215,12 @@ if __name__ == '__main__':
         abstract_baseline = APG(num_actions, value_fn, translator, info=info)
         gen_apg(abstract_baseline, model_path, fidelity_fn, mode=args.alg)
     elif args.autoPred:
+        timestart = time.time()
         translator = AutoPred(num_feats=num_feats, feature_names=feature_names)
         abstract_baseline = APG(num_actions, value_fn, translator)
         print('Running AutoPred')
-        print(f'num_actions: {num_actions}')
-        print(f'num_feats: {num_feats}')
+        print(args.shap_selection)
+        print("Explanations with SHAP feature selection")
         explain_auto_pred(
             args=args,
             dataset=dataset,
@@ -221,8 +231,28 @@ if __name__ == '__main__':
             fidelity_fn=fidelity_fn,
             apg_baseline=abstract_baseline,
             num_feats=num_feats,
-            mode=args.alg
+            mode=args.alg,
+            shap_feature_selection=True #args.shap_selection
         )
+        timestop = time.time()
+        print(f'Time taken for AutoPred: {timestop - timestart} seconds')
+        timestart = time.time()
+        print("Explanations with tree path feature selection")
+        explain_auto_pred(
+            args=args,
+            dataset=dataset,
+            attr_names=feature_names,
+            model_path=model_path,
+            translator=translator,
+            num_actions=num_actions,
+            fidelity_fn=fidelity_fn,
+            apg_baseline=abstract_baseline,
+            num_feats=num_feats,
+            mode=args.alg,
+            shap_feature_selection=False # args.shap_selection
+        )
+        timestop = time.time()
+        print(f'Time taken for AutoPred: {timestop - timestart} seconds')
     else:
         abstract_baseline = APG(num_actions, value_fn, translator)
         explain(args, dataset, model_path, translator, num_feats, num_actions, fidelity_fn, abstract_baseline, mode=args.alg)

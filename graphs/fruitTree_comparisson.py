@@ -1,6 +1,6 @@
 from grakel import Graph
 from grakel.kernels import WeisfeilerLehman, VertexHistogram, SubgraphMatching
-from textToDict import parse_transition_lines, print_kernel_table, FRUIT_TREE_GRAPHS
+from utils import parse_transition_lines, print_kernel_table, FRUIT_TREE_GRAPHS
 from sklearn.preprocessing import normalize
 
 graphs = []

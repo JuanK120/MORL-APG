@@ -1,7 +1,5 @@
 import numpy as np
-import math
-from qm import QuineMcCluskey
-from condense_ex import Explainer
+import math 
 
 class AutoPred:
     def __init__(self, num_feats=0, feature_names=None):
@@ -40,8 +38,16 @@ class AutoPred:
         else:
             return f"{feat_name} between {low} and {high}"
 
-    def translate_cluster(self, cluster_boundary_dict):
+    def translate_cluster(self, cluster_boundary_dict, feature_names_to_use=None):
         preds = []
+
+        if feature_names_to_use is not None:
+            cluster_boundary_dict = {
+                feat_name: bounds
+                for feat_name, bounds in cluster_boundary_dict.items()
+                if feat_name in feature_names_to_use
+            }
+
         for feat_name, bounds in cluster_boundary_dict.items():
             p = self._feature_predicate(feat_name, bounds)
             if p is not None:
@@ -51,8 +57,20 @@ class AutoPred:
             return "(no predicates)"
         return " and ".join(preds)
 
-    def my_translation_algo(self, cluster_boundaries_for_graph):
+    def my_translation_algo(self, cluster_boundaries_for_graph, feature_names_to_use=None):
         explanations = []
-        for cluster_boundary_dict in cluster_boundaries_for_graph:
-            explanations.append(self.translate_cluster(cluster_boundary_dict))
+
+        if feature_names_to_use is not None:
+            if len(cluster_boundaries_for_graph) != len(feature_names_to_use):
+                raise ValueError(
+                    f"Length mismatch: {len(cluster_boundaries_for_graph)} cluster boundary dicts, "
+                    f"but {len(feature_names_to_use)} feature lists"
+                )
+
+            for cluster_boundary_dict, selected_features in zip(cluster_boundaries_for_graph, feature_names_to_use):
+                explanations.append(self.translate_cluster(cluster_boundary_dict, selected_features))
+        else:
+            for cluster_boundary_dict in cluster_boundaries_for_graph:
+                explanations.append(self.translate_cluster(cluster_boundary_dict))
+
         return explanations
