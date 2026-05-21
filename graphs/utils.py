@@ -367,3 +367,27 @@ def select_most_similar_pair(kernel_matrix):
     row, col = np.unravel_index(np.argmax(k), k.shape)
 
     return row, col
+
+def assign_cluster_to_state(clusters, state, attr_names):
+    # clusters is a list of clusters, where each cluster is a dict of:
+    # {'group': <id_number>, 
+    #  'critical_value': <value>, 
+    #  'entropy': <value>, 
+    #  'num_instances': <value>, 
+    #  'boundaries': {<feature_name>: (<value>, <value>)...}}
+    # state is a dict of attribute values, e.g. {"lvl": 0, "pos": 0}
+    # attr_names is the list of attribute names, e.g. ["lvl", "pos"] 
+    for cluster in clusters:
+        boundaries = cluster["boundaries"]
+        match = True
+        for feature in attr_names:
+            if feature not in boundaries:
+                continue  # no boundary for this feature, so it doesn't constrain the cluster
+            low, high = boundaries[feature]
+            value = state[feature]
+            if value is None or value < low or value > high:
+                match = False
+                break
+        if match:
+            return cluster["group"]
+    return None

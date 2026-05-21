@@ -11,13 +11,13 @@ def cluster_data(translator, abstraction_helper, dataset, attr_names, alpha, num
     cltree = CLTree(cluster_data)     
     cltree.buildTree()
 
-    print('\n\n\n\n\n Tree built, starting pruning... \n')
-    print('Tree info: ', 
-          'Nr of clusters: ', len(cltree.getClustersList(min_nr_instances=1)), '\n', 
-          #'example of cluster: ', cltree.getClustersList(min_nr_instances=1)[0].getInstanceIds(),
-          #'example of cluster boundaries: ', cltree.getClustersList(min_nr_instances=1)[0].getBoundaries(),
-          '\n\n\n\n\n'
-            )
+    #print('\n\n\n\n\n Tree built, starting pruning... \n')
+    #print('Tree info: ', 
+    #      'Nr of clusters: ', len(cltree.getClustersList(min_nr_instances=1)), '\n', 
+    #      #'example of cluster: ', cltree.getClustersList(min_nr_instances=1)[0].getInstanceIds(),
+    #      #'example of cluster boundaries: ', cltree.getClustersList(min_nr_instances=1)[0].getBoundaries(),
+    #      '\n\n\n\n\n'
+    #        )
                     
 
     height = max_height
@@ -36,15 +36,15 @@ def cluster_data(translator, abstraction_helper, dataset, attr_names, alpha, num
 
     print('Starting graph generation...')
     for i in range(height):
-        print('Height: ', i+1)
+        #print('Height: ', i+1)
         interactive_config = {'height': i+1}
         cltree.pruneTree(interactive, interactive_config)        
         clusters = cltree.getClustersList(min_nr_instances=1)
         all_clusters.append(clusters)
 
-        print('\n\n Tree info: ', 
-          'Nr of clusters: ', len(clusters), '\n', 
-            )
+        #print('\n\n Tree info: ', 
+        #  'Nr of clusters: ', len(clusters), '\n', 
+        #    )
         if (env in ['MO_highway', 'traffic_junction']):
             for i in range(len(clusters)):
                 attr_names = []
@@ -53,19 +53,19 @@ def cluster_data(translator, abstraction_helper, dataset, attr_names, alpha, num
                     attr_names.append(feat_name)
                 attr_names.append("State Value")
                 attr_names.append("Action")
-                print(' cluster Nr: ', i, 'states: ', clusters[i].getInstanceIds(), ' \n boundaries: ')
+                #print(' cluster Nr: ', i, 'states: ', clusters[i].getInstanceIds(), ' \n boundaries: ')
                 for j in range(num_feats__in_cluster):
                     feat_name = attr_names[j] if j < len(attr_names) else f"Feature_{j}"
-                    print('Feature {} boundaries: '.format(feat_name), clusters[i].get_bounds(j))
-                print('\n\n')
+                    #print('Feature {} boundaries: '.format(feat_name), clusters[i].get_bounds(j))
+                #print('\n\n')
         else:
             for i in range(len(clusters)):
-                print(' cluster Nr: ', i, 'states: ', clusters[i].getInstanceIds(), ' \n boundaries: ')
+                #print(' cluster Nr: ', i, 'states: ', clusters[i].getInstanceIds(), ' \n boundaries: ')
                 for j in range(num_feats__in_cluster):
                     feat_name = attr_names[j] if j < len(attr_names) else f"Feature_{j}"
-                    print('Feature {} boundaries: '.format(feat_name), clusters[i].get_bounds(j))
-                print('\n\n')
-        print('--------------------------------------------- \n\n\n\n')
+                    #print('Feature {} boundaries: '.format(feat_name), clusters[i].get_bounds(j))
+                #print('\n\n')
+        #print('--------------------------------------------- \n\n\n\n')
         
         c = 0
         cluster_state_indices = []
@@ -165,7 +165,7 @@ def cluster_data(translator, abstraction_helper, dataset, attr_names, alpha, num
     if best_graphs[0] == 0: #Don't want to include the low graph since its value score is always low
         best_graphs = best_graph_idx[1:k+1]
     
-    return all_clusters, best_graphs, cluster_scores, value_scores, entropy_scores, lengths
+    return all_clusters, best_graphs, cluster_scores, value_scores, entropy_scores, lengths, cltree
 
 def graph_scores(env, alpha, lengths, cluster_scores=None, value_scores=None, entropy_scores=None, fidelity_scores=None):
     plt.style.use('ggplot')
@@ -275,7 +275,7 @@ def cluster_data_with_boundaries(
 
     print('Starting graph generation...')
     for h in range(height):
-        print('Height: ', h + 1)
+        #print('Height: ', h + 1)
         interactive_config = {'height': h + 1}
         cltree.pruneTree(interactive, interactive_config)
         clusters = cltree.getClustersList(min_nr_instances=1)
@@ -406,7 +406,7 @@ def cluster_data_with_boundaries(
         graph_clusters = all_clusters[graph_idx]
         graph_boundary_info = []
         graph_feature_info = [] if cluster_features else None
-        print(f"\n\nSelected graph index: {graph_idx}, number of clusters: {len(graph_clusters)}\n")
+        #print(f"\n\nSelected graph index: {graph_idx}, number of clusters: {len(graph_clusters)}\n")
         for cluster in graph_clusters:
             cluster_boundary_dict = {
                 feature_names[j]: cluster.get_bounds(j)
@@ -415,7 +415,7 @@ def cluster_data_with_boundaries(
             graph_boundary_info.append(cluster_boundary_dict)
 
             if cluster_features:
-                print(f"Getting cluster features for cluster with boundaries: {cluster_boundary_dict}")
+                #print(f"Getting cluster features for cluster with boundaries: {cluster_boundary_dict}")
                 cluster_feature_list = cltree.get_cluster_features(cluster, attr_names=feature_names)
                 graph_feature_info.append(cluster_feature_list)
 
@@ -426,9 +426,9 @@ def cluster_data_with_boundaries(
 
     
     if cluster_features:
-        return all_clusters, best_graphs, cluster_scores, value_scores, entropy_scores, lengths, selected_cluster_boundaries, feature_names, selected_cluster_features
+        return all_clusters, best_graphs, cluster_scores, value_scores, entropy_scores, lengths, selected_cluster_boundaries, feature_names, selected_cluster_features, cltree
     else: 
-        return all_clusters, best_graphs, cluster_scores, value_scores, entropy_scores, lengths, selected_cluster_boundaries, feature_names
+        return all_clusters, best_graphs, cluster_scores, value_scores, entropy_scores, lengths, selected_cluster_boundaries, feature_names, cltree
     
     ###################################################
     ###################################################

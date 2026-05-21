@@ -83,7 +83,7 @@ def get_reward_dim(env):
 
 def get_utility_function(reward_shape, idx=0,linear_utility=True, lamda=0.1, keep_scale= True, max_num_policies=6):
     
-    print("reward_shape in get_utility_function: ", reward_shape)
+    #print("reward_shape in get_utility_function: ", reward_shape)
 
     if linear_utility:
         utility_class_programmed = Utility_Function_Linear
@@ -93,7 +93,7 @@ def get_utility_function(reward_shape, idx=0,linear_utility=True, lamda=0.1, kee
     norm=True
     
     # Load pretrained utility functions
-    print(f'CAPS/DPMORL/utility-model-selected/dim-{reward_shape}')
+    #print(f'CAPS/DPMORL/utility-model-selected/dim-{reward_shape}')
     assert os.path.isdir(f'CAPS/DPMORL/utility-model-selected/dim-{reward_shape}'), 'There is no pretrained utility functions provided. '
     num_pretrained_utility = len(glob.glob(f'CAPS/DPMORL/utility-model-selected/dim-{reward_shape}/*'))
     pretrained_utility_paths = [f'CAPS/DPMORL/utility-model-selected/dim-{reward_shape}/utility-{i}.pt'
@@ -116,7 +116,7 @@ def get_utility_function(reward_shape, idx=0,linear_utility=True, lamda=0.1, kee
         num_utility_pretrained = len(pretrained_utility_functions)
 
     num_total_policies = min(num_utility_programmed + num_utility_pretrained, max_num_policies)
-    print(f'{num_total_policies = }')
+    #print(f'{num_total_policies = }')
 
     if idx < num_utility_programmed:
         utility_function = utility_class_programmed(reward_shape=reward_shape, norm=norm, lamda=lamda, function_choice=idx, keep_scale=keep_scale)
@@ -155,13 +155,13 @@ def compute_entropy_sb3(model, obs, action):
 
 def test(model_path, num_episodes=10, mode='ppo', augment_state=False, deterministic=True):
 
-    print(f'Starting Test') 
+    #print(f'Starting Test') 
 
     policy_name = f'program-{pol_idx}' 
     
     reward_shape = REWARD_SHAPE
     reward_dim_indices = list(range(int(reward_shape)))
-    print(f'{reward_dim_indices = }, {reward_shape = }')
+    #print(f'{reward_dim_indices = }, {reward_shape = }')
     utility_function = get_utility_function(reward_shape, idx=pol_idx)
 
     env, _ = make_eval_env(GYM_ID, utility_function, reward_shape, reward_dim_indices, augment_state=augment_state)
@@ -175,7 +175,7 @@ def test(model_path, num_episodes=10, mode='ppo', augment_state=False, determini
     num_feats = obs.shape[1]  # post-wrapper obs dim
 
     highlights_data = []
-    print('Num episodes: ', num_episodes)
+    #print('Num episodes: ', num_episodes)
 
     episodes_done = 0
     total_reward = 0.0
@@ -212,13 +212,13 @@ def test(model_path, num_episodes=10, mode='ppo', augment_state=False, determini
 
 def calculate_fidelity(model_path, all_clusters, data, num_episodes=5, topin=False, apg_act=None, augment_state=False, deterministic=True):
     
-    print(f'Starting Test') 
+    #print(f'Starting Test') 
 
     policy_name = f'program-{pol_idx}' 
     
     reward_shape = REWARD_SHAPE
     reward_dim_indices = list(range(int(reward_shape)))
-    print(f'{reward_dim_indices = }, {reward_shape = }')
+    #print(f'{reward_dim_indices = }, {reward_shape = }')
     utility_function = get_utility_function(reward_shape, idx=pol_idx)
 
     env, _ = make_eval_env(GYM_ID, utility_function, reward_shape, reward_dim_indices, augment_state=augment_state)
@@ -286,11 +286,11 @@ def run_abstract_episode(all_clusters, data, utility_function, reward_shape, rew
                             model_path='CAPS/DPMORL/experiments/Highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0', 
                             deterministic=True):
 
-    print(f'Starting Test')   
+    #print(f'Starting Test')   
     
     reward_shape = REWARD_SHAPE
     reward_dim_indices = list(range(int(reward_shape)))
-    print(f'{reward_dim_indices = }, {reward_shape = }')
+    #print(f'{reward_dim_indices = }, {reward_shape = }')
     utility_function = get_utility_function(reward_shape, idx=pol_idx)
 
     env,_ = make_eval_env(GYM_ID, utility_function, reward_shape, reward_dim_indices, augment_state=augment_state)

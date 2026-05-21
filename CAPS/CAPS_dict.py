@@ -32,7 +32,7 @@ def explain(args, dataset, model_path, translator, num_feats, num_actions, fidel
     ls = []
     e_scores = []
     for run in range(num_runs):
-        all_clusters, best_heights, cluster_scores, value_scores, entropy_scores, lengths = cluster_data(translator, 
+        all_clusters, best_heights, cluster_scores, value_scores, entropy_scores, lengths, cltree = cluster_data(translator, 
                                                                                                         apg_baseline, 
                                                                                                         dataset,
                                                                                                         attr_names,
@@ -60,6 +60,7 @@ def explain(args, dataset, model_path, translator, num_feats, num_actions, fidel
     clusters = all_clusters[selected_height]
 
     graph_info = {
+        "tree": cltree,
         "height": selected_height + 1,
         "fidelity": None,
         "state_features": attr_names,
@@ -125,14 +126,14 @@ def explain(args, dataset, model_path, translator, num_feats, num_actions, fidel
             action = int(np.mean(taken_actions[j][idx]))
             probability = transitions[j][idx]
 
-            print(
-                'Group {} to Group {} with p={} and action {}'.format(
-                    j + 1,
-                    idx + 1,
-                    probability,
-                    action
-                )
-            )
+            #print(
+            #    'Group {} to Group {} with p={} and action {}'.format(
+            #        j + 1,
+            #        idx + 1,
+            #        probability,
+            #        action
+            #    )
+            #)
 
             graph_info["edges"].append({
                 "from_group": j + 1,
@@ -144,12 +145,12 @@ def explain(args, dataset, model_path, translator, num_feats, num_actions, fidel
     if args.hayes_baseline:
         hayes_translations = translator.reduce_logic(bin_t)
 
-    print('----------------------------------------')
+    #print('----------------------------------------')
 
     translations = translator.my_translation_algo(bin_t)
 
     for j, t in enumerate(translations):
-        print('Group {}: {}'.format(j + 1, t))
+        #print('Group {}: {}'.format(j + 1, t))
 
         group_data = {
             "group": j + 1,
@@ -160,20 +161,20 @@ def explain(args, dataset, model_path, translator, num_feats, num_actions, fidel
         }
 
         if args.hayes_baseline:
-            print('(Hayes) Group {}: {}'.format(j + 1, hayes_translations[j]))
+            #print('(Hayes) Group {}: {}'.format(j + 1, hayes_translations[j]))
             group_data["hayes_translation"] = hayes_translations[j]
 
-        print(
-            'Critical value: {}. Entropy: {:.2f}'.format(
-                critical_values[j],
-                group_ent[j]
-            )
-        )
+        #print(
+        #    'Critical value: {}. Entropy: {:.2f}'.format(
+        #        critical_values[j],
+        #        group_ent[j]
+        #    )
+        #)
         
-        print(f"{group_data}")
+        #print(f"{group_data}")
         graph_info["groups"].append(group_data)
 
-    print('----------------------------------------')
+    #print('----------------------------------------')
 
 def explain_auto_pred(args, dataset, model_path, translator, num_actions, attr_names, fidelity_fn=None, apg_baseline=None, mode="PPO", num_feats=0, shap_feature_selection=True,):
 
@@ -190,7 +191,7 @@ def explain_auto_pred(args, dataset, model_path, translator, num_actions, attr_n
     e_scores = []
     for run in range(num_runs):
         if shap_feature_selection:
-            all_clusters, best_heights, cluster_scores, value_scores, entropy_scores, lengths, selected_cluster_boundaries, feature_names = cluster_data_with_boundaries(translator, 
+            all_clusters, best_heights, cluster_scores, value_scores, entropy_scores, lengths, selected_cluster_boundaries, feature_names, cltree = cluster_data_with_boundaries(translator, 
                                                                                                         apg_baseline, 
                                                                                                         dataset,
                                                                                                         attr_names,
@@ -203,7 +204,7 @@ def explain_auto_pred(args, dataset, model_path, translator, num_actions, attr_n
                                                                                                         env=args.env 
                                                                                                     )
         else:
-            all_clusters, best_heights, cluster_scores, value_scores, entropy_scores, lengths, selected_cluster_boundaries, feature_names, selected_cluster_features = cluster_data_with_boundaries(translator, 
+            all_clusters, best_heights, cluster_scores, value_scores, entropy_scores, lengths, selected_cluster_boundaries, feature_names, selected_cluster_features, cltree = cluster_data_with_boundaries(translator, 
                                                                                                         apg_baseline, 
                                                                                                         dataset,
                                                                                                         attr_names,
@@ -215,14 +216,7 @@ def explain_auto_pred(args, dataset, model_path, translator, num_actions, attr_n
                                                                                                         model_path=model_path,
                                                                                                         env=args.env,
                                                                                                         cluster_features=True
-                                                                                                    )
-        """
-        graph_scores('cart', alpha, lengths, 
-                    cluster_scores=cluster_scores, 
-                    value_scores=value_scores, 
-                    entropy_scores=entropy_scores,
-                    fidelity_scores=fidelity_scores)
-        """
+                                                                                                    ) 
 
         all_clusters = np.array(all_clusters, dtype=object)
 
@@ -235,6 +229,7 @@ def explain_auto_pred(args, dataset, model_path, translator, num_actions, attr_n
         cluster_v_scores.append(value_scores[selected_height])
 
         graph_info = {
+            "tree": cltree,
             "height": selected_height + 1,
             "fidelity": None,
             "state_features": attr_names,
@@ -246,8 +241,8 @@ def explain_auto_pred(args, dataset, model_path, translator, num_actions, attr_n
             }
         }
 
-        print('***********************************************')
-        print('Clusters at height {}'.format(selected_height + 1))
+        #print('***********************************************')
+        #print('Clusters at height {}'.format(selected_height + 1))
 
         cluster_state_indices = []
 
@@ -297,14 +292,14 @@ def explain_auto_pred(args, dataset, model_path, translator, num_actions, attr_n
                     probability = transitions[j][idx]
                     action = int(np.mean(taken_actions[j][idx]))
 
-                    print(
-                        'Group {} to Group {} with p={} and action {}'.format(
-                            j + 1,
-                            idx + 1,
-                            probability,
-                            action
-                        )
-                    )
+                    #print(
+                    #    'Group {} to Group {} with p={} and action {}'.format(
+                    #        j + 1,
+                    #        idx + 1,
+                    #        probability,
+                    #        action
+                    #    )
+                    #)
 
                     graph_info["edges"].append({
                         "from_group": j + 1,
@@ -313,7 +308,7 @@ def explain_auto_pred(args, dataset, model_path, translator, num_actions, attr_n
                         "action": action
                     })
 
-        print('----------------------------------------')
+        #print('----------------------------------------')
 
         cluster_boundaries = selected_cluster_boundaries[selected_h_idx]
 
@@ -335,8 +330,8 @@ def explain_auto_pred(args, dataset, model_path, translator, num_actions, attr_n
 
                 shap_value_fn = make_shap_value_fn(apg_baseline.value_fn)
 
-                print("background:", sample_train_states_array.shape)
-                print("wrapper output:", shap_value_fn(sample_train_states_array).shape)
+                #print("background:", sample_train_states_array.shape)
+                #print("wrapper output:", shap_value_fn(sample_train_states_array).shape)
 
                 shap_explainer = shap.KernelExplainer(
                     shap_value_fn,
@@ -405,8 +400,8 @@ def explain_auto_pred(args, dataset, model_path, translator, num_actions, attr_n
                     sorted_indices = np.argsort(normalized_importance)[::-1]
                     sorted_importances = normalized_importance[sorted_indices]
 
-                    print(f"indices: {sorted_indices}")
-                    print(f"normalized importances: {sorted_importances}")
+                    #print(f"indices: {sorted_indices}")
+                    #print(f"normalized importances: {sorted_importances}")
 
                     # relative drop
                     relative_diffs = (sorted_importances[:-1] - sorted_importances[1:]) / (sorted_importances[:-1] + 1e-8)
@@ -437,7 +432,7 @@ def explain_auto_pred(args, dataset, model_path, translator, num_actions, attr_n
                 # if not using SHAP-based feature selection, use tree path strategy for
                 # predicate generation using features in cluster decision treepath
                 print("\nUsing tree path feature selection for predicate generation...")
-                print(f"total states in dataset: {len(dataset.states)}")
+                #print(f"total states in dataset: {len(dataset.states)}")
                 important_features = selected_cluster_features[h]
             
         graph_info["feature_selection"]["important_features"] = important_features
@@ -453,13 +448,13 @@ def explain_auto_pred(args, dataset, model_path, translator, num_actions, attr_n
             )
 
         for j, t in enumerate(translations):
-                print('Group {}: {}'.format(j + 1, t))
-                print(
-                    'Critical value: {}. Entropy: {:.2f}'.format(
-                        critical_values[j],
-                        group_ent[j]
-                    )
-                )
+                #print('Group {}: {}'.format(j + 1, t))
+                #print(
+                #    'Critical value: {}. Entropy: {:.2f}'.format(
+                #        critical_values[j],
+                #        group_ent[j]
+                #    )
+                #)
 
                 graph_info["groups"].append({
                     "group": j + 1,
@@ -471,7 +466,7 @@ def explain_auto_pred(args, dataset, model_path, translator, num_actions, attr_n
                     "boundaries": cluster_boundaries[j]
                 })
 
-        print('----------------------------------------')
+        #print('----------------------------------------')
     return graph_info
 
 def make_shap_value_fn(value_fn):

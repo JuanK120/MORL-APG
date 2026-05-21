@@ -52,7 +52,7 @@ def make_eval_env(gym_id_name, utility_function, reward_shape, reward_dim_indice
     vec = MultiEnv_UtilityFunction(vec, utility_function, reward_dim=reward_shape, augment_state=augment_state)
     vec.update_utility_function(utility_function)
     
-    print("Tree Depth: ", depth_holder["tree_depth"])
+    #print("Tree Depth: ", depth_holder["tree_depth"])
 
     return vec, depth_holder["tree_depth"]
 
@@ -66,7 +66,7 @@ def get_reward_dim(env):
 
 def get_utility_function(reward_shape, idx=0,linear_utility=True, lamda=0.1, keep_scale= True, max_num_policies=6):
     
-    print("reward_shape in get_utility_function: ", reward_shape)
+    #print("reward_shape in get_utility_function: ", reward_shape)
 
     if linear_utility:
         utility_class_programmed = Utility_Function_Linear
@@ -98,7 +98,7 @@ def get_utility_function(reward_shape, idx=0,linear_utility=True, lamda=0.1, kee
         num_utility_pretrained = len(pretrained_utility_functions)
 
     num_total_policies = min(num_utility_programmed + num_utility_pretrained, max_num_policies)
-    print(f'{num_total_policies = }')
+    #print(f'{num_total_policies = }')
 
     if idx < num_utility_programmed:
         utility_function = utility_class_programmed(reward_shape=reward_shape, norm=norm, lamda=lamda, function_choice=idx, keep_scale=keep_scale)
@@ -139,14 +139,14 @@ pol_idx = 3
 
 def test(model_path, num_episodes=10, mode='ppo', augment_state=False, deterministic=True):
 
-    print(f'Starting Test') 
+    #print(f'Starting Test') 
 
     policy_name = f'program-{pol_idx}' 
     
     
     reward_shape = 6
     reward_dim_indices = list(range(int(reward_shape)))
-    print(f'{reward_dim_indices = }, {reward_shape = }')
+    #print(f'{reward_dim_indices = }, {reward_shape = }')
     utility_function = get_utility_function(reward_shape, idx=pol_idx)
     #utility_function = get_utility_function(2, idx=pol_idx)
 
@@ -162,7 +162,7 @@ def test(model_path, num_episodes=10, mode='ppo', augment_state=False, determini
     num_feats = obs.shape[1]  # post-wrapper obs dim
 
     highlights_data = []
-    print('Num episodes: ', num_episodes)
+    #print('Num episodes: ', num_episodes)
 
     episodes_done = 0
     total_reward = 0.0
@@ -186,9 +186,9 @@ def test(model_path, num_episodes=10, mode='ppo', augment_state=False, determini
             total_reward += r 
 
             if done[0]:
-                print("episode length (steps): ",len(episode_data))
+                #print("episode length (steps): ",len(episode_data))
                 highlights_data.append(episode_data)
-                print("Reward: ", total_reward)  
+                #print("Reward: ", total_reward)  
                 total_reward = 0.0
                 episode_data = {'states': [], 'actions': [], 'entropy': [], 'dones': [], 'rewards': []}
                 obs = env.reset()
@@ -198,11 +198,11 @@ def test(model_path, num_episodes=10, mode='ppo', augment_state=False, determini
 
 def calculate_fidelity(model_path, all_clusters, data, num_episodes=5, topin=False, apg_act=None, augment_state=False, deterministic=True):
     
-    print(f'Starting Test')  
+    #print(f'Starting Test')  
     
     reward_shape = 6
     reward_dim_indices = list(range(int(reward_shape)))
-    print(f'{reward_dim_indices = }, {reward_shape = }')
+    #print(f'{reward_dim_indices = }, {reward_shape = }')
     utility_function = get_utility_function(reward_shape, idx=pol_idx)
     #utility_function = get_utility_function(2, idx=pol_idx)
 
@@ -271,14 +271,14 @@ def run_abstract_episode(all_clusters, data, utility_function, reward_shape, rew
                             num_episodes=3, augment_state=False,
                             model_path='CAPS/DPMORL/experiments/FruitTree_test/DPMORL.FruitTree.LossNormLamda_0.1/policy-program-0',):
 
-    print(f'Starting Test')  
+    #print(f'Starting Test')  
 
     os.makedirs(model_path, exist_ok=True)
     
     
     reward_shape = 6
     reward_dim_indices = list(range(int(reward_shape)))
-    print(f'{reward_dim_indices = }, {reward_shape = }')
+    #print(f'{reward_dim_indices = }, {reward_shape = }')
     utility_function = get_utility_function(reward_shape, idx=pol_idx)
     #utility_function = get_utility_function(2, idx=pol_idx)
 

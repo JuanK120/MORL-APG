@@ -114,7 +114,7 @@ def CAPS_main(caps_args):
         ]
         print(f'running MO_fruitTree')
         data, model, num_feats, num_actions, depth = test_fruitTree(model_path, args.num_episodes, mode=args.alg)
-        print(len(data))
+        #print(len(data))
         if args.calc_fidelity:
             fidelity_fn = calculate_fidelity_fruitTree
         def value_fn(obs): 
@@ -135,7 +135,7 @@ def CAPS_main(caps_args):
         ]
         print(f'running MO_deepSea')
         data, model, num_feats, num_actions = test_deepSea(model_path, args.num_episodes, mode=args.alg)
-        print(len(data))
+        #print(len(data))
         if args.calc_fidelity:
             fidelity_fn = calculate_fidelity_deepSea
         def value_fn(obs): 
@@ -161,7 +161,7 @@ def CAPS_main(caps_args):
         print(f'running MO_highway')
         data, model, num_feats, num_actions, _ = test_highway(model_path, args.num_episodes, mode=args.alg)
         print(f'num_actions: {num_actions}')
-        print(len(data))
+        #print(len(data))
         if args.calc_fidelity:
             fidelity_fn = calculate_fidelity_highway
         def value_fn(obs): 
@@ -200,7 +200,7 @@ def CAPS_main(caps_args):
         translator = AutoPred(num_feats=num_feats, feature_names=feature_names)
         abstract_baseline = APG(num_actions, value_fn, translator)
         print('Running AutoPred')
-        print(args.shap_selection)
+        #print(args.shap_selection)
         if args.shap_selection:
             print("Explanations with SHAP feature selection")
         else:

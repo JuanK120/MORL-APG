@@ -1,7 +1,7 @@
 from config import argparser
 from CAPS.CAPS_main import CAPS_main
 from graphs.compare_kernels import compare_explanation_graphs
-from graphs.utils import print_kernel_table, select_most_similar_pair
+from graphs.utils import print_kernel_table, select_most_similar_pair, assign_cluster_to_state
 
 if __name__ == '__main__':
 
@@ -84,9 +84,17 @@ if __name__ == '__main__':
 
         print(f"Best graphs selected based on SM kernel similarity: {pol_names[id_graph1]} and {pol_names[id_graph2]}")
 
-    
-    print(f"\n \n Selected graph pair: \n {graph_dicts[id_graph1]} \n {graph_dicts[id_graph2]}")
-
     # Step 4: Generate contrastive explanations for the best graph and print/log them out
+
+    test_state = {
+        "lvl": 3,
+        "pos": 1,
+    }
+    attr_names=["lvl", "pos"]
+
+    print(
+        f"state analysis test: "
+        f"{assign_cluster_to_state(graph_dicts[id_graph1]['groups'], test_state, attr_names)}"
+    )
 
     print(f"\n Generating contrastive explanations for the selected graph pair...")

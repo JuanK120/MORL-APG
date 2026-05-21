@@ -143,7 +143,7 @@ def compute_entropy_sb3(model, obs, action):
 
 
 def test(model_path, num_episodes=10, mode='ppo', augment_state=False, deterministic=True):
-    print(f'Starting Test') 
+    #print(f'Starting Test') 
 
     policy_name = f'program-{pol_idx}'
 
@@ -153,7 +153,7 @@ def test(model_path, num_episodes=10, mode='ppo', augment_state=False, determini
     
     reward_shape = 2
     reward_dim_indices = list(range(int(reward_shape)))
-    print(f'{reward_dim_indices = }, {reward_shape = }')
+    #print(f'{reward_dim_indices = }, {reward_shape = }')
     utility_function = get_utility_function(reward_shape, idx=pol_idx)
 
     env, horizon = make_eval_env("deep-sea-treasure-v0", utility_function, reward_shape, reward_dim_indices, augment_state=augment_state)
@@ -167,7 +167,7 @@ def test(model_path, num_episodes=10, mode='ppo', augment_state=False, determini
     num_feats = obs.shape[1]  # post-wrapper obs dim
 
     highlights_data = []
-    print('Num episodes: ', num_episodes)
+    #print('Num episodes: ', num_episodes)
 
     total_reward = 0.0
     episode_data = {'states': [], 'actions': [], 'entropy': [], 'dones': [], 'rewards': []}
@@ -191,7 +191,7 @@ def test(model_path, num_episodes=10, mode='ppo', augment_state=False, determini
 
             if done[0]:
                 highlights_data.append(episode_data)
-                print(f"Episode {episode+1}: steps={len(episode_data['actions'])}, Reward={total_reward}")
+                #print(f"Episode {episode+1}: steps={len(episode_data['actions'])}, Reward={total_reward}")
                 total_reward = 0.0
                 episode_data = {'states': [], 'actions': [], 'entropy': [], 'dones': [], 'rewards': []}
                 obs = env.reset()
@@ -201,7 +201,7 @@ def test(model_path, num_episodes=10, mode='ppo', augment_state=False, determini
     return highlights_data, model, num_feats, act_dim#, horizon
 
 def calculate_fidelity(model_path, all_clusters, data, num_episodes=5, topin=False, apg_act=None, augment_state=False, deterministic=True):
-    print(f'Starting Test (Fidelity)') 
+    #print(f'Starting Test (Fidelity)') 
 
     policy_name = f'program-{pol_idx}'
 
@@ -210,7 +210,7 @@ def calculate_fidelity(model_path, all_clusters, data, num_episodes=5, topin=Fal
     
     reward_shape = 2
     reward_dim_indices = list(range(int(reward_shape)))
-    print(f'{reward_dim_indices = }, {reward_shape = }')
+    #print(f'{reward_dim_indices = }, {reward_shape = }')
     utility_function = get_utility_function(reward_shape, idx=pol_idx)
 
     env, _ = make_eval_env("deep-sea-treasure-v0", utility_function, reward_shape, reward_dim_indices, augment_state=augment_state)
@@ -276,7 +276,7 @@ def calculate_fidelity(model_path, all_clusters, data, num_episodes=5, topin=Fal
 def run_abstract_episode(all_clusters, data, utility_function, reward_shape, reward_dim_indices,
                             num_episodes=3, augment_state=False):
 
-    print(f'Starting Abstract Policy Episodes') 
+    #print(f'Starting Abstract Policy Episodes') 
 
     policy_name = f'program-{pol_idx}'
 
@@ -285,7 +285,7 @@ def run_abstract_episode(all_clusters, data, utility_function, reward_shape, rew
     
     reward_shape = 2
     reward_dim_indices = list(range(int(reward_shape)))
-    print(f'{reward_dim_indices = }, {reward_shape = }')
+    #print(f'{reward_dim_indices = }, {reward_shape = }')
     utility_function = get_utility_function(reward_shape, idx=pol_idx)
 
     env, _ = make_eval_env("deep-sea-treasure-v0", utility_function, reward_shape, reward_dim_indices, augment_state=augment_state)
@@ -337,7 +337,7 @@ def run_abstract_episode(all_clusters, data, utility_function, reward_shape, rew
             steps += 1
             if done[0] or steps > 500:
                 break
-        print(f"Episode {ep+1} with Abstract Policy. Reward: {total_return}")
+        #print(f"Episode {ep+1} with Abstract Policy. Reward: {total_return}")
 
 if __name__ == '__main__':
     path = sys.argv[1] if len(sys.argv) > 1 else ''

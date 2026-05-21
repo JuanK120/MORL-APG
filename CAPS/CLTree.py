@@ -245,7 +245,6 @@ class BuildTree(object):
             #myplt.draw()
     """
 
-
 class DatasetSplitter:
     def __init__(self):
         pass
@@ -290,8 +289,7 @@ class DatasetSplitter:
         raise DatasetSplitter.UndefinedNumberOfPoints()
     class UndefinedNumberOfPoints(Exception):
         pass    
-    
-       
+          
 class InfoGainCutFactory:
     def __init__(self, min_split):
         self.min_split = min_split
@@ -512,9 +510,6 @@ class InteractivePrune(object):
             node.setPruneState(False)
             return
         
-        
-
-
 
 class PruneTree(object):
     def prune(self, node, min_y, min_rd):
