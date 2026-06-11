@@ -369,25 +369,46 @@ def select_most_similar_pair(kernel_matrix):
     return row, col
 
 def assign_cluster_to_state(clusters, state, attr_names):
-    # clusters is a list of clusters, where each cluster is a dict of:
-    # {'group': <id_number>, 
-    #  'critical_value': <value>, 
-    #  'entropy': <value>, 
-    #  'num_instances': <value>, 
-    #  'boundaries': {<feature_name>: (<value>, <value>)...}}
-    # state is a dict of attribute values, e.g. {"lvl": 0, "pos": 0}
-    # attr_names is the list of attribute names, e.g. ["lvl", "pos"] 
     for cluster in clusters:
         boundaries = cluster["boundaries"]
         match = True
+
         for feature in attr_names:
+            if feature not in state:
+                continue  # skip derived/non-state features like State Value or Action
+
             if feature not in boundaries:
-                continue  # no boundary for this feature, so it doesn't constrain the cluster
+                continue
+
             low, high = boundaries[feature]
             value = state[feature]
+
+            low, high = min(low, high), max(low, high)
+
             if value is None or value < low or value > high:
                 match = False
                 break
+
         if match:
             return cluster["group"]
+
     return None
+def get_next_probable_action(graph_dict, current_group):
+    # graph_dict is the graph representation of the policy, with "groups" and "edges"
+    # current_group is the group id of the current state
+    # This function returns the action with the highest transition probability from the current group
+
+    best_action = None
+    best_prob = -1.0
+    best_next_group = None
+
+    for edge in graph_dict.get("edges", []):
+        if int(edge["from_group"]) == current_group:
+            prob = float(edge.get("probability", 0.0))
+            action = edge.get("action", None)
+            if prob > best_prob:
+                best_prob = prob
+                best_action = action
+                best_next_group = int(edge["to_group"])
+
+    return best_action, best_next_group

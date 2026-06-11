@@ -60,8 +60,8 @@ def plot_returns(env_name, algo_names, seeds, save_dir='Returns'):
     plt.savefig(os.path.join(save_dir, env_name + '.png'), bbox_inches='tight')
 
 def plot_scatter(env_name, prefix, save_dir, 
-                 batch_size=1, plot_frequency=1):
-    save_sub_dir = os.path.join(save_dir, prefix + f".{env_name}.LossNormLamda_0.2")
+                 batch_size=1, plot_frequency=1, return_names=['Return 1', 'Return 2']):
+    save_sub_dir = os.path.join(save_dir, prefix + f".{env_name}.LossNormLamda_0.1")
     print(save_sub_dir)
     min_vals, max_vals = [], []
     for file_path in glob.glob(f'{save_sub_dir}/MORL*.npz'):
@@ -100,8 +100,8 @@ def plot_scatter(env_name, prefix, save_dir,
 
                     ax.scatter(episode_batches[:, 0], episode_batches[:, 1], c=colors, alpha=0.6, label=f'Policy #{i}')
 
-                    ax.set_xlabel('Return 1')
-                    ax.set_ylabel('Return 2')
+                    ax.set_xlabel(return_names[0])
+                    ax.set_ylabel(return_names[1])
                     if env_name in normalization_data:
                         x_min, y_min = normalization_data[env_name]['min'][0, :2]
                         x_max, y_max = normalization_data[env_name]['max'][0, :2]
@@ -138,8 +138,8 @@ def plot_scatter(env_name, prefix, save_dir,
             episode_vec_returns = np.load(file_path)['test_returns']
             
             plt.scatter(episode_vec_returns[:, 0], episode_vec_returns[:, 1], alpha=0.6, label=name, s=80)
-            plt.xlabel('Return 1')
-            plt.ylabel('Return 2')
+            plt.xlabel(return_names[0])
+            plt.ylabel(return_names[1])
             plt.title(rf'Return Distribution of $\pi_{number}$')
             if env_name == 'DiverseGoal':
                 plt.xlim(-10, 20)
@@ -165,8 +165,8 @@ def plot_scatter(env_name, prefix, save_dir,
         plt.title('Return Distribution of Final Policies')
         plt.legend(loc="upper left",
            bbox_to_anchor=(1, 1), borderaxespad=0., fontsize=10)
-        plt.xlabel('Return 1')
-        plt.ylabel('Return 2')
+        plt.xlabel(return_names[0])
+        plt.ylabel(return_names[1])
         plt.savefig(f'{save_sub_dir}/test_final_batch_{batch_size}.png', dpi=160, bbox_inches='tight')
         
         plt.clf()
@@ -222,6 +222,9 @@ def plot_scatter(env_name, prefix, save_dir,
             count += 1
             
         plt.title(f'{env_name}, batch={batch_size}')
+        plt.xlabel(return_names[0])
+        plt.ylabel(return_names[1])
+        plt.legend()
         plt.savefig(os.path.join(save_sub_dir, f'{env_name}_final_batch_{batch_size}.png'), dpi=160, bbox_inches='tight')
         plt.clf()            
         
@@ -233,11 +236,17 @@ if __name__ == '__main__':
 
     for env in env_names:
         for batch_size in batch:
-            if env == 'DeepSeaTreasure' or env == 'FruitTree':
-                plot_frequency = 20
+            if env == 'DeepSeaTreasure':
+                return_names = ['Treasure Value','Time']
+                plot_frequency = 50
+            elif env == 'FruitTree':
+                return_names = ['Protein', 'Carbs']
+                plot_frequency = 50
             elif env == 'ResourceGathering':
-                plot_frequency = 10
+                return_names = ['alive', 'gold']
+                plot_frequency = 25
             else:
+                return_names = ['Return 1', 'Return 2']
                 plot_frequency = 1 #1
             print(f"Plotting {env}, batch_size={batch_size}")
-            plot_scatter(env, prefix, global_save_dir, batch_size=batch_size, plot_frequency=plot_frequency)
+            plot_scatter(env, prefix, global_save_dir, batch_size=batch_size, plot_frequency=plot_frequency, return_names=return_names)

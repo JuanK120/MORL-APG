@@ -44,25 +44,26 @@ def make_eval_env(gym_id_name, utility_function, reward_shape, reward_dim_indice
         env = mo_gymnasium.make(gym_id_name) # no rendering
         # env = mo_gymnasium.make(gym_id_name, render_mode="human") # rendering
         env.name = gym_id_name 
-        """base = getattr(env, "unwrapped", env)
-        cfg = getattr(base, "config", {})
-        cfg.update({
-                # fewer cars/lanes/steps
-                "vehicles_count": 10,  #15      # try 10–20
-                "lanes_count": 4,
-                "duration": 40, #30              # episode length in seconds (sim steps = duration*policy_frequency)
-                # cheap observations
-                "observation": {"type": "Kinematics"},
-                # sim rates: keep policy low vs sim freq
-                "simulation_frequency": 15,  # physics update Hz
-                "policy_frequency": 2, #3      # agent acts x Hz 
-                # other speed helpers
-                "offscreen_rendering": True,
-                "screen_width": 100,
-                "screen_height": 100,
-            })
-        base.config = cfg
-        print(f"Env config: {cfg}")"""
+        if gym_id_name == "mo-highway-fast-v0":
+            base = getattr(env, "unwrapped", env)
+            cfg = getattr(base, "config", {})
+            cfg.update({
+                    # fewer cars/lanes/steps
+                    "vehicles_count": 10,  #15      # try 10–20
+                    "lanes_count": 4,
+                    "duration": 40, #30              # episode length in seconds (sim steps = duration*policy_frequency)
+                    # cheap observations
+                    "observation": {"type": "Kinematics"},
+                    # sim rates: keep policy low vs sim freq
+                    "simulation_frequency": 15,  # physics update Hz
+                    "policy_frequency": 2, #3      # agent acts x Hz 
+                    # other speed helpers
+                    "offscreen_rendering": True,
+                    "screen_width": 100,
+                    "screen_height": 100,
+                })
+            base.config = cfg
+            print(f"Env config: {cfg}")
 
         env = ObsInfoWrapper(env, reward_dim=reward_shape, reward_dim_indices=reward_dim_indices)
         return env
@@ -200,7 +201,7 @@ def test(model_path, num_episodes=10, mode='ppo', augment_state=False, determini
             total_reward += r 
 
             if done[0]:
-                #print("episode length (steps): ",len(episode_data['rewards']))
+                print(f"Policy: {model_path} /// Ep. {episode+1}/{num_episodes} /// Total reward: {total_reward}")
                 highlights_data.append(episode_data)
                 #print("Reward: ", total_reward)   
                 total_reward = 0.0

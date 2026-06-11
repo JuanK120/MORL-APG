@@ -4,7 +4,21 @@ from CAPS.CAPS_main import CAPS_main
 from graphs.compare_kernels import compare_explanation_graphs
 from graphs.utils import print_kernel_table, select_most_similar_pair, assign_cluster_to_state, get_next_probable_action
 from sample_states import test_states_ft, test_states_hw, test_states_dst
+from concurrent.futures import ProcessPoolExecutor, as_completed
+from copy import deepcopy
+import time
 
+
+def run_policy(pol_idx, model_path, base_args):
+    local_args = deepcopy(base_args)
+    local_args.path = model_path
+
+    print(f"\nRunning policy {pol_idx}: {model_path}")
+
+    explanation = CAPS_main(local_args)
+
+    return f"policy_{pol_idx}", explanation 
+    
 if __name__ == '__main__':
 
     """"
@@ -58,8 +72,9 @@ if __name__ == '__main__':
 
     all_graphs = {}
 
+    
     time_graph_phase = time.time()
-
+    """
     for pol_idx, model_path in enumerate(paths):
         args.path = model_path 
 
@@ -68,12 +83,24 @@ if __name__ == '__main__':
         explanation = CAPS_main(args)
 
         all_graphs[f"policy_{pol_idx}"] = explanation
+    
+    """
 
+    max_workers = min(len(paths), 4)  # adjust depending on CPU/RAM/GPU use
 
-    print(all_graphs)
-    print(f"All policies have been tested and graphs collected. {len(all_graphs)} graphs in total.")
+    with ProcessPoolExecutor(max_workers=max_workers) as executor:
+        futures = [
+            executor.submit(run_policy, pol_idx, model_path, args)
+            for pol_idx, model_path in enumerate(paths)
+        ]
 
-    time_graph_phase = time.time() - time_graph_phase
+        for future in as_completed(futures):
+            policy_name, explanation = future.result()
+            all_graphs[policy_name] = explanation
+
+    print(f"Graph phase took {time.time() - time_graph_phase:.2f}s")
+ 
+    print(f"All policies have been tested and graphs collected. {len(all_graphs)} graphs in total.") 
 
     # Step 3: Compute graph comparison metrics and select the best graph for contrastive explanation generation
 

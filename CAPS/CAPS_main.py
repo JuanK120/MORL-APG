@@ -186,6 +186,9 @@ def CAPS_main(caps_args):
 
     else:
         raise ValueError('Enter valid environment')
+    
+    sys.stdout.flush()
+    print(f"Dataset collected for model {model_path}. Starting explanation generation...")
 
     if args.zahavy_baseline:
         abstract_baseline = APG(num_actions, value_fn, translator)

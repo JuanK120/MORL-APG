@@ -178,7 +178,7 @@ def explain(args, dataset, model_path, translator, num_feats, num_actions, fidel
 
 def explain_auto_pred(args, dataset, model_path, translator, num_actions, attr_names, fidelity_fn=None, apg_baseline=None, mode="PPO", num_feats=0, shap_feature_selection=True,):
 
-    #print("apg_baseline inside explain_auto_pred:", apg_baseline)
+    print("apg_baseline inside explain_auto_pred:", apg_baseline)
     #print("type(apg_baseline):", type(apg_baseline))
     attr_names = translator.feature_names
     attr_names.append('State Value')
@@ -322,10 +322,21 @@ def explain_auto_pred(args, dataset, model_path, translator, num_actions, attr_n
                 percentage_of_states_for_shap_training = 10 # sample x% of total dataset for SHAP training
                 percentage_of_states_per_cluster_for_shap = 20  # sample x% of each cluster for SHAP explanation
                 important_features = []
-                number_of_states_to_use = int(len(dataset.states) * percentage_of_states_for_shap_training / 100)
+                number_of_states_of_training_percentage = int(len(dataset.states) * percentage_of_states_for_shap_training / 100)
+                max_training_states = 100
+                number_of_states_to_use_for_training = min(
+                    max_training_states,
+                    number_of_states_of_training_percentage
+                )
                 sample_train_states_array = np.array(
-                    dataset.states[:number_of_states_to_use],
+                    dataset.states[:number_of_states_to_use_for_training],
                     dtype=np.float32
+                )
+                number_of_states_of_cluster_percentage = int(len(dataset.states) * percentage_of_states_per_cluster_for_shap / 100)
+                max_states_per_cluster = 100
+                number_of_states_to_use_for_shap = min(
+                    max_states_per_cluster,
+                    number_of_states_of_cluster_percentage
                 )
 
                 shap_value_fn = make_shap_value_fn(apg_baseline.value_fn)
@@ -350,7 +361,7 @@ def explain_auto_pred(args, dataset, model_path, translator, num_actions, attr_n
                     # sample some states from this cluster
                     n_cluster_states = max(
                         1,
-                        int(len(cluster) * percentage_of_states_per_cluster_for_shap / 100)
+                        number_of_states_to_use_for_shap
                     )
                     n_cluster_states = min(n_cluster_states, len(cluster))
 
