@@ -45,6 +45,8 @@ def CAPS_main(caps_args):
     assert model_path != ''
     fidelity_fn = None
 
+    print(f'Running CAPS_main with model path: {model_path} and environment: {args.env}', flush=True)
+
     if args.env == 'cart':
         data, model, num_feats, num_actions = test_cart(model_path, args.num_episodes, mode=args.alg)
 

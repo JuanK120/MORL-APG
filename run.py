@@ -4,6 +4,7 @@ from CAPS.CAPS_main import CAPS_main
 from graphs.compare_kernels import compare_explanation_graphs
 from graphs.utils import print_kernel_table, select_most_similar_pair, assign_cluster_to_state, get_next_probable_action
 from sample_states import test_states_ft, test_states_hw, test_states_dst
+from model_paths import paths_ft, paths_hw, paths_dst
 
 if __name__ == '__main__':
 
@@ -19,32 +20,7 @@ if __name__ == '__main__':
 
     # Step 1: Collect initial parameters 
     args = argparser()
-
-    #list of paths for fruittree policies
-    paths_ft = [
-        r'CAPS/DPMORL/experiments/FruitTree_test/DPMORL.FruitTree.LossNormLamda_0.1/policy-program-0',
-        r'CAPS/DPMORL/experiments/FruitTree_test/DPMORL.FruitTree.LossNormLamda_0.1/policy-program-1',
-        r'CAPS/DPMORL/experiments/FruitTree_test/DPMORL.FruitTree.LossNormLamda_0.1/policy-program-2',
-        r'CAPS/DPMORL/experiments/FruitTree_test/DPMORL.FruitTree.LossNormLamda_0.1/policy-program-3',
-        r'CAPS/DPMORL/experiments/FruitTree_test/DPMORL.FruitTree.LossNormLamda_0.1/policy-program-4',
-        r'CAPS/DPMORL/experiments/FruitTree_test/DPMORL.FruitTree.LossNormLamda_0.1/policy-program-5',
-        r'CAPS/DPMORL/experiments/FruitTree_test/DPMORL.FruitTree.LossNormLamda_0.1/policy-program-6',
-    ]
-    # list of paths for highway policies
-    paths_hw = [ 
-        r'CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0',
-        r'CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1',
-        r'CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2',
-        r'CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3',
-    ]
-    #list of paths for deep-sea-treasure policies
-    paths_dst = [
-        r'CAPS/DPMORL/experiments/DeepSeaTreasure_test/DPMORL.DeepSeaTreasure.LossNormLamda_0.1/policy-program-0',
-        r'CAPS/DPMORL/experiments/DeepSeaTreasure_test/DPMORL.DeepSeaTreasure.LossNormLamda_0.1/policy-program-1',
-        r'CAPS/DPMORL/experiments/DeepSeaTreasure_test/DPMORL.DeepSeaTreasure.LossNormLamda_0.1/policy-program-2',
-    ]
-
-    paths = ""
+  
     if args.env == "MO_fruitTree":
         paths = paths_ft
     elif args.env == "MO_highway":
@@ -124,6 +100,8 @@ if __name__ == '__main__':
 
     # Step 4: Generate contrastive explanations for the best graph and print/log them out
 
+    ## action explanation generation phase
+
     time_explanation_phase = time.time()
 
     if args.env == "MO_fruitTree":
@@ -162,11 +140,62 @@ if __name__ == '__main__':
 
         print(f"Next probable action for {pol_names[id_graph1]}: {next_action_policy_1}")
         print(f"Next probable action for {pol_names[id_graph2]}: {next_action_policy_2}")
+
+
     
-    time_explanation_phase = time.time() - time_explanation_phase
+    time_action_explanation_phase = time.time() - time_explanation_phase
+
+    ## edge explanation generation phase
+    
+    time_explanation_phase = time.time()
+
+    common, only_g1, only_g2 = compare_transition_sets(
+        graph_dicts[id_graph1],
+        graph_dicts[id_graph2]
+    )
+
+    print("Common transitions:")
+    for edge in common:
+        print(edge)
+
+    print("Unique to policy 1:")
+    for edge in only_g1:
+        print(edge)
+
+    print("Unique to policy 2:")
+    for edge in only_g2:
+        print(edge)
+
+    time_edge_explanation_phase = time.time() - time_explanation_phase
+
+    ## subgraph explanation generation phase
+
+    time_explanation_phase = time.time()
+
+    common_subgraph, mapping = get_maximum_common_subgraph(
+        graph_dicts[id_graph1],
+        graph_dicts[id_graph2]
+    )
+
+    print("MCS mapping:", mapping)
+
+    if common_subgraph is not None:
+        print("Common nodes:", common_subgraph.nodes(data=True))
+        print("Common edges:", common_subgraph.edges(data=True))
+    else:
+        print("No common subgraph found.")
+
+    
+
+    time_subgraph_explanation_phase = time.time() - time_explanation_phase
+
+    total_explanation_phase_time = time_action_explanation_phase + time_edge_explanation_phase + time_subgraph_explanation_phase
 
     print(f"\n\n--- Summary of execution times ---")
     print(f"Graph generation phase: {time_graph_phase:.2f} seconds")
     print(f"Graph comparison phase: {time_comparison_phase:.2f} seconds")
-    print(f"Explanation generation phase: {time_explanation_phase:.2f} seconds")
+    print(f"Action explanation generation phase: {time_action_explanation_phase:.2f} seconds")
+    print(f"Edge explanation generation phase: {time_edge_explanation_phase:.2f} seconds")
+    print(f"Subgraph explanation generation phase: {time_subgraph_explanation_phase:.2f} seconds")
+    print(f"Total explanation generation phase: {total_explanation_phase_time:.2f} seconds")
 

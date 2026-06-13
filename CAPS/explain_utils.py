@@ -234,7 +234,7 @@ def cluster_data_with_boundaries(
     env='grid',
     cluster_features = False
 ):
-    print(f"generating graph for model: {model_path}")
+    print(f"generating graph for model: {model_path}", flush=True)
     num_feats__in_cluster = dataset.num_feats + 2
     cluster_data_obj = InstanceData(dataset.cluster_input, num_feats__in_cluster, attr_names)
     cltree = CLTree(cluster_data_obj)
