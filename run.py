@@ -3,8 +3,11 @@ from config import argparser
 from CAPS.CAPS_main import CAPS_main
 from graphs.compare_kernels import compare_explanation_graphs
 from graphs.utils import print_kernel_table, select_most_similar_pair, assign_cluster_to_state, get_next_probable_action
+from graphs.subgraph_search import get_maximum_common_subgraph, compare_transition_sets
+from graphs.subgraph_search import percentage_of_common_nodes, percentage_of_common_edges, build_common_percentage_matrices, print_percentage_table
 from sample_states import test_states_ft, test_states_hw, test_states_dst
 from model_paths import paths_ft, paths_hw, paths_dst
+import time
 
 if __name__ == '__main__':
 
@@ -98,7 +101,7 @@ if __name__ == '__main__':
 
     time_comparison_phase = time.time() - time_comparison_phase
 
-    # Step 4: Generate contrastive explanations for the best graph and print/log them out
+      # Step 4: Generate contrastive explanations for the best graph and print/log them out
 
     ## action explanation generation phase
 
@@ -189,7 +192,29 @@ if __name__ == '__main__':
 
     time_subgraph_explanation_phase = time.time() - time_explanation_phase
 
-    total_explanation_phase_time = time_action_explanation_phase + time_edge_explanation_phase + time_subgraph_explanation_phase
+    # shared subgraph percentage for all nodes and edges between all graphs, to give a sense of how similar the policies are in terms of their structure and transitions
+
+    time_subgraph_percentage_explanation_phase = time.time() 
+
+    print("\n\n--- Shared subgraph percentage for all nodes and edges between all graphs ---")
+ 
+    print(f"Best graphs selected based on {args.compare_criterion} kernel similarity: {pol_names[id_graph1]} and {pol_names[id_graph2]}")
+
+    print("Weisfeiler-Lehman Kernel Matrix:")
+    print_kernel_table(K_wl)
+
+    print("Subgraph Matching Kernel Matrix:")
+    print_kernel_table(K_sm)
+
+    print("Shared subgraph percentage for all nodes and edges between all graphs:")
+    common_nodes_percentage, common_edges_percentage = build_common_percentage_matrices(graph_dicts)
+    print_percentage_table(common_nodes_percentage)
+
+    time_subgraph_percentage_explanation_phase = time.time() - time_subgraph_percentage_explanation_phase
+
+    # Calculate total time for explanation generation phase
+
+    total_explanation_phase_time = time_action_explanation_phase + time_edge_explanation_phase + time_subgraph_explanation_phase + time_subgraph_percentage_explanation_phase
 
     print(f"\n\n--- Summary of execution times ---")
     print(f"Graph generation phase: {time_graph_phase:.2f} seconds")
@@ -197,5 +222,6 @@ if __name__ == '__main__':
     print(f"Action explanation generation phase: {time_action_explanation_phase:.2f} seconds")
     print(f"Edge explanation generation phase: {time_edge_explanation_phase:.2f} seconds")
     print(f"Subgraph explanation generation phase: {time_subgraph_explanation_phase:.2f} seconds")
+    print(f"Subgraph percentage explanation generation phase: {time_subgraph_percentage_explanation_phase:.2f} seconds")
     print(f"Total explanation generation phase: {total_explanation_phase_time:.2f} seconds")
 

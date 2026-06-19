@@ -1,0 +1,18 @@
+Fatal Python error: init_import_site: Failed to import the site module
+Python runtime state: initialized
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/site.py", line 614, in <module>
+    main()
+  File "/usr/lib/python3.9/site.py", line 597, in main
+    known_paths = venv(known_paths)
+  File "/usr/lib/python3.9/site.py", line 529, in venv
+    addsitepackages(known_paths, [sys.prefix])
+  File "/usr/lib/python3.9/site.py", line 384, in addsitepackages
+    addsitedir(sitedir, known_paths)
+  File "/usr/lib/python3.9/site.py", line 223, in addsitedir
+    addpackage(sitedir, name, known_paths)
+  File "/usr/lib/python3.9/site.py", line 187, in addpackage
+    if not dircase in known_paths and os.path.exists(dir):
+  File "/usr/lib/python3.9/genericpath.py", line 19, in exists
+    os.stat(path)
+KeyboardInterrupt

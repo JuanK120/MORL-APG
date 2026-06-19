@@ -1,0 +1,650 @@
+[policy_1] Starting
+[policy_0] Starting
+Running CAPS_main with model path: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 and environment: MO_highway
+Running CAPS_main with model path: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 and environment: MO_highway
+/mnt/c/Users/juanc/OneDrive/Escritorio/MORL-APG/MORL-APG/.venvs/caps_3.9/lib/python3.9/site-packages/gymnasium/spaces/box.py:235: UserWarning: [33mWARN: Box low's precision lowered by casting to float32, current low.dtype=float64[0m
+  gym.logger.warn(
+/mnt/c/Users/juanc/OneDrive/Escritorio/MORL-APG/MORL-APG/.venvs/caps_3.9/lib/python3.9/site-packages/gymnasium/spaces/box.py:305: UserWarning: [33mWARN: Box high's precision lowered by casting to float32, current high.dtype=float64[0m
+  gym.logger.warn(
+/mnt/c/Users/juanc/OneDrive/Escritorio/MORL-APG/MORL-APG/.venvs/caps_3.9/lib/python3.9/site-packages/gymnasium/spaces/box.py:235: UserWarning: [33mWARN: Box low's precision lowered by casting to float32, current low.dtype=float64[0m
+  gym.logger.warn(
+/mnt/c/Users/juanc/OneDrive/Escritorio/MORL-APG/MORL-APG/.venvs/caps_3.9/lib/python3.9/site-packages/gymnasium/spaces/box.py:305: UserWarning: [33mWARN: Box high's precision lowered by casting to float32, current high.dtype=float64[0m
+  gym.logger.warn(
+/mnt/c/Users/juanc/OneDrive/Escritorio/MORL-APG/MORL-APG/.venvs/caps_3.9/lib/python3.9/site-packages/stable_baselines3/common/save_util.py:437: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  th_object = th.load(file_content, map_location=device)
+/mnt/c/Users/juanc/OneDrive/Escritorio/MORL-APG/MORL-APG/.venvs/caps_3.9/lib/python3.9/site-packages/stable_baselines3/common/save_util.py:437: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  th_object = th.load(file_content, map_location=device)
+running MO_highway
+initializing linear utility function
+reward_shape in Utility_Function_Linear 3
+initializing linear utility function
+reward_shape in Utility_Function_Linear 3
+Env config: {'observation': {'type': 'Kinematics'}, 'action': {'type': 'DiscreteMetaAction'}, 'simulation_frequency': 15, 'policy_frequency': 2, 'other_vehicles_type': 'highway_env.vehicle.behavior.IDMVehicle', 'screen_width': 100, 'screen_height': 100, 'centering_position': [0.3, 0.5], 'scaling': 5.5, 'show_trajectories': False, 'render_agent': True, 'offscreen_rendering': True, 'manual_control': False, 'real_time_rendering': False, 'lanes_count': 4, 'vehicles_count': 10, 'controlled_vehicles': 1, 'initial_lane_id': None, 'duration': 40, 'ego_spacing': 1.5, 'vehicles_density': 1, 'collision_reward': -1, 'right_lane_reward': 0.1, 'high_speed_reward': 0.4, 'lane_change_reward': 0, 'reward_speed_range': [20, 30], 'normalize_reward': True, 'offroad_terminal': False}
+Environment created: mo-highway-fast-v0
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 1/200 /// Total reward: 28.76592278867496
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 2/200 /// Total reward: 33.64301935122671
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 3/200 /// Total reward: 31.112728800011997
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 4/200 /// Total reward: 32.94816077982422
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 5/200 /// Total reward: 32.8571613876962
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 6/200 /// Total reward: 35.202393913917206
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 7/200 /// Total reward: 3.9355138412431465
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 8/200 /// Total reward: 28.658027500365716
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 9/200 /// Total reward: 42.05391287107707
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 10/200 /// Total reward: 32.661530503044894
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 11/200 /// Total reward: 31.963273404374224
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 12/200 /// Total reward: 32.216538602875005
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 13/200 /// Total reward: 3.2854832537212566
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 14/200 /// Total reward: 30.280779841996424
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 15/200 /// Total reward: 6.244464451189323
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 16/200 /// Total reward: 25.911933486667674
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 17/200 /// Total reward: 25.513806006282746
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 18/200 /// Total reward: 33.11523411148563
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 19/200 /// Total reward: 33.911618644352515
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 20/200 /// Total reward: 32.69485610328628
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 21/200 /// Total reward: 22.18196158262945
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 22/200 /// Total reward: 24.66040122583588
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 23/200 /// Total reward: 33.45948867885686
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 24/200 /// Total reward: 31.136139266070934
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 25/200 /// Total reward: 34.1631552057839
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 26/200 /// Total reward: 42.269849533608486
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 27/200 /// Total reward: 34.89743236336898
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 28/200 /// Total reward: 13.277433111763536
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 29/200 /// Total reward: 30.12674385773427
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 30/200 /// Total reward: 26.796777303477732
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 31/200 /// Total reward: 33.44389500213459
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 32/200 /// Total reward: 29.410277063899144
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 33/200 /// Total reward: 36.09043368590412
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 34/200 /// Total reward: 34.01948393580446
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 35/200 /// Total reward: 31.062828201694863
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 36/200 /// Total reward: 32.761755836947835
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 37/200 /// Total reward: 16.00967327170888
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 38/200 /// Total reward: 33.79006552985696
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 39/200 /// Total reward: 28.411029233801337
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 40/200 /// Total reward: 42.61742676038363
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 41/200 /// Total reward: 33.03501030937226
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 42/200 /// Total reward: 10.788602699672754
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 43/200 /// Total reward: 38.957691030104215
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 44/200 /// Total reward: 42.94121762509107
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 45/200 /// Total reward: 5.538831109235041
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 46/200 /// Total reward: 29.472797826714995
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 47/200 /// Total reward: 26.824400624624033
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 48/200 /// Total reward: 29.804551458570543
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 49/200 /// Total reward: 22.72840455492993
+running MO_highway
+initializing linear utility function
+reward_shape in Utility_Function_Linear 3
+initializing linear utility function
+reward_shape in Utility_Function_Linear 3
+Env config: {'observation': {'type': 'Kinematics'}, 'action': {'type': 'DiscreteMetaAction'}, 'simulation_frequency': 15, 'policy_frequency': 2, 'other_vehicles_type': 'highway_env.vehicle.behavior.IDMVehicle', 'screen_width': 100, 'screen_height': 100, 'centering_position': [0.3, 0.5], 'scaling': 5.5, 'show_trajectories': False, 'render_agent': True, 'offscreen_rendering': True, 'manual_control': False, 'real_time_rendering': False, 'lanes_count': 4, 'vehicles_count': 10, 'controlled_vehicles': 1, 'initial_lane_id': None, 'duration': 40, 'ego_spacing': 1.5, 'vehicles_density': 1, 'collision_reward': -1, 'right_lane_reward': 0.1, 'high_speed_reward': 0.4, 'lane_change_reward': 0, 'reward_speed_range': [20, 30], 'normalize_reward': True, 'offroad_terminal': False}
+Environment created: mo-highway-fast-v0
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 1/200 /// Total reward: 24.3163687626719
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 2/200 /// Total reward: 26.55696968954417
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 3/200 /// Total reward: 34.309043152495946
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 4/200 /// Total reward: 26.94815304850365
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 5/200 /// Total reward: 26.429026686977956
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 6/200 /// Total reward: 26.668454439387524
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 7/200 /// Total reward: 26.429026686977956
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 8/200 /// Total reward: 26.79677730347771
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 9/200 /// Total reward: 25.335115947517224
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 10/200 /// Total reward: 26.79677730347771
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 11/200 /// Total reward: 27.296776801717485
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 12/200 /// Total reward: 40.09022709471509
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 13/200 /// Total reward: 26.94815304850364
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 14/200 /// Total reward: 26.88678268192396
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 15/200 /// Total reward: 26.66845443938753
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 16/200 /// Total reward: 39.27978564263811
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 17/200 /// Total reward: 30.809008796017217
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 18/200 /// Total reward: 29.463441307020908
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 19/200 /// Total reward: 25.428950257569717
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 20/200 /// Total reward: 26.429026686977963
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 21/200 /// Total reward: 26.796777303477725
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 22/200 /// Total reward: 30.130107303480635
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 23/200 /// Total reward: 24.129708219087895
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 24/200 /// Total reward: 26.97526416505997
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 25/200 /// Total reward: 26.796777303477725
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 26/200 /// Total reward: 26.09246738042387
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 27/200 /// Total reward: 27.79584515170776
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 28/200 /// Total reward: 33.78297737435567
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 29/200 /// Total reward: 26.94815304850364
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 30/200 /// Total reward: 16.463454313400412
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 31/200 /// Total reward: 29.948381879462836
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 32/200 /// Total reward: 26.008328252117487
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 33/200 /// Total reward: 26.429026686977963
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 34/200 /// Total reward: 30.96326199314298
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 35/200 /// Total reward: 29.958645958504704
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 36/200 /// Total reward: 18.463452313072807
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 37/200 /// Total reward: 26.09246738042387
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 38/200 /// Total reward: 30.7966953096104
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 39/200 /// Total reward: 26.66845443938753
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 40/200 /// Total reward: 26.66845443938753
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 41/200 /// Total reward: 28.11523902941044
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 42/200 /// Total reward: 27.66845405868935
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 43/200 /// Total reward: 26.796777303477725
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 44/200 /// Total reward: 26.796777303477725
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 45/200 /// Total reward: 31.34512288685825
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 46/200 /// Total reward: 26.008328252117487
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 47/200 /// Total reward: 29.682926467184032
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 48/200 /// Total reward: 26.008328252117487
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 49/200 /// Total reward: 29.42541828879449
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 50/200 /// Total reward: 26.80129118076521
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 51/200 /// Total reward: 34.952085295517776
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 52/200 /// Total reward: 33.61691868066531
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 53/200 /// Total reward: 34.70404485936982
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 54/200 /// Total reward: 22.762478720680683
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 55/200 /// Total reward: 32.95190879316919
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 56/200 /// Total reward: 27.392617094428715
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 57/200 /// Total reward: 35.774027177374194
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 58/200 /// Total reward: 43.24594954425418
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 59/200 /// Total reward: 29.31903748156281
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 60/200 /// Total reward: 29.81987693043733
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 61/200 /// Total reward: 26.616028885592733
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 62/200 /// Total reward: 33.58492551972745
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 63/200 /// Total reward: 9.446962128455802
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 64/200 /// Total reward: 30.02669910383503
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 65/200 /// Total reward: 23.159325825230667
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 66/200 /// Total reward: 5.569783968996191
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 67/200 /// Total reward: 42.97426163845897
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 68/200 /// Total reward: 32.30934667143393
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 69/200 /// Total reward: 33.81142018402568
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 70/200 /// Total reward: 32.1361745677326
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 71/200 /// Total reward: 21.872994867818733
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 72/200 /// Total reward: 8.641931415345184
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 73/200 /// Total reward: 34.8723749900424
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 74/200 /// Total reward: 32.46898451027561
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 75/200 /// Total reward: 34.96931151966531
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 76/200 /// Total reward: 15.975337682859635
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 77/200 /// Total reward: 19.444503482682187
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 78/200 /// Total reward: 30.76270552798392
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 79/200 /// Total reward: 32.748571647104214
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 80/200 /// Total reward: 29.29677481915973
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 81/200 /// Total reward: 31.437274607892178
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 82/200 /// Total reward: 6.659748202638944
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 83/200 /// Total reward: 10.278599225701836
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 84/200 /// Total reward: 36.46113521899029
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 85/200 /// Total reward: 33.37231142012658
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 86/200 /// Total reward: 34.959691173067384
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 87/200 /// Total reward: 24.519760594722726
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 88/200 /// Total reward: 25.7591499823898
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 89/200 /// Total reward: 36.99108505400858
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 90/200 /// Total reward: 30.710274542371053
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 91/200 /// Total reward: 19.51256601438469
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 92/200 /// Total reward: 31.93382483934589
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 93/200 /// Total reward: 34.652078749864856
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 94/200 /// Total reward: 8.469076071925784
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 95/200 /// Total reward: 6.752766442737862
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 96/200 /// Total reward: 33.126895652551994
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 97/200 /// Total reward: 31.41953476468447
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 98/200 /// Total reward: 28.60237724106939
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 99/200 /// Total reward: 32.1410753632737
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 100/200 /// Total reward: 25.998249948832964
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 101/200 /// Total reward: 32.459351674994
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 102/200 /// Total reward: 32.79165192780381
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 103/200 /// Total reward: 13.642649701280988
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 104/200 /// Total reward: 35.27557651152279
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 50/200 /// Total reward: 26.796777303477725
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 51/200 /// Total reward: 38.2556342259188
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 52/200 /// Total reward: 26.796777303477725
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 53/200 /// Total reward: 26.94815304850364
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 54/200 /// Total reward: 26.429026686977963
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 55/200 /// Total reward: 29.331905613171784
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 56/200 /// Total reward: 29.641929215767092
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 57/200 /// Total reward: 26.94815304850364
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 58/200 /// Total reward: 25.77203770603603
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 59/200 /// Total reward: 25.79203884564418
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 60/200 /// Total reward: 26.88678268192396
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 61/200 /// Total reward: 29.84427328262074
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 62/200 /// Total reward: 32.61481405682694
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 63/200 /// Total reward: 26.97526416505997
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 64/200 /// Total reward: 30.05296674169101
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 65/200 /// Total reward: 27.448152552273733
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 66/200 /// Total reward: 26.129213717108293
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 67/200 /// Total reward: 30.16845087319463
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 68/200 /// Total reward: 24.46252274206273
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 69/200 /// Total reward: 28.29677580409723
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 70/200 /// Total reward: 25.57454142647527
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 71/200 /// Total reward: 26.963443803477873
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 72/200 /// Total reward: 28.130109304825744
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 73/200 /// Total reward: 26.66845443938753
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 74/200 /// Total reward: 29.220639803436363
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 75/200 /// Total reward: 26.796777303477725
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 76/200 /// Total reward: 27.97526423320543
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 77/200 /// Total reward: 29.796774298371368
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 78/200 /// Total reward: 29.256643444698646
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 79/200 /// Total reward: 26.796777303477725
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 80/200 /// Total reward: 26.058867533855576
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 81/200 /// Total reward: 26.97526416505997
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 82/200 /// Total reward: 29.239181628117855
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 83/200 /// Total reward: 26.000891655615398
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 84/200 /// Total reward: 26.66845443938753
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 85/200 /// Total reward: 30.781714396698234
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 86/200 /// Total reward: 26.353100750792798
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 87/200 /// Total reward: 30.09568968306553
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 88/200 /// Total reward: 29.14703670424756
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 89/200 /// Total reward: 26.09246738042387
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 90/200 /// Total reward: 30.80859474940563
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 91/200 /// Total reward: 31.17802965847929
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 92/200 /// Total reward: 26.97526416505997
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 93/200 /// Total reward: 26.88678268192396
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 94/200 /// Total reward: 26.701513866358184
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 95/200 /// Total reward: 31.45024087388974
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 96/200 /// Total reward: 26.963443803477873
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 97/200 /// Total reward: 26.703093867793868
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 98/200 /// Total reward: 26.97526416505997
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 99/200 /// Total reward: 30.281714678582155
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 100/200 /// Total reward: 26.796777303477725
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 101/200 /// Total reward: 26.353100750792798
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 102/200 /// Total reward: 31.808593549357937
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 103/200 /// Total reward: 29.796774317178603
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 104/200 /// Total reward: 23.463369390058894
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 105/200 /// Total reward: 35.21873215174884
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 106/200 /// Total reward: 29.609886630346338
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 107/200 /// Total reward: 10.589592303533124
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 108/200 /// Total reward: 37.02101029998981
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 109/200 /// Total reward: 31.97369747883171
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 110/200 /// Total reward: 34.39359186794515
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 111/200 /// Total reward: 32.42844734841286
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 112/200 /// Total reward: 34.44815546917116
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 113/200 /// Total reward: 5.851640343214299
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 114/200 /// Total reward: 29.481200075325297
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 115/200 /// Total reward: 44.22202488372388
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 116/200 /// Total reward: 38.68524537393408
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 117/200 /// Total reward: 30.521404145586857
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 118/200 /// Total reward: 30.242700514439605
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 119/200 /// Total reward: 29.479824640854318
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 120/200 /// Total reward: 4.582619167351652
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 121/200 /// Total reward: 29.314051086958543
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 122/200 /// Total reward: 21.737588509626427
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 123/200 /// Total reward: 37.201199213208795
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 124/200 /// Total reward: 9.229158480588318
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 125/200 /// Total reward: 11.188864198246705
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 126/200 /// Total reward: 28.166562358863423
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 127/200 /// Total reward: 26.339813893508776
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 128/200 /// Total reward: 27.717827376927175
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 129/200 /// Total reward: 28.726075483884443
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 130/200 /// Total reward: 11.203184686604772
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 131/200 /// Total reward: 34.26040037209536
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 132/200 /// Total reward: 24.472215257557068
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 133/200 /// Total reward: 34.632389218100734
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 134/200 /// Total reward: 33.49700317217162
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 135/200 /// Total reward: 3.8710016144530996
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 136/200 /// Total reward: 32.518979613054995
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 137/200 /// Total reward: 20.68976383957508
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 138/200 /// Total reward: 29.39039262961819
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 139/200 /// Total reward: 4.470807084975309
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 140/200 /// Total reward: 33.19723039375525
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 141/200 /// Total reward: 38.68096275996475
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 142/200 /// Total reward: 23.854779786854387
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 143/200 /// Total reward: 36.60747460352315
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 144/200 /// Total reward: 33.96109394159337
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 145/200 /// Total reward: 29.128328820122633
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 146/200 /// Total reward: 31.89983277532994
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 147/200 /// Total reward: 29.009433491726476
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 148/200 /// Total reward: 3.3241562918268617
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 149/200 /// Total reward: 30.13010730524322
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 150/200 /// Total reward: 35.461497618977354
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 151/200 /// Total reward: 4.054917880083623
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 152/200 /// Total reward: 37.36922821193784
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 153/200 /// Total reward: 41.07559311769798
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 154/200 /// Total reward: 31.217716849718013
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 155/200 /// Total reward: 37.72242238133741
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 156/200 /// Total reward: 21.20680164548935
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 157/200 /// Total reward: 29.59659240850891
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 158/200 /// Total reward: 33.14230092679244
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 159/200 /// Total reward: 11.560340536613003
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 105/200 /// Total reward: 29.702985337490382
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 106/200 /// Total reward: 24.574557426955323
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 107/200 /// Total reward: 29.80901428629052
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 108/200 /// Total reward: 26.88678268192396
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 109/200 /// Total reward: 25.125321634964628
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 110/200 /// Total reward: 30.461736808901797
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 111/200 /// Total reward: 29.64229893401523
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 112/200 /// Total reward: 26.94815304850364
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 113/200 /// Total reward: 23.79660262482868
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 114/200 /// Total reward: 26.09246738042387
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 115/200 /// Total reward: 27.55719953443795
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 116/200 /// Total reward: 27.64193017179999
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 117/200 /// Total reward: 26.796777303477725
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 118/200 /// Total reward: 30.518427105106127
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 119/200 /// Total reward: 28.000149780617207
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 120/200 /// Total reward: 32.01178833179113
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 121/200 /// Total reward: 26.796777303477725
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 122/200 /// Total reward: 26.34151766537059
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 123/200 /// Total reward: 29.009932809233682
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 124/200 /// Total reward: 26.008328252117487
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 125/200 /// Total reward: 29.78148352623372
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 126/200 /// Total reward: 26.963443803477873
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 127/200 /// Total reward: 31.206696326297752
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 128/200 /// Total reward: 26.796777303477725
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 129/200 /// Total reward: 26.97526416505997
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 130/200 /// Total reward: 26.796777303477725
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 131/200 /// Total reward: 30.61481667420849
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 132/200 /// Total reward: 29.808594681580715
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 133/200 /// Total reward: 7.550778119575956
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 134/200 /// Total reward: 26.975264165059972
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 135/200 /// Total reward: 26.09246738042388
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 136/200 /// Total reward: 29.166638066252407
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 137/200 /// Total reward: 26.79677730347773
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 138/200 /// Total reward: 32.5599488868734
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 139/200 /// Total reward: 32.11479471709545
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 140/200 /// Total reward: 26.79677730347773
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 141/200 /// Total reward: 19.796784304430407
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 142/200 /// Total reward: 27.387265837480296
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 143/200 /// Total reward: 26.948153048503652
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 144/200 /// Total reward: 26.429026686977966
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 145/200 /// Total reward: 27.475272237504793
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 146/200 /// Total reward: 26.21742611992403
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 147/200 /// Total reward: 29.130108303479762
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 148/200 /// Total reward: 29.130108297901817
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 149/200 /// Total reward: 31.281482011739083
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 150/200 /// Total reward: 30.281483024180258
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 151/200 /// Total reward: 29.948403514195295
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 152/200 /// Total reward: 34.06919295124401
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 153/200 /// Total reward: 28.79677529860339
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 154/200 /// Total reward: 29.720123034835428
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 155/200 /// Total reward: 26.66845443938752
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 156/200 /// Total reward: 28.27203517494952
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 157/200 /// Total reward: 28.887306628894205
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 158/200 /// Total reward: 28.105368714867826
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 159/200 /// Total reward: 26.09246738042388
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 160/200 /// Total reward: 29.97511101421647
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 161/200 /// Total reward: 39.242057282348156
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 162/200 /// Total reward: 31.052767565419437
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 163/200 /// Total reward: 11.803184090578936
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 164/200 /// Total reward: 29.980019257444923
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 165/200 /// Total reward: 3.6828982161212007
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 166/200 /// Total reward: 34.39585171366498
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 167/200 /// Total reward: 36.43229353249917
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 168/200 /// Total reward: 19.26668872486917
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 169/200 /// Total reward: 42.38518957888669
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 170/200 /// Total reward: 30.934101298545688
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 171/200 /// Total reward: 39.54003291099732
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 172/200 /// Total reward: 34.72919121632625
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 173/200 /// Total reward: 24.460203934701884
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 174/200 /// Total reward: 31.720742900648112
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 175/200 /// Total reward: 34.55431896044091
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 176/200 /// Total reward: 18.297597137822525
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 177/200 /// Total reward: 32.95820367077853
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 178/200 /// Total reward: 9.947932523770293
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 179/200 /// Total reward: 14.34955191141991
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 180/200 /// Total reward: 29.714283318070418
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 181/200 /// Total reward: 27.794388448990315
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 182/200 /// Total reward: 20.00219908741574
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 183/200 /// Total reward: 24.07059985464401
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 184/200 /// Total reward: 35.014198976795896
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 185/200 /// Total reward: 33.77249716723906
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 186/200 /// Total reward: 33.79667009172008
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 187/200 /// Total reward: 30.640050881463083
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 188/200 /// Total reward: 34.30139080637605
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 189/200 /// Total reward: 6.2047921658068095
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 190/200 /// Total reward: 27.281486047503172
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 191/200 /// Total reward: 35.92217217576829
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 192/200 /// Total reward: 34.220401163013754
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 193/200 /// Total reward: 35.07371690250417
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 194/200 /// Total reward: 37.44809107714956
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 195/200 /// Total reward: 22.86539472676385
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 196/200 /// Total reward: 21.740114824959672
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 197/200 /// Total reward: 23.02971759192577
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 198/200 /// Total reward: 22.437319866719157
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 199/200 /// Total reward: 39.26967334607993
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1 /// Ep. 200/200 /// Total reward: 23.333664352909448
+num_actions: 5
+Dataset collected for model CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1. Starting explanation generation...
+Running AutoPred
+Explanations with SHAP feature selection
+apg_baseline inside explain_auto_pred: <CAPS.abstract.APG object at 0x7fba15acb1c0>
+generating graph for model: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-1
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 160/200 /// Total reward: 26.66845443938752
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 161/200 /// Total reward: 29.923308908257955
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 162/200 /// Total reward: 30.975261228290687
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 163/200 /// Total reward: 26.79677730347773
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 164/200 /// Total reward: 26.88678268192397
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 165/200 /// Total reward: 36.42593551652527
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 166/200 /// Total reward: 30.308516230243928
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 167/200 /// Total reward: 26.88678268192397
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 168/200 /// Total reward: 30.448403006426414
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 169/200 /// Total reward: 31.00178343877285
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 170/200 /// Total reward: 28.053971809677915
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 171/200 /// Total reward: 26.61731218569943
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 172/200 /// Total reward: 26.79677730347773
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 173/200 /// Total reward: 29.132220002718558
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 174/200 /// Total reward: 29.018963099752956
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 175/200 /// Total reward: 4.463463422597478
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 176/200 /// Total reward: 26.88678268192397
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 177/200 /// Total reward: 26.09246738042388
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 178/200 /// Total reward: 26.353100750792795
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 179/200 /// Total reward: 34.482528473104104
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 180/200 /// Total reward: 29.88593286594337
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 181/200 /// Total reward: 29.29677482053908
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 182/200 /// Total reward: 26.975264165059972
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 183/200 /// Total reward: 26.66845443938752
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 184/200 /// Total reward: 25.12532163496463
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 185/200 /// Total reward: 31.67845537152723
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 186/200 /// Total reward: 29.114817560847026
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 187/200 /// Total reward: 27.705388086174022
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 188/200 /// Total reward: 26.79677730347773
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 189/200 /// Total reward: 27.463443305241793
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 190/200 /// Total reward: 26.79677730347773
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 191/200 /// Total reward: 29.281484047088053
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 192/200 /// Total reward: 21.46344875957151
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 193/200 /// Total reward: 33.44472057594071
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 194/200 /// Total reward: 26.88678268192397
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 195/200 /// Total reward: 31.832352261441375
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 196/200 /// Total reward: 26.09246738042388
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 197/200 /// Total reward: 26.79677730347773
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 198/200 /// Total reward: 29.141928801158368
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 199/200 /// Total reward: 34.5801520187085
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0 /// Ep. 200/200 /// Total reward: 28.50570380862281
+num_actions: 5
+Dataset collected for model CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0. Starting explanation generation...
+Running AutoPred
+Explanations with SHAP feature selection
+apg_baseline inside explain_auto_pred: <CAPS.abstract.APG object at 0x7fb9df2f5430>
+generating graph for model: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-0
+Starting graph generation...
+[policy_2] Starting
+Running CAPS_main with model path: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 and environment: MO_highway
+/mnt/c/Users/juanc/OneDrive/Escritorio/MORL-APG/MORL-APG/.venvs/caps_3.9/lib/python3.9/site-packages/gymnasium/spaces/box.py:235: UserWarning: [33mWARN: Box low's precision lowered by casting to float32, current low.dtype=float64[0m
+  gym.logger.warn(
+/mnt/c/Users/juanc/OneDrive/Escritorio/MORL-APG/MORL-APG/.venvs/caps_3.9/lib/python3.9/site-packages/gymnasium/spaces/box.py:305: UserWarning: [33mWARN: Box high's precision lowered by casting to float32, current high.dtype=float64[0m
+  gym.logger.warn(
+/mnt/c/Users/juanc/OneDrive/Escritorio/MORL-APG/MORL-APG/.venvs/caps_3.9/lib/python3.9/site-packages/stable_baselines3/common/save_util.py:437: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  th_object = th.load(file_content, map_location=device)
+[policy_3] Starting
+Running CAPS_main with model path: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 and environment: MO_highway
+/mnt/c/Users/juanc/OneDrive/Escritorio/MORL-APG/MORL-APG/.venvs/caps_3.9/lib/python3.9/site-packages/gymnasium/spaces/box.py:235: UserWarning: [33mWARN: Box low's precision lowered by casting to float32, current low.dtype=float64[0m
+  gym.logger.warn(
+/mnt/c/Users/juanc/OneDrive/Escritorio/MORL-APG/MORL-APG/.venvs/caps_3.9/lib/python3.9/site-packages/gymnasium/spaces/box.py:305: UserWarning: [33mWARN: Box high's precision lowered by casting to float32, current high.dtype=float64[0m
+  gym.logger.warn(
+/mnt/c/Users/juanc/OneDrive/Escritorio/MORL-APG/MORL-APG/.venvs/caps_3.9/lib/python3.9/site-packages/stable_baselines3/common/save_util.py:437: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  th_object = th.load(file_content, map_location=device)
+running MO_highway
+initializing linear utility function
+reward_shape in Utility_Function_Linear 3
+initializing linear utility function
+reward_shape in Utility_Function_Linear 3
+Env config: {'observation': {'type': 'Kinematics'}, 'action': {'type': 'DiscreteMetaAction'}, 'simulation_frequency': 15, 'policy_frequency': 2, 'other_vehicles_type': 'highway_env.vehicle.behavior.IDMVehicle', 'screen_width': 100, 'screen_height': 100, 'centering_position': [0.3, 0.5], 'scaling': 5.5, 'show_trajectories': False, 'render_agent': True, 'offscreen_rendering': True, 'manual_control': False, 'real_time_rendering': False, 'lanes_count': 4, 'vehicles_count': 10, 'controlled_vehicles': 1, 'initial_lane_id': None, 'duration': 40, 'ego_spacing': 1.5, 'vehicles_density': 1, 'collision_reward': -1, 'right_lane_reward': 0.1, 'high_speed_reward': 0.4, 'lane_change_reward': 0, 'reward_speed_range': [20, 30], 'normalize_reward': True, 'offroad_terminal': False}
+Environment created: mo-highway-fast-v0
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 1/200 /// Total reward: 26.18747193128913
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 2/200 /// Total reward: 26.796777303477736
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 3/200 /// Total reward: 26.129213717108293
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 4/200 /// Total reward: 26.429026686977963
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 5/200 /// Total reward: 26.09246738042387
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 6/200 /// Total reward: 26.796777303477718
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 7/200 /// Total reward: 26.668454439387524
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 8/200 /// Total reward: 26.796777303477718
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 9/200 /// Total reward: 25.88049435465073
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 10/200 /// Total reward: 26.796777303477718
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 11/200 /// Total reward: 26.429026686977963
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 12/200 /// Total reward: 26.668454439387524
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 13/200 /// Total reward: 26.09246738042387
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 14/200 /// Total reward: 26.796777303477718
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 15/200 /// Total reward: 26.09246738042387
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 16/200 /// Total reward: 26.429026686977963
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 17/200 /// Total reward: 26.796777303477718
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 18/200 /// Total reward: 26.14661930127521
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 19/200 /// Total reward: 26.668454439387524
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 20/200 /// Total reward: 26.796777303477732
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 21/200 /// Total reward: 26.94815304850362
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 22/200 /// Total reward: 26.79677730347772
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 23/200 /// Total reward: 26.79677730347772
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 24/200 /// Total reward: 26.429026686977974
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 25/200 /// Total reward: 26.429026686977974
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 26/200 /// Total reward: 26.668454439387528
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 27/200 /// Total reward: 26.092467380423866
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 28/200 /// Total reward: 26.429026686977974
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 29/200 /// Total reward: 26.55696968954447
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 30/200 /// Total reward: 26.668454439387528
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 31/200 /// Total reward: 26.092467380423866
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 32/200 /// Total reward: 10.130127303460764
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 33/200 /// Total reward: 26.703093867793882
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 34/200 /// Total reward: 26.61731218569942
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 35/200 /// Total reward: 26.66845443938753
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 36/200 /// Total reward: 26.66845443938753
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 37/200 /// Total reward: 26.008328252117487
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 38/200 /// Total reward: 26.429026686977963
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 39/200 /// Total reward: 26.66845443938753
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 40/200 /// Total reward: 26.796777303477718
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 41/200 /// Total reward: 26.09246738042387
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 42/200 /// Total reward: 26.09246738042387
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 43/200 /// Total reward: 26.66845443938753
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 44/200 /// Total reward: 1.8837245675107113
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 45/200 /// Total reward: 26.429026686977963
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 46/200 /// Total reward: 26.796777303477718
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 47/200 /// Total reward: 8.458722845616734
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 48/200 /// Total reward: 25.572468829333246
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 49/200 /// Total reward: 26.66845443938753
+running MO_highway
+initializing linear utility function
+reward_shape in Utility_Function_Linear 3
+initializing linear utility function
+reward_shape in Utility_Function_Linear 3
+Env config: {'observation': {'type': 'Kinematics'}, 'action': {'type': 'DiscreteMetaAction'}, 'simulation_frequency': 15, 'policy_frequency': 2, 'other_vehicles_type': 'highway_env.vehicle.behavior.IDMVehicle', 'screen_width': 100, 'screen_height': 100, 'centering_position': [0.3, 0.5], 'scaling': 5.5, 'show_trajectories': False, 'render_agent': True, 'offscreen_rendering': True, 'manual_control': False, 'real_time_rendering': False, 'lanes_count': 4, 'vehicles_count': 10, 'controlled_vehicles': 1, 'initial_lane_id': None, 'duration': 40, 'ego_spacing': 1.5, 'vehicles_density': 1, 'collision_reward': -1, 'right_lane_reward': 0.1, 'high_speed_reward': 0.4, 'lane_change_reward': 0, 'reward_speed_range': [20, 30], 'normalize_reward': True, 'offroad_terminal': False}
+Environment created: mo-highway-fast-v0
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 1/200 /// Total reward: 28.814468399374512
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 2/200 /// Total reward: 29.217439709843916
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 3/200 /// Total reward: 27.697157142696987
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 4/200 /// Total reward: 28.942681483590448
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 5/200 /// Total reward: 26.09246738042387
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 6/200 /// Total reward: 31.54716112364727
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 7/200 /// Total reward: 31.090438646689535
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 8/200 /// Total reward: 28.61481805865578
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 9/200 /// Total reward: 26.429026686977977
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 10/200 /// Total reward: 27.097011617395985
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 11/200 /// Total reward: 29.91558071644026
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 12/200 /// Total reward: 28.4634405354628
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 13/200 /// Total reward: 26.796777303477732
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 14/200 /// Total reward: 26.092467380423876
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 15/200 /// Total reward: 29.294893557353937
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 16/200 /// Total reward: 28.337040050514936
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 17/200 /// Total reward: 26.55696968954448
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 18/200 /// Total reward: 7.907907535256751
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 19/200 /// Total reward: 27.220115809193885
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 20/200 /// Total reward: 28.204173216941804
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 21/200 /// Total reward: 27.019766751702868
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 22/200 /// Total reward: 28.46344229731472
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 23/200 /// Total reward: 26.963443799128072
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 24/200 /// Total reward: 26.796777303477725
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 25/200 /// Total reward: 26.796777303477725
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 26/200 /// Total reward: 26.092467380423884
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 27/200 /// Total reward: 26.092467380423884
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 28/200 /// Total reward: 26.975264165059976
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 29/200 /// Total reward: 31.683963677501055
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 30/200 /// Total reward: 29.390360295895093
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 31/200 /// Total reward: 29.781255580417245
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 32/200 /// Total reward: 26.00832825211748
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 33/200 /// Total reward: 29.26471331397596
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 34/200 /// Total reward: 26.66845443938753
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 35/200 /// Total reward: 30.28117670045299
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 36/200 /// Total reward: 26.97526416505997
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 37/200 /// Total reward: 26.97526416505997
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 38/200 /// Total reward: 26.66845443938753
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 39/200 /// Total reward: 27.869759370549367
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 40/200 /// Total reward: 26.66845443938753
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 41/200 /// Total reward: 31.118576989832576
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 42/200 /// Total reward: 24.46252274206274
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 43/200 /// Total reward: 26.891619158229474
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 44/200 /// Total reward: 27.614299817459916
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 45/200 /// Total reward: 26.09246738042387
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 46/200 /// Total reward: 26.94815304850364
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 47/200 /// Total reward: 31.46215283030871
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 48/200 /// Total reward: 15.130122303467495
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 49/200 /// Total reward: 26.94815304850364
+Traceback (most recent call last):
+  File "/mnt/c/Users/juanc/OneDrive/Escritorio/MORL-APG/morl-apg/run_mult_proc.py", line 96, in <module>
+    for future in as_completed(futures):
+  File "/usr/lib/python3.9/concurrent/futures/_base.py", line 245, in as_completed
+    waiter.event.wait(wait_timeout)
+  File "/usr/lib/python3.9/threading.py", line 581, in wait
+    signaled = self._cond.wait(timeout)
+  File "/usr/lib/python3.9/threading.py", line 312, in wait
+    waiter.acquire()
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/juanc/OneDrive/Escritorio/MORL-APG/morl-apg/run_mult_proc.py", line 109, in <module>
+    print(traceback.format_exc(), flush=True)
+  File "/usr/lib/python3.9/concurrent/futures/_base.py", line 637, in __exit__
+    self.shutdown(wait=True)
+  File "/usr/lib/python3.9/concurrent/futures/process.py", line 767, in shutdown
+    self._executor_manager_thread.join()
+  File "/usr/lib/python3.9/threading.py", line 1060, in join
+    self._wait_for_tstate_lock()
+  File "/usr/lib/python3.9/threading.py", line 1080, in _wait_for_tstate_lock
+    if lock.acquire(block, timeout):
+KeyboardInterrupt
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 50/200 /// Total reward: 26.796777303477718
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 51/200 /// Total reward: 26.796777303477718
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 52/200 /// Total reward: 26.09246738042387
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 53/200 /// Total reward: 26.55696968954446
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 54/200 /// Total reward: 25.572468829333246
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 55/200 /// Total reward: 26.217426119924028
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 56/200 /// Total reward: 26.429026686977963
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 57/200 /// Total reward: 26.429026686977963
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 58/200 /// Total reward: 26.703093867793868
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 59/200 /// Total reward: 26.55696968954446
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 60/200 /// Total reward: 26.796777303477718
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 61/200 /// Total reward: 26.796777303477718
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 62/200 /// Total reward: 26.66845443938753
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 63/200 /// Total reward: 26.66845443938753
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 64/200 /// Total reward: 25.792038845644186
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 65/200 /// Total reward: 26.429026686977963
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 66/200 /// Total reward: 26.796777303477718
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 67/200 /// Total reward: 26.09246738042387
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 68/200 /// Total reward: 26.66845443938753
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 69/200 /// Total reward: 26.217426119924028
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-2 /// Ep. 70/200 /// Total reward: 25.452538420813383
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 50/200 /// Total reward: 26.88678268192396
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 51/200 /// Total reward: 26.09246738042387
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 52/200 /// Total reward: 28.70309181952645
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 53/200 /// Total reward: 29.501808904686797
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 54/200 /// Total reward: 26.88678268192396
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 55/200 /// Total reward: 27.296776805654297
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 56/200 /// Total reward: 26.55696968954446
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 57/200 /// Total reward: 26.454097295900596
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 58/200 /// Total reward: 26.92901692844557
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 59/200 /// Total reward: 26.79677730347771
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 60/200 /// Total reward: 26.79677730347771
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 61/200 /// Total reward: 26.79677730347771
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 62/200 /// Total reward: 26.97526416505997
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 63/200 /// Total reward: 26.94815304850364
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 64/200 /// Total reward: 24.574557426955323
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 65/200 /// Total reward: 30.70167856538005
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 66/200 /// Total reward: 27.29673138868901
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 67/200 /// Total reward: 26.88678268192396
+Policy: CAPS/DPMORL/experiments/highway_test/DPMORL.Highway.LossNormLamda_0.1/policy-program-3 /// Ep. 68/200 /// Total reward: 28.539639620786765
+Error in atexit._run_exitfuncs:
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/weakref.py", line 667, in _exitfunc
+    f()
+  File "/usr/lib/python3.9/weakref.py", line 591, in __call__
+    return info.func(*info.args, **(info.kwargs or {}))
+  File "/mnt/c/Users/juanc/OneDrive/Escritorio/MORL-APG/MORL-APG/.venvs/caps_3.9/lib/python3.9/site-packages/torch/library.py", line 286, in _del_library
+    def _del_library(captured_impls, op_impls, captured_defs, op_defs, registration_handles):
+KeyboardInterrupt
+Error in atexit._run_exitfuncs:
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/multiprocessing/popen_fork.py", line 27, in poll
+    pid, sts = os.waitpid(self.pid, flag)
+KeyboardInterrupt

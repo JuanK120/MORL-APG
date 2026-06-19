@@ -21,8 +21,3 @@ source .venvs/caps_3.9/bin/activate
 cd caps
 python run.py --env=MO_deepSea --path=./MountainCar/checkpoints/checkpoint-580 --num_episodes=3 --alg=PPO
 python run.py --env=MO_fruitTree --path=./MountainCar/checkpoints/checkpoint-580 --num_episodes=3 --alg=PPO
-
-
-nohup python run.py --env=MO_deepSea --path=./MountainCar/checkpoints/checkpoint-580 --num_episodes=3 --alg=PPO --autoPred=True > "outputs/deepSea_pol0.txt"
-nohup python run.py --env=MO_fruitTree --path=./MountainCar/checkpoints/checkpoint-580 --num_episodes=3 --alg=PPO --autoPred=True > "outputs/fruitTree_pol0.txt"
-nohup python run.py --env=MO_highway --path=./MountainCar/checkpoints/checkpoint-580 --num_episodes=30 --alg=PPO --autoPred=True > "outputs/highway_pol0.txt"

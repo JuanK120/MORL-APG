@@ -1,9 +1,13 @@
+import pickle
 import time
+import os
+import traceback
 from config import argparser
 from CAPS.CAPS_main import CAPS_main
 from graphs.compare_kernels import compare_explanation_graphs
 from graphs.utils import print_kernel_table, select_most_similar_pair, assign_cluster_to_state, get_next_probable_action
 from graphs.subgraph_search import get_maximum_common_subgraph, compare_transition_sets
+from graphs.subgraph_search import percentage_of_common_nodes, percentage_of_common_edges, build_common_percentage_matrices, print_percentage_table
 from sample_states import test_states_ft, test_states_hw, test_states_dst
 from model_paths import paths_ft, paths_hw, paths_dst
 from concurrent.futures import ProcessPoolExecutor, as_completed
@@ -15,11 +19,30 @@ def run_policy(pol_idx, model_path, base_args):
     local_args = deepcopy(base_args)
     local_args.path = model_path
 
-    print(f"\nRunning policy {pol_idx}: {model_path}")
+    out_path = f"outputs/explanation_policy_{pol_idx}.pkl"
+    os.makedirs("outputs", exist_ok=True)
 
-    explanation = CAPS_main(local_args)
+    try:
+        print(f"[policy_{pol_idx}] Starting", flush=True)
 
-    return f"policy_{pol_idx}", explanation 
+        explanation = CAPS_main(local_args)
+        tree = explanation.get('tree', None) 
+        explanation.pop('tree', None)
+
+        with open(out_path, "wb") as f:
+            pickle.dump(explanation, f)
+
+        print(f"[policy_{pol_idx}] Saved explanation to {out_path}", flush=True)
+
+        return f"policy_{pol_idx}", out_path,
+
+    except Exception:
+        log_path = f"outputs/worker_policy_{pol_idx}_error.log"
+        with open(log_path, "w") as f:
+            f.write(traceback.format_exc())
+
+        print(f"[policy_{pol_idx}] Crashed. See {log_path}", flush=True)
+        raise
     
 if __name__ == '__main__':
 
@@ -63,7 +86,7 @@ if __name__ == '__main__':
     
     """
 
-    max_workers = min(len(paths), 4)  # adjust depending on CPU/RAM/GPU use
+    max_workers = min(len(paths), 2)  # adjust depending on CPU/RAM/GPU use
 
     with ProcessPoolExecutor(max_workers=max_workers) as executor:
         futures = [
@@ -72,8 +95,21 @@ if __name__ == '__main__':
         ]
 
         for future in as_completed(futures):
-            policy_name, explanation = future.result()
-            all_graphs[policy_name] = explanation
+            try:
+                policy_name, explanation_path = future.result()
+
+                with open(explanation_path, "rb") as f:
+                    explanation = pickle.load(f)
+
+                all_graphs[policy_name] = explanation
+
+                print(f"[MAIN] Loaded {policy_name}", flush=True)
+
+            except Exception:
+                print("[MAIN] A worker failed:")
+                print(traceback.format_exc(), flush=True)
+
+    time_graph_phase = time.time() - time_graph_phase
 
     print(f"Graph phase took {time.time() - time_graph_phase:.2f}s")
  
@@ -87,12 +123,6 @@ if __name__ == '__main__':
     graph_dicts = list(all_graphs.values())
 
     K_wl, K_sm = compare_explanation_graphs(graph_dicts)
-
-    print("Weisfeiler-Lehman Kernel Matrix:")
-    print_kernel_table(K_wl)
-
-    print("Subgraph Matching Kernel Matrix:")
-    print_kernel_table(K_sm)
     
     # We need to select 2 graphs to compare for generating contrastive explanations, for that, we can use 
     # kernel similarity metrics to select the most similar graphs, as they are more likely to have interesting contrasts.
@@ -125,6 +155,7 @@ if __name__ == '__main__':
     print(f"policy 2 selected for explanation: \n{graph_dicts[id_graph2]}")
 
     time_comparison_phase = time.time() - time_comparison_phase
+
 
     # Step 4: Generate contrastive explanations for the best graph and print/log them out
 
@@ -217,7 +248,30 @@ if __name__ == '__main__':
 
     time_subgraph_explanation_phase = time.time() - time_explanation_phase
 
-    total_explanation_phase_time = time_action_explanation_phase + time_edge_explanation_phase + time_subgraph_explanation_phase
+    # shared subgraph percentage for all nodes and edges between all graphs, to give a sense of how similar the policies are in terms of their structure and transitions
+
+    time_subgraph_percentage_explanation_phase = time.time() 
+
+    print("\n\n--- Shared subgraph percentage for all nodes and edges between all graphs ---")
+
+    print(f"policy 1 selected for explanation: \n {graph_dicts[id_graph1]}")
+    print(f"policy 2 selected for explanation: \n{graph_dicts[id_graph2]}")
+
+    print("Weisfeiler-Lehman Kernel Matrix:")
+    print_kernel_table(K_wl)
+
+    print("Subgraph Matching Kernel Matrix:")
+    print_kernel_table(K_sm)
+
+    print("Shared subgraph percentage for all nodes and edges between all graphs:")
+    common_nodes_percentage, common_edges_percentage = build_common_percentage_matrices(graph_dicts)
+    print_percentage_table(common_nodes_percentage)
+
+    time_subgraph_percentage_explanation_phase = time.time() - time_subgraph_percentage_explanation_phase
+
+    # Calculate total time for explanation generation phase
+
+    total_explanation_phase_time = time_action_explanation_phase + time_edge_explanation_phase + time_subgraph_explanation_phase + time_subgraph_percentage_explanation_phase
 
     print(f"\n\n--- Summary of execution times ---")
     print(f"Graph generation phase: {time_graph_phase:.2f} seconds")
@@ -225,5 +279,6 @@ if __name__ == '__main__':
     print(f"Action explanation generation phase: {time_action_explanation_phase:.2f} seconds")
     print(f"Edge explanation generation phase: {time_edge_explanation_phase:.2f} seconds")
     print(f"Subgraph explanation generation phase: {time_subgraph_explanation_phase:.2f} seconds")
+    print(f"Subgraph percentage explanation generation phase: {time_subgraph_percentage_explanation_phase:.2f} seconds")
     print(f"Total explanation generation phase: {total_explanation_phase_time:.2f} seconds")
 
