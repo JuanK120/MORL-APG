@@ -171,6 +171,36 @@ def build_common_percentage_matrices(graph_dicts):
 
     return common_nodes_percentage, common_edges_percentage
 
+def percentage_of_g1_nodes_in_g2(g1, g2):
+    common_subgraph, mapping = get_maximum_common_subgraph(g1, g2)
+
+    if common_subgraph is None:
+        return 0.0
+
+    total_g1_nodes = len(g1["groups"])
+    if total_g1_nodes == 0:
+        return 0.0
+
+    common_nodes = len(common_subgraph.nodes())
+
+    return (common_nodes / total_g1_nodes) * 100
+
+
+def percentage_of_g1_edges_in_g2(g1, g2):
+    common_subgraph, mapping = get_maximum_common_subgraph(g1, g2)
+
+    if common_subgraph is None:
+        return 0.0
+
+    total_g1_edges = len(g1["edges"])
+    if total_g1_edges == 0:
+        return 0.0
+
+    common_edges = len(common_subgraph.edges())
+
+    return (common_edges / total_g1_edges) * 100
+
+
 def print_percentage_table(matrix, title=None):
     n = matrix.shape[0]
 
