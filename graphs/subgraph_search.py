@@ -126,7 +126,7 @@ def percentage_of_common_transitions(g1, g2):
     if total_transitions == 0:
         return 0.0
 
-    return len(common) / total_transitions * 100
+    return (2 * len(common) / total_transitions) * 100
 
 def percentage_of_common_nodes(g1, g2):
     common_subgraph, mapping = get_maximum_common_subgraph(g1, g2)
@@ -137,7 +137,7 @@ def percentage_of_common_nodes(g1, g2):
     total_nodes = len(g1["groups"]) + len(g2["groups"])
     common_nodes = len(common_subgraph.nodes())
 
-    return (common_nodes / total_nodes) * 100
+    return (2 * common_nodes / total_nodes) * 100
 
 def percentage_of_common_edges(g1, g2):
     common_subgraph, mapping = get_maximum_common_subgraph(g1, g2)
@@ -148,7 +148,7 @@ def percentage_of_common_edges(g1, g2):
     total_edges = len(g1["edges"]) + len(g2["edges"])
     common_edges = len(common_subgraph.edges())
 
-    return (common_edges / total_edges) * 100 
+    return (2 * common_edges / total_edges) * 100
 
 def build_common_percentage_matrices(graph_dicts):
     n = len(graph_dicts)
@@ -183,3 +183,24 @@ def print_percentage_table(matrix, title=None):
     for i in range(n):
         row_vals = "   ".join(f"{matrix[i, j]:>6.2f}%" for j in range(n))
         print(f"{i:>3}  {row_vals}")
+
+def print_percentage_table_g1_in_g2(graph_dicts):
+    n = len(graph_dicts)
+
+    g1_in_g2_nodes_percentage = np.zeros((n, n))
+    g1_in_g2_edges_percentage = np.zeros((n, n))
+
+    for i in range(n):
+        for j in range(n):
+            if i == j:
+                g1_in_g2_nodes_percentage[i, j] = 100.0
+                g1_in_g2_edges_percentage[i, j] = 100.0
+            else:
+                g1_in_g2_nodes_percentage[i, j] = percentage_of_g1_nodes_in_g2(
+                    graph_dicts[i], graph_dicts[j]
+                )
+                g1_in_g2_edges_percentage[i, j] = percentage_of_g1_edges_in_g2(
+                    graph_dicts[i], graph_dicts[j]
+                )
+
+    return g1_in_g2_nodes_percentage, g1_in_g2_edges_percentage
