@@ -3,7 +3,7 @@ import networkx as nx
 from networkx.algorithms import isomorphism
 
 
-def graph_dict_to_nx(graph_dict):
+def graph_dict_to_nx(graph_dict, include_terminal=False):
     G = nx.DiGraph()
 
     groups = graph_dict["groups"]
@@ -11,20 +11,54 @@ def graph_dict_to_nx(graph_dict):
     if isinstance(groups, dict):
         group_iter = groups.items()
     else:
-        group_iter = enumerate(groups)
+        group_iter = [(g["group"], g) for g in groups]
 
+    valid_group_ids = set()
+
+    # Add group nodes
     for group_id, group_info in group_iter:
-        G.add_node(
-            group_id,
-            label=str(group_info)
+        valid_group_ids.add(group_id)
+
+        # Use translation if available, otherwise fallback
+        node_label = (
+            group_info.get("translation")
+            if isinstance(group_info, dict)
+            else str(group_info)
         )
 
+        if node_label is None:
+            node_label = str(group_info)
+
+        G.add_node(
+            group_id,
+            label=str(node_label),
+            node_type="group"
+        )
+
+    # Add missing terminal nodes
+    if include_terminal:
+        edge_node_ids = set()
+
+        for edge in graph_dict["edges"]:
+            edge_node_ids.add(edge["from_group"])
+            edge_node_ids.add(edge["to_group"])
+
+        missing_nodes = edge_node_ids - valid_group_ids
+
+        for node_id in missing_nodes:
+            G.add_node(
+                node_id,
+                label="TERMINAL",
+                node_type="terminal"
+            )
+
+    # Add edges
     for edge in graph_dict["edges"]:
         G.add_edge(
             edge["from_group"],
             edge["to_group"],
-            action=edge.get("action"),
-            probability=edge.get("probability")
+            action=edge.get("action", None),
+            probability=edge.get("probability", None)
         )
 
     return G
@@ -114,10 +148,19 @@ def get_maximum_common_subgraph(g1, g2):
         return None, None
 
     mapping = mappings[0]
-    common_nodes_g1 = list(mapping.keys())
+
+    # Keep only nodes that really exist in g1
+    common_nodes_g1 = [
+        node for node in mapping.keys()
+        if node in nx_g1.nodes
+    ]
+
     common_subgraph_g1 = nx_g1.subgraph(common_nodes_g1).copy()
 
     return common_subgraph_g1, mapping
+
+
+
 
 def percentage_of_common_transitions(g1, g2):
     common, only_g1, only_g2 = compare_transition_sets(g1, g2)
@@ -134,7 +177,7 @@ def percentage_of_common_nodes(g1, g2):
     if common_subgraph is None:
         return 0.0
 
-    total_nodes = len(g1["groups"]) + len(g2["groups"])
+    total_nodes = len(g1["groups"])+1 + len(g2["groups"])+1  # +1 for terminal nodes
     common_nodes = len(common_subgraph.nodes())
 
     return (2 * common_nodes / total_nodes) * 100
@@ -177,9 +220,7 @@ def percentage_of_g1_nodes_in_g2(g1, g2):
     if common_subgraph is None:
         return 0.0
 
-    total_g1_nodes = len(g1["groups"])
-    if total_g1_nodes == 0:
-        return 0.0
+    total_g1_nodes = graph_dict_to_nx(g1).number_of_nodes()
 
     common_nodes = len(common_subgraph.nodes())
 
@@ -201,20 +242,7 @@ def percentage_of_g1_edges_in_g2(g1, g2):
     return (common_edges / total_g1_edges) * 100
 
 
-def print_percentage_table(matrix, title=None):
-    n = matrix.shape[0]
-
-    if title:
-        print(title)
-
-    header = "     " + "   ".join(f"{j:>7}" for j in range(n))
-    print(header)
-
-    for i in range(n):
-        row_vals = "   ".join(f"{matrix[i, j]:>6.2f}%" for j in range(n))
-        print(f"{i:>3}  {row_vals}")
-
-def print_percentage_table_g1_in_g2(graph_dicts):
+def percentage_table_g1_in_g2(graph_dicts):
     n = len(graph_dicts)
 
     g1_in_g2_nodes_percentage = np.zeros((n, n))
@@ -234,3 +262,16 @@ def print_percentage_table_g1_in_g2(graph_dicts):
                 )
 
     return g1_in_g2_nodes_percentage, g1_in_g2_edges_percentage
+
+def print_percentage_table(matrix, title=None):
+    n = matrix.shape[0]
+
+    if title:
+        print(title)
+
+    header = "     " + "   ".join(f"{j:>7}" for j in range(n))
+    print(header)
+
+    for i in range(n):
+        row_vals = "   ".join(f"{matrix[i, j]:>6.2f}%" for j in range(n))
+        print(f"{i:>3}  {row_vals}")

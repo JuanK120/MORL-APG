@@ -47,7 +47,7 @@ def make_eval_env(gym_id_name, utility_function, reward_shape, reward_dim_indice
         if gym_id_name == "mo-highway-fast-v0":
             base = getattr(env, "unwrapped", env)
             cfg = getattr(base, "config", {})
-            cfg.update({
+            """cfg.update({
                     # fewer cars/lanes/steps
                     "vehicles_count": 10,  #15      # try 10–20
                     "lanes_count": 4,
@@ -63,7 +63,7 @@ def make_eval_env(gym_id_name, utility_function, reward_shape, reward_dim_indice
                     "screen_height": 100,
                 })
             base.config = cfg
-            print(f"Env config: {cfg}")
+            print(f"Env config: {cfg}")"""
 
         env = ObsInfoWrapper(env, reward_dim=reward_shape, reward_dim_indices=reward_dim_indices)
         return env

@@ -19,6 +19,8 @@ def argparser():
     parser.add_argument('--shap_selection', default=False) #Whether to use SHAP for feature selection in AutoPred (if False, uses feature selection based on decision tree path instead)
     ############## graph selection args ##############
     parser.add_argument('--compare_criterion', default='combined') #Criterion for comparing graphs ('combined', 'wl', 'sm')
-    args = parser.parse_args()
+    ############## re-run policies arg ##############
+    parser.add_argument('--use_existing', default=False) #Whether to use existing graphs or re-run the policies to collect new data (True or False)
 
+    args = parser.parse_args()
     return args

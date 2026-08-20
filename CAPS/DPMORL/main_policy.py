@@ -281,7 +281,6 @@ def get_id_name(env_name):
         return "mo-lunar-lander-v2"
     elif env_name == "SuperMarioBros":
         return "mo-supermario-v0"
-    elif env_name == "HalfCheetah":
         return "mo-halfcheetah-v4"
     elif env_name == "Hopper":
         return "mo-hopper-v4"
@@ -443,7 +442,8 @@ if __name__ == "__main__":
     
     pretrained_utility_functions = []
     for path in pretrained_utility_paths:
-        model = Utility_Function_Parameterized(reward_shape=reward_shape, norm=norm, lamda=args.lamda, max_weight=0.5, keep_scale=args.keep_scale, size_factor=1)
+        #model = Utility_Function_Parameterized(reward_shape=reward_shape, norm=norm, lamda=args.lamda, max_weight=0.5, keep_scale=args.keep_scale, size_factor=1)
+        model = Utility_Function_Parameterized(reward_shape=reward_shape, norm=norm, lamda=args.lamda, max_weight=0.5, keep_scale=args.keep_scale, size_factor=2)
         model.load_state_dict(torch.load(path))
         model.eval()
         model = model.cuda()

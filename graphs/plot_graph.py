@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import networkx as nx
-
-from textToDict import parse_transition_lines, HIGHWAY_GRAPHS, FRUIT_TREE_GRAPHS
+import os
 
 def build_nx_graph(edges, edge_labels, node_labels):
     """
@@ -12,11 +11,9 @@ def build_nx_graph(edges, edge_labels, node_labels):
     """
     G = nx.DiGraph()
 
-    # add nodes with labels
     for node_id, label in node_labels.items():
         G.add_node(node_id, label=label)
 
-    # add edges with probability + action
     for (src, dst), prob in edges.items():
         action = edge_labels.get((src, dst), "")
         G.add_edge(src, dst, prob=prob, action=action)
@@ -24,16 +21,14 @@ def build_nx_graph(edges, edge_labels, node_labels):
     return G
 
 
-def plot_graph(G, node_labels, edges, edge_labels, title="Policy Graph"):
+def plot_graph(G, node_labels, edges, edge_labels, save_path=None, title="Policy Graph"):
     """
     Plot the graph with node labels and edge labels "aX, p=Y".
     """
 
     plt.figure(figsize=(8, 6))
-    # Layout: you can change to circular_layout, kamada_kawai_layout, etc.
     pos = nx.spring_layout(G, seed=42)
 
-    # Node labels come from node_labels dict
     nx.draw(
         G,
         pos,
@@ -44,7 +39,6 @@ def plot_graph(G, node_labels, edges, edge_labels, title="Policy Graph"):
         arrows=True,
     )
 
-    # Build edge label text
     edge_label_dict = {}
     for (src, dst), prob in edges.items():
         action = edge_labels.get((src, dst), "")
@@ -54,30 +48,121 @@ def plot_graph(G, node_labels, edges, edge_labels, title="Policy Graph"):
 
     plt.title(title)
     plt.tight_layout()
-    plt.savefig(f"./plots/{title.replace(' ', '_')}.png", dpi=300)
+    if save_path:
+        plt.savefig(save_path, dpi=300)
+    else:
+        plt.savefig(f"./plots/{title.replace(' ', '_')}.png", dpi=300)
 
 
-if __name__ == "__main__":
-    
-    # For highway graphs
 
-    graphIndexes = [2, 6, 4, 5,]
+def build_nx_graph_from_apg(graph):
+    """
+    Build a NetworkX DiGraph directly from one APG dictionary.
 
-    for i in graphIndexes:
-        highwayLines = HIGHWAY_GRAPHS[i]
+    Expected structure:
+        graph["groups"] -> list of group dictionaries
+        graph["edges"]  -> list of transition dictionaries
+    """
 
-        edges, edge_labels, node_labels = parse_transition_lines(highwayLines)
-        G = build_nx_graph(edges, edge_labels, node_labels)
+    G = nx.DiGraph()
+ 
+    for group in graph["groups"]:
+        group_id = group["group"]
+        translation = group["translation"]
 
-        plot_graph(G, node_labels, edges, edge_labels, title=f"Highway Graph {i}")
+        G.add_node(
+            group_id,
+            label=translation,
+            critical_value=group.get("critical_value"),
+            entropy=group.get("entropy"),
+            num_instances=group.get("num_instances"),
+        )
+ 
+    for edge in graph["edges"]:
+        src = edge["from_group"]
+        dst = edge["to_group"]
+ 
+        if dst not in G:
+            G.add_node(dst, label="Terminal")
 
-    # For fruitTree graphs
+        if src not in G:
+            G.add_node(src, label="Terminal")
 
-    graphIndexes = [1, 3]
-    for i in graphIndexes:
-        fruitTreeLines = FRUIT_TREE_GRAPHS[i] 
+        G.add_edge(
+            src,
+            dst,
+            probability=edge["probability"],
+            action=edge["action"],
+        )
 
-        edges, edge_labels, node_labels = parse_transition_lines(fruitTreeLines)
-        G = build_nx_graph(edges, edge_labels, node_labels)
+    return G
 
-        plot_graph(G, node_labels, edges, edge_labels, title=f"Fruit Tree Graph {i}")
+
+def plot_apg(graph, save_path=None, title="Policy Graph"):
+    """
+    Plot one APG dictionary.
+    """
+
+    G = build_nx_graph_from_apg(graph)
+
+    plt.figure(figsize=(12, 8))
+
+    pos = nx.spring_layout(
+        G,
+        seed=42,
+        k=1.2
+    )
+ 
+    node_labels = {
+        node: f"{node}\n{data['label']}"
+        for node, data in G.nodes(data=True)
+    }
+
+    nx.draw_networkx_nodes(
+        G,
+        pos,
+        node_size=1800
+    )
+
+    nx.draw_networkx_edges(
+        G,
+        pos,
+        arrows=True,
+        arrowsize=20
+    )
+
+    nx.draw_networkx_labels(
+        G,
+        pos,
+        labels=node_labels,
+        font_size=7
+    )
+ 
+    edge_labels = {
+        (src, dst):
+            f"a{data['action']}, p={data['probability']:.2f}"
+        for src, dst, data in G.edges(data=True)
+    }
+
+    nx.draw_networkx_edge_labels(
+        G,
+        pos,
+        edge_labels=edge_labels,
+        font_size=6
+    )
+
+    plt.title(title)
+    plt.axis("off")
+    plt.tight_layout()
+
+    os.makedirs(save_path, exist_ok=True)
+
+    filename = title.replace(" ", "_").replace("/", "_")
+
+    plt.savefig(
+        f"{save_path}/{filename}.png",
+        dpi=300,
+        bbox_inches="tight"
+    )
+
+    plt.close()
