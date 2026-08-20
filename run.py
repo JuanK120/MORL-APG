@@ -1,12 +1,13 @@
 import time
 import os
 import pickle
+import csv
 from config import argparser
 from CAPS.CAPS_main import CAPS_main
 from graphs.plot_graph import plot_apg
 from graphs.compare_kernels import compare_explanation_graphs
 from graphs.utils import print_kernel_table, select_most_similar_pair, assign_cluster_to_state, get_next_probable_action
-from graphs.subgraph_search import get_maximum_common_subgraph, compare_transition_sets
+from graphs.subgraph_search import get_maximum_common_subgraph, compare_transition_sets, get_transition_differences_at_common_nodes
 from graphs.subgraph_search import build_common_percentage_matrices,percentage_table_g1_in_g2, print_percentage_table
 from sample_states import test_states_ft, test_states_hw, test_states_dst
 from model_paths import paths_ft, paths_hw, paths_dst, paths_hw2
@@ -66,17 +67,17 @@ if __name__ == '__main__':
     all_graphs = {}
 
     time_graph_phase = time.time()
-    test_name= f"outputs/graphs/{args.env}_{args.num_episodes}_{args.lmbda}_{args.compare_criterion}"
-    if os.path.exists(test_name):
+    test_name= f"{args.env}_{args.num_episodes}_{args.lmbda}_{args.compare_criterion}"
+    if os.path.exists(f"outputs/graphs/{test_name}"):
         print(f"Directory {test_name} already exists.") 
         if args.use_existing:
             print(f"Using existing graphs from {test_name} as --use_existing flag is set to True. Checking for existing graphs...")
-            if len(os.listdir(test_name)) < len(paths):
+            if len(os.listdir(f"outputs/graphs/{test_name}")) < len(paths):
                 raise ValueError(f"The directory {test_name} is empty or contains "+
                       f"fewer files than expected but the --use_existing flag is  set to True. "+
                       f"Please check if the directory contains the expected graph files.")
             else:
-                print(f"""length of files in {test_name}: {len(os.listdir(test_name))}, 
+                print(f"""length of files in {test_name}: {len(os.listdir(f"outputs/graphs/{test_name}"))}, 
                 expected: {len(paths)}.
                 Re-running the policies to collect new graphs""")
                 all_graphs = read_graphs_from_files(paths)
@@ -87,7 +88,7 @@ if __name__ == '__main__':
             print(f"All policies have been tested and graphs collected. {len(all_graphs)} graphs in total.")
     else:
         print(f"Directory {test_name} does not exist. Creating it and running the policies to collect new graphs.")
-        os.makedirs(test_name)
+        os.makedirs(f"outputs/graphs/{test_name}", exist_ok=True)
         all_graphs = run_policies(paths, args)
         print(f"All policies have been tested and graphs collected. {len(all_graphs)} graphs in total.")
 
@@ -96,7 +97,7 @@ if __name__ == '__main__':
         plot_apg(
             graph,
             title=f"{args.env}_{policy_name}",
-            save_path=test_name
+            save_path=f"outputs/graphs/{test_name}"
         )
 
     time_graph_phase = time.time() - time_graph_phase
@@ -147,9 +148,8 @@ if __name__ == '__main__':
         print(f"Best graphs selected based on SM kernel similarity: {pol_names[id_graph1]} and {pol_names[id_graph2]}")
 
 
-    print(f"policy 1 selected for explanation: \n {graph_dicts[id_graph1]}")
-    print(f"policy 2 selected for explanation: \n{graph_dicts[id_graph2]}")
-
+    print(f"policies selected for explanation: \n {graph_dicts[id_graph1]} \n {graph_dicts[id_graph2]}") 
+    
     time_comparison_phase = time.time() - time_comparison_phase
 
     # Step 4: Generate contrastive explanations for the best graph and print/log them out
@@ -206,19 +206,7 @@ if __name__ == '__main__':
     common, only_g1, only_g2 = compare_transition_sets(
         graph_dicts[id_graph1],
         graph_dicts[id_graph2]
-    )
-
-    print("Common transitions:")
-    for edge in common:
-        print(edge)
-
-    print("Unique to policy 1:")
-    for edge in only_g1:
-        print(edge)
-
-    print("Unique to policy 2:")
-    for edge in only_g2:
-        print(edge)
+    ) 
 
     time_edge_explanation_phase = time.time() - time_explanation_phase
 
@@ -281,7 +269,52 @@ if __name__ == '__main__':
 
     time_subgraph_percentage_explanation_phase = time.time() - time_subgraph_percentage_explanation_phase
 
-    #
+    # subgraph analysis
+
+    action_differences=get_transition_differences_at_common_nodes(
+            graph_dicts[id_graph1],
+            graph_dicts[id_graph2],
+            mapping
+        )
+
+    print(f"\n\n--- Action differences at common nodes between {pol_names[id_graph1]} and {pol_names[id_graph2]} ---")
+    print(action_differences)
+    if not action_differences:
+        print(
+            "No action differences found at common nodes. \n"+
+            "The selected policies may be behaviorally identical \n"+
+            "under the current graph representation."
+        )
+    else:
+        for diff in action_differences:
+            print(
+                f"State: {diff['label']}\n"
+                f"Only in Graph 1: {diff['only_g1']}\n"
+                f"Only in Graph 2: {diff['only_g2']}\n"
+            )
+
+    output_file = f"outputs/action_differences/{test_name}/action_differences.csv"
+
+    os.makedirs(os.path.dirname(output_file), exist_ok=True)
+
+    with open(output_file, "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow([
+            "node_g1",
+            "node_g2",
+            "state",
+            "only_g1",
+            "only_g2"
+        ])
+
+        for diff in action_differences:
+            writer.writerow([
+                diff["node_g1"],
+                diff["node_g2"],
+                diff["label"],
+                diff["only_g1"],
+                diff["only_g2"]
+            ])
 
     # Calculate total time for explanation generation phase
 

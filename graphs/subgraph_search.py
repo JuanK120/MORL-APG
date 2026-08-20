@@ -159,7 +159,98 @@ def get_maximum_common_subgraph(g1, g2):
 
     return common_subgraph_g1, mapping
 
+def get_transition_differences_at_common_nodes(g1, g2, mapping):
+    """
+    Find outgoing transition differences at nodes belonging to the
+    maximum common subgraph.
 
+    mapping is assumed to be:
+        g1_node -> g2_node
+
+    Returns one entry for every common node where the outgoing
+    transitions differ.
+    """
+
+    nx_g1 = graph_dict_to_nx(g1)
+    nx_g2 = graph_dict_to_nx(g2)
+
+    differences = []
+ 
+    reverse_mapping = {
+        g2_node: g1_node
+        for g1_node, g2_node in mapping.items()
+    }
+
+    for node_g1, node_g2 in mapping.items():
+ 
+        transitions_g1 = []
+
+        for _, dst, data in nx_g1.out_edges(node_g1, data=True):
+            transitions_g1.append({
+                "from": node_g1,
+                "to": dst,
+                "action": data.get("action"),
+                "probability": data.get("probability"),
+                "mapped_destination": mapping.get(dst)
+            })
+ 
+        transitions_g2 = []
+
+        for _, dst, data in nx_g2.out_edges(node_g2, data=True):
+            transitions_g2.append({
+                "from": node_g2,
+                "to": dst,
+                "action": data.get("action"),
+                "probability": data.get("probability"),
+                "mapped_destination": reverse_mapping.get(dst)
+            })
+ 
+
+        matched_g2 = set()
+        only_g1 = []
+
+        for i, t1 in enumerate(transitions_g1):
+
+            match_found = False
+
+            for j, t2 in enumerate(transitions_g2):
+
+                if j in matched_g2:
+                    continue
+
+                # Same action
+                same_action = (
+                    t1["action"] == t2["action"]
+                )
+ 
+                same_destination = (
+                    t1["mapped_destination"] == t2["to"]
+                )
+
+                if same_action and same_destination:
+                    matched_g2.add(j)
+                    match_found = True
+                    break
+
+            if not match_found:
+                only_g1.append(t1)
+
+        only_g2 = [
+            t
+            for j, t in enumerate(transitions_g2)
+            if j not in matched_g2
+        ]
+ 
+        if only_g1 or only_g2:
+            differences.append({
+                "node_g1": node_g1,
+                "node_g2": node_g2,
+                "label": nx_g1.nodes[node_g1].get("label"),
+                "only_g1": only_g1,
+                "only_g2": only_g2
+            })
+
+    return differences
 
 
 def percentage_of_common_transitions(g1, g2):

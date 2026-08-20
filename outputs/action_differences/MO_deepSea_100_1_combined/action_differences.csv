@@ -1,0 +1,4 @@
+node_g1,node_g2,state,only_g1,only_g2
+2,2,lvl equal to 0,"[{'from': 2, 'to': 6, 'action': 1, 'probability': 0.9000000000000005, 'mapped_destination': None}]","[{'from': 2, 'to': 6, 'action': 1, 'probability': 0.9000000000000005, 'mapped_destination': None}]"
+4,4,lvl between 1 and 0,"[{'from': 4, 'to': 6, 'action': 1, 'probability': 0.4268292682926832, 'mapped_destination': None}]","[{'from': 4, 'to': 6, 'action': 1, 'probability': 0.4268292682926832, 'mapped_destination': None}]"
+5,5,pos between 3 and 0,"[{'from': 5, 'to': 6, 'action': 1, 'probability': 1.0, 'mapped_destination': None}]","[{'from': 5, 'to': 6, 'action': 1, 'probability': 1.0, 'mapped_destination': None}]"

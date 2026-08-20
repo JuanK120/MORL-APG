@@ -125,15 +125,28 @@ def print_kernel_table(kernel_matrix):
         row_vals = "   ".join(f"{kernel_matrix[i,j]:.2f}" for j in range(n))
         print(f"{i:>3}  {row_vals}")
 
-def select_most_similar_pair(kernel_matrix):
-    # kernel_matrix is a kernel similarity matrix (n x n) where K[i,j] is the similarity between graph i and graph j.
-    # The objective is to find the pair of distinct graphs (i,j) that has the highest similarity.
+def select_most_similar_pair(kernel_matrix, exclude_identical=True):
+    """
+    Select the most similar pair of distinct graphs.
+
+    If exclude_identical=True, pairs with similarity approximately
+    equal to 1.0 are ignored, since they provide no useful contrast.
+    """
 
     k = np.asarray(kernel_matrix, dtype=float).copy()
  
     np.fill_diagonal(k, -np.inf)
 
-    row, col = np.unravel_index(np.argmax(k), k.shape)
+    if exclude_identical: 
+        k[np.isclose(k, 1.0)] = -np.inf
+
+    if np.all(np.isneginf(k)):
+        return None, None
+
+    row, col = np.unravel_index(
+        np.argmax(k),
+        k.shape
+    )
 
     return row, col
 
