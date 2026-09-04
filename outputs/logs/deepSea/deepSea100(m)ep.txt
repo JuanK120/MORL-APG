@@ -1,259 +1,8 @@
-Directory MO_deepSea_100_1_combined already exists.
-Re-running the policies to collect new graphs as --use_existing flag is set to False.
 
-Running policy 0: CAPS/DPMORL/experiments/DeepSeaTreasure_test/DPMORL.DeepSeaTreasure.LossNormLamda_0.1/policy-program-0
-Running CAPS_main with model path: CAPS/DPMORL/experiments/DeepSeaTreasure_test/DPMORL.DeepSeaTreasure.LossNormLamda_0.1/policy-program-0 and environment: MO_deepSea
-/mnt/c/Users/juanc/OneDrive/Escritorio/MORL-APG/MORL-APG/.venvs/caps_3.9/lib/python3.9/site-packages/gymnasium/spaces/box.py:305: UserWarning: [33mWARN: Box high's precision lowered by casting to float32, current high.dtype=float64[0m
-  gym.logger.warn(
-/mnt/c/Users/juanc/OneDrive/Escritorio/MORL-APG/MORL-APG/.venvs/caps_3.9/lib/python3.9/site-packages/stable_baselines3/common/save_util.py:437: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
-  th_object = th.load(file_content, map_location=device)
-running MO_deepSea
-initializing linear utility function
-reward_shape in Utility_Function_Linear 2
-num_total_policies = 3
-initializing linear utility function
-reward_shape in Utility_Function_Linear 2
-Deep Sea horizon: (not exposed by env)
-Dataset collected for model CAPS/DPMORL/experiments/DeepSeaTreasure_test/DPMORL.DeepSeaTreasure.LossNormLamda_0.1/policy-program-0. Starting explanation generation...
-Running AutoPred
-Explanations with SHAP feature selection
-apg_baseline inside explain_auto_pred: <CAPS.abstract.APG object at 0x7f692bacb100>
-generating graph for model: CAPS/DPMORL/experiments/DeepSeaTreasure_test/DPMORL.DeepSeaTreasure.LossNormLamda_0.1/policy-program-0
-Starting graph generation...
-
- Computing SHAP values for clusters...
-  0%|          | 0/100 [00:00<?, ?it/s]  2%|▏         | 2/100 [00:00<00:06, 14.21it/s]  5%|▌         | 5/100 [00:00<00:05, 18.36it/s]  7%|▋         | 7/100 [00:00<00:04, 18.73it/s] 10%|█         | 10/100 [00:00<00:04, 19.96it/s] 13%|█▎        | 13/100 [00:00<00:04, 20.35it/s] 16%|█▌        | 16/100 [00:00<00:04, 20.85it/s] 19%|█▉        | 19/100 [00:00<00:03, 20.69it/s] 22%|██▏       | 22/100 [00:01<00:03, 21.22it/s] 25%|██▌       | 25/100 [00:01<00:03, 21.67it/s] 28%|██▊       | 28/100 [00:01<00:03, 21.98it/s] 31%|███       | 31/100 [00:01<00:03, 21.83it/s] 34%|███▍      | 34/100 [00:01<00:03, 21.88it/s] 37%|███▋      | 37/100 [00:01<00:02, 21.20it/s] 40%|████      | 40/100 [00:01<00:02, 21.60it/s] 43%|████▎     | 43/100 [00:02<00:02, 21.84it/s] 46%|████▌     | 46/100 [00:02<00:02, 21.98it/s] 49%|████▉     | 49/100 [00:02<00:02, 22.07it/s] 52%|█████▏    | 52/100 [00:02<00:02, 22.30it/s] 55%|█████▌    | 55/100 [00:02<00:01, 22.53it/s] 58%|█████▊    | 58/100 [00:02<00:01, 22.28it/s] 61%|██████    | 61/100 [00:02<00:01, 22.40it/s] 64%|██████▍   | 64/100 [00:02<00:01, 22.59it/s] 67%|██████▋   | 67/100 [00:03<00:01, 22.64it/s] 70%|███████   | 70/100 [00:03<00:01, 22.80it/s] 73%|███████▎  | 73/100 [00:03<00:01, 22.79it/s] 76%|███████▌  | 76/100 [00:03<00:01, 23.12it/s] 79%|███████▉  | 79/100 [00:03<00:00, 23.43it/s] 82%|████████▏ | 82/100 [00:03<00:00, 23.46it/s] 85%|████████▌ | 85/100 [00:03<00:00, 23.28it/s] 88%|████████▊ | 88/100 [00:04<00:00, 23.29it/s] 91%|█████████ | 91/100 [00:04<00:00, 23.38it/s] 94%|█████████▍| 94/100 [00:04<00:00, 23.72it/s] 97%|█████████▋| 97/100 [00:04<00:00, 23.47it/s]100%|██████████| 100/100 [00:04<00:00, 23.58it/s]100%|██████████| 100/100 [00:04<00:00, 22.17it/s]
-  0%|          | 0/40 [00:00<?, ?it/s]  8%|▊         | 3/40 [00:00<00:01, 24.20it/s] 15%|█▌        | 6/40 [00:00<00:01, 24.17it/s] 22%|██▎       | 9/40 [00:00<00:01, 23.35it/s] 30%|███       | 12/40 [00:00<00:01, 23.43it/s] 38%|███▊      | 15/40 [00:00<00:01, 23.62it/s] 45%|████▌     | 18/40 [00:00<00:00, 23.73it/s] 52%|█████▎    | 21/40 [00:00<00:00, 23.75it/s] 60%|██████    | 24/40 [00:01<00:00, 23.87it/s] 68%|██████▊   | 27/40 [00:01<00:00, 23.91it/s] 75%|███████▌  | 30/40 [00:01<00:00, 23.76it/s] 82%|████████▎ | 33/40 [00:01<00:00, 23.80it/s] 90%|█████████ | 36/40 [00:01<00:00, 23.65it/s] 98%|█████████▊| 39/40 [00:01<00:00, 23.39it/s]100%|██████████| 40/40 [00:01<00:00, 23.62it/s]
-  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 38.29it/s]
-  0%|          | 0/100 [00:00<?, ?it/s]  3%|▎         | 3/100 [00:00<00:04, 23.90it/s]  6%|▌         | 6/100 [00:00<00:03, 23.80it/s]  9%|▉         | 9/100 [00:00<00:03, 23.89it/s] 12%|█▏        | 12/100 [00:00<00:03, 23.78it/s] 15%|█▌        | 15/100 [00:00<00:03, 23.59it/s] 18%|█▊        | 18/100 [00:00<00:03, 23.50it/s] 21%|██        | 21/100 [00:00<00:03, 23.30it/s] 24%|██▍       | 24/100 [00:01<00:03, 23.26it/s] 27%|██▋       | 27/100 [00:01<00:03, 23.32it/s] 30%|███       | 30/100 [00:01<00:03, 23.06it/s] 33%|███▎      | 33/100 [00:01<00:02, 23.38it/s] 36%|███▌      | 36/100 [00:01<00:02, 23.32it/s] 39%|███▉      | 39/100 [00:01<00:02, 23.18it/s] 42%|████▏     | 42/100 [00:01<00:02, 23.11it/s] 45%|████▌     | 45/100 [00:01<00:02, 23.07it/s] 48%|████▊     | 48/100 [00:02<00:02, 22.57it/s] 51%|█████     | 51/100 [00:02<00:02, 22.17it/s] 54%|█████▍    | 54/100 [00:02<00:02, 22.35it/s] 57%|█████▋    | 57/100 [00:02<00:01, 22.22it/s] 60%|██████    | 60/100 [00:02<00:01, 22.20it/s] 63%|██████▎   | 63/100 [00:02<00:01, 22.36it/s] 66%|██████▌   | 66/100 [00:02<00:01, 21.25it/s] 69%|██████▉   | 69/100 [00:03<00:01, 21.89it/s] 72%|███████▏  | 72/100 [00:03<00:01, 22.26it/s] 75%|███████▌  | 75/100 [00:03<00:01, 22.50it/s] 78%|███████▊  | 78/100 [00:03<00:00, 22.99it/s] 81%|████████  | 81/100 [00:03<00:00, 23.18it/s] 84%|████████▍ | 84/100 [00:03<00:00, 23.39it/s] 87%|████████▋ | 87/100 [00:03<00:00, 23.29it/s] 90%|█████████ | 90/100 [00:03<00:00, 23.27it/s] 93%|█████████▎| 93/100 [00:04<00:00, 23.31it/s] 96%|█████████▌| 96/100 [00:04<00:00, 23.34it/s] 99%|█████████▉| 99/100 [00:04<00:00, 23.25it/s]100%|██████████| 100/100 [00:04<00:00, 22.95it/s]
-  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 44.80it/s]
-  0%|          | 0/100 [00:00<?, ?it/s]  3%|▎         | 3/100 [00:00<00:03, 24.60it/s]  6%|▌         | 6/100 [00:00<00:03, 24.17it/s]  9%|▉         | 9/100 [00:00<00:03, 24.21it/s] 12%|█▏        | 12/100 [00:00<00:03, 24.39it/s] 15%|█▌        | 15/100 [00:00<00:03, 24.05it/s] 18%|█▊        | 18/100 [00:00<00:03, 23.67it/s] 21%|██        | 21/100 [00:00<00:03, 23.73it/s] 24%|██▍       | 24/100 [00:01<00:03, 23.62it/s] 27%|██▋       | 27/100 [00:01<00:03, 23.37it/s] 30%|███       | 30/100 [00:01<00:03, 23.05it/s] 33%|███▎      | 33/100 [00:01<00:02, 23.35it/s] 36%|███▌      | 36/100 [00:01<00:02, 23.28it/s] 39%|███▉      | 39/100 [00:01<00:02, 23.15it/s] 42%|████▏     | 42/100 [00:01<00:02, 23.26it/s] 45%|████▌     | 45/100 [00:01<00:02, 23.49it/s] 48%|████▊     | 48/100 [00:02<00:02, 23.69it/s] 51%|█████     | 51/100 [00:02<00:02, 23.06it/s] 54%|█████▍    | 54/100 [00:02<00:01, 23.06it/s] 57%|█████▋    | 57/100 [00:02<00:01, 23.12it/s] 60%|██████    | 60/100 [00:02<00:01, 23.23it/s] 63%|██████▎   | 63/100 [00:02<00:01, 23.27it/s] 66%|██████▌   | 66/100 [00:02<00:01, 23.48it/s] 69%|██████▉   | 69/100 [00:02<00:01, 23.53it/s] 72%|███████▏  | 72/100 [00:03<00:01, 23.48it/s] 75%|███████▌  | 75/100 [00:03<00:01, 23.46it/s] 78%|███████▊  | 78/100 [00:03<00:00, 23.61it/s] 81%|████████  | 81/100 [00:03<00:00, 23.86it/s] 84%|████████▍ | 84/100 [00:03<00:00, 23.79it/s] 87%|████████▋ | 87/100 [00:03<00:00, 23.80it/s] 90%|█████████ | 90/100 [00:03<00:00, 23.60it/s] 93%|█████████▎| 93/100 [00:03<00:00, 23.48it/s] 96%|█████████▌| 96/100 [00:04<00:00, 23.61it/s] 99%|█████████▉| 99/100 [00:04<00:00, 23.17it/s]100%|██████████| 100/100 [00:04<00:00, 23.46it/s]
-Time taken for AutoPred: 62.71520781517029 seconds
-
-Running policy 1: CAPS/DPMORL/experiments/DeepSeaTreasure_test/DPMORL.DeepSeaTreasure.LossNormLamda_0.1/policy-program-1
-Running CAPS_main with model path: CAPS/DPMORL/experiments/DeepSeaTreasure_test/DPMORL.DeepSeaTreasure.LossNormLamda_0.1/policy-program-1 and environment: MO_deepSea
-/mnt/c/Users/juanc/OneDrive/Escritorio/MORL-APG/MORL-APG/.venvs/caps_3.9/lib/python3.9/site-packages/gymnasium/spaces/box.py:305: UserWarning: [33mWARN: Box high's precision lowered by casting to float32, current high.dtype=float64[0m
-  gym.logger.warn(
-/mnt/c/Users/juanc/OneDrive/Escritorio/MORL-APG/MORL-APG/.venvs/caps_3.9/lib/python3.9/site-packages/stable_baselines3/common/save_util.py:437: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
-  th_object = th.load(file_content, map_location=device)
-running MO_deepSea
-initializing linear utility function
-reward_shape in Utility_Function_Linear 2
-num_total_policies = 3
-initializing linear utility function
-reward_shape in Utility_Function_Linear 2
-Deep Sea horizon: (not exposed by env)
-Dataset collected for model CAPS/DPMORL/experiments/DeepSeaTreasure_test/DPMORL.DeepSeaTreasure.LossNormLamda_0.1/policy-program-1. Starting explanation generation...
-Running AutoPred
-Explanations with SHAP feature selection
-apg_baseline inside explain_auto_pred: <CAPS.abstract.APG object at 0x7f68f52c0d00>
-generating graph for model: CAPS/DPMORL/experiments/DeepSeaTreasure_test/DPMORL.DeepSeaTreasure.LossNormLamda_0.1/policy-program-1
-Starting graph generation...
-
- Computing SHAP values for clusters...
-  0%|          | 0/100 [00:00<?, ?it/s]  2%|▏         | 2/100 [00:00<00:05, 19.54it/s]  4%|▍         | 4/100 [00:00<00:04, 19.36it/s]  7%|▋         | 7/100 [00:00<00:04, 20.04it/s] 10%|█         | 10/100 [00:00<00:04, 20.42it/s] 13%|█▎        | 13/100 [00:00<00:04, 20.52it/s] 16%|█▌        | 16/100 [00:00<00:04, 19.68it/s] 19%|█▉        | 19/100 [00:00<00:04, 20.13it/s] 22%|██▏       | 22/100 [00:01<00:03, 20.79it/s] 25%|██▌       | 25/100 [00:01<00:03, 21.33it/s] 28%|██▊       | 28/100 [00:01<00:03, 21.85it/s] 31%|███       | 31/100 [00:01<00:03, 22.19it/s] 34%|███▍      | 34/100 [00:01<00:02, 22.35it/s] 37%|███▋      | 37/100 [00:01<00:02, 21.67it/s] 40%|████      | 40/100 [00:01<00:02, 21.49it/s] 43%|████▎     | 43/100 [00:02<00:02, 21.38it/s] 46%|████▌     | 46/100 [00:02<00:02, 20.84it/s] 49%|████▉     | 49/100 [00:02<00:02, 20.26it/s] 52%|█████▏    | 52/100 [00:02<00:02, 20.34it/s] 55%|█████▌    | 55/100 [00:02<00:02, 20.58it/s] 58%|█████▊    | 58/100 [00:02<00:02, 20.65it/s] 61%|██████    | 61/100 [00:02<00:01, 21.00it/s] 64%|██████▍   | 64/100 [00:03<00:01, 21.33it/s] 67%|██████▋   | 67/100 [00:03<00:01, 20.84it/s] 70%|███████   | 70/100 [00:03<00:01, 21.16it/s] 73%|███████▎  | 73/100 [00:03<00:01, 21.54it/s] 76%|███████▌  | 76/100 [00:03<00:01, 21.43it/s] 79%|███████▉  | 79/100 [00:03<00:00, 21.68it/s] 82%|████████▏ | 82/100 [00:03<00:00, 22.26it/s] 85%|████████▌ | 85/100 [00:04<00:00, 22.82it/s] 88%|████████▊ | 88/100 [00:04<00:00, 22.81it/s] 91%|█████████ | 91/100 [00:04<00:00, 23.01it/s] 94%|█████████▍| 94/100 [00:04<00:00, 22.85it/s] 97%|█████████▋| 97/100 [00:04<00:00, 22.90it/s]100%|██████████| 100/100 [00:04<00:00, 23.45it/s]100%|██████████| 100/100 [00:04<00:00, 21.52it/s]
-  0%|          | 0/40 [00:00<?, ?it/s]  8%|▊         | 3/40 [00:00<00:01, 23.27it/s] 15%|█▌        | 6/40 [00:00<00:01, 23.61it/s] 22%|██▎       | 9/40 [00:00<00:01, 23.86it/s] 30%|███       | 12/40 [00:00<00:01, 23.35it/s] 38%|███▊      | 15/40 [00:00<00:01, 23.14it/s] 45%|████▌     | 18/40 [00:00<00:00, 23.41it/s] 52%|█████▎    | 21/40 [00:00<00:00, 23.63it/s] 60%|██████    | 24/40 [00:01<00:00, 24.02it/s] 68%|██████▊   | 27/40 [00:01<00:00, 24.25it/s] 75%|███████▌  | 30/40 [00:01<00:00, 24.46it/s] 82%|████████▎ | 33/40 [00:01<00:00, 24.34it/s] 90%|█████████ | 36/40 [00:01<00:00, 24.47it/s] 98%|█████████▊| 39/40 [00:01<00:00, 24.53it/s]100%|██████████| 40/40 [00:01<00:00, 24.04it/s]
-  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 45.37it/s]
-  0%|          | 0/100 [00:00<?, ?it/s]  3%|▎         | 3/100 [00:00<00:04, 23.40it/s]  6%|▌         | 6/100 [00:00<00:03, 23.71it/s]  9%|▉         | 9/100 [00:00<00:03, 23.84it/s] 12%|█▏        | 12/100 [00:00<00:03, 23.66it/s] 15%|█▌        | 15/100 [00:00<00:03, 23.65it/s] 18%|█▊        | 18/100 [00:00<00:03, 23.74it/s] 21%|██        | 21/100 [00:00<00:03, 23.98it/s] 24%|██▍       | 24/100 [00:01<00:03, 23.19it/s] 27%|██▋       | 27/100 [00:01<00:03, 22.88it/s] 30%|███       | 30/100 [00:01<00:03, 23.12it/s] 33%|███▎      | 33/100 [00:01<00:02, 23.20it/s] 36%|███▌      | 36/100 [00:01<00:02, 23.17it/s] 39%|███▉      | 39/100 [00:01<00:02, 23.30it/s] 42%|████▏     | 42/100 [00:01<00:02, 23.42it/s] 45%|████▌     | 45/100 [00:01<00:02, 23.42it/s] 48%|████▊     | 48/100 [00:02<00:02, 23.61it/s] 51%|█████     | 51/100 [00:02<00:02, 23.52it/s] 54%|█████▍    | 54/100 [00:02<00:01, 23.39it/s] 57%|█████▋    | 57/100 [00:02<00:01, 23.48it/s] 60%|██████    | 60/100 [00:02<00:01, 23.57it/s] 63%|██████▎   | 63/100 [00:02<00:01, 23.77it/s] 66%|██████▌   | 66/100 [00:02<00:01, 23.77it/s] 69%|██████▉   | 69/100 [00:02<00:01, 23.59it/s] 72%|███████▏  | 72/100 [00:03<00:01, 23.61it/s] 75%|███████▌  | 75/100 [00:03<00:01, 23.55it/s] 78%|███████▊  | 78/100 [00:03<00:00, 23.38it/s] 81%|████████  | 81/100 [00:03<00:00, 23.35it/s] 84%|████████▍ | 84/100 [00:03<00:00, 23.67it/s] 87%|████████▋ | 87/100 [00:03<00:00, 23.90it/s] 90%|█████████ | 90/100 [00:03<00:00, 24.01it/s] 93%|█████████▎| 93/100 [00:03<00:00, 23.71it/s] 96%|█████████▌| 96/100 [00:04<00:00, 23.69it/s] 99%|█████████▉| 99/100 [00:04<00:00, 23.62it/s]100%|██████████| 100/100 [00:04<00:00, 23.52it/s]
-  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 42.57it/s]
-  0%|          | 0/100 [00:00<?, ?it/s]  3%|▎         | 3/100 [00:00<00:03, 24.48it/s]  6%|▌         | 6/100 [00:00<00:03, 24.42it/s]  9%|▉         | 9/100 [00:00<00:03, 24.15it/s] 12%|█▏        | 12/100 [00:00<00:03, 24.25it/s] 15%|█▌        | 15/100 [00:00<00:03, 24.33it/s] 18%|█▊        | 18/100 [00:00<00:03, 24.46it/s] 21%|██        | 21/100 [00:00<00:03, 24.37it/s] 24%|██▍       | 24/100 [00:00<00:03, 24.20it/s] 27%|██▋       | 27/100 [00:01<00:03, 23.88it/s] 30%|███       | 30/100 [00:01<00:03, 23.20it/s] 33%|███▎      | 33/100 [00:01<00:02, 23.09it/s] 36%|███▌      | 36/100 [00:01<00:02, 23.39it/s] 39%|███▉      | 39/100 [00:01<00:02, 23.67it/s] 42%|████▏     | 42/100 [00:01<00:02, 23.84it/s] 45%|████▌     | 45/100 [00:01<00:02, 23.68it/s] 48%|████▊     | 48/100 [00:02<00:02, 23.66it/s] 51%|█████     | 51/100 [00:02<00:02, 23.62it/s] 54%|█████▍    | 54/100 [00:02<00:01, 23.35it/s] 57%|█████▋    | 57/100 [00:02<00:01, 23.54it/s] 60%|██████    | 60/100 [00:02<00:01, 23.59it/s] 63%|██████▎   | 63/100 [00:02<00:01, 23.43it/s] 66%|██████▌   | 66/100 [00:02<00:01, 23.69it/s] 69%|██████▉   | 69/100 [00:02<00:01, 23.34it/s] 72%|███████▏  | 72/100 [00:03<00:01, 23.35it/s] 75%|███████▌  | 75/100 [00:03<00:01, 23.49it/s] 78%|███████▊  | 78/100 [00:03<00:00, 23.28it/s] 81%|████████  | 81/100 [00:03<00:00, 22.60it/s] 84%|████████▍ | 84/100 [00:03<00:00, 22.20it/s] 87%|████████▋ | 87/100 [00:03<00:00, 22.41it/s] 90%|█████████ | 90/100 [00:03<00:00, 22.40it/s] 93%|█████████▎| 93/100 [00:03<00:00, 22.24it/s] 96%|█████████▌| 96/100 [00:04<00:00, 22.53it/s] 99%|█████████▉| 99/100 [00:04<00:00, 22.86it/s]100%|██████████| 100/100 [00:04<00:00, 23.36it/s]
-Time taken for AutoPred: 62.87212252616882 seconds
-
-Running policy 2: CAPS/DPMORL/experiments/DeepSeaTreasure_test/DPMORL.DeepSeaTreasure.LossNormLamda_0.1/policy-program-2
-Running CAPS_main with model path: CAPS/DPMORL/experiments/DeepSeaTreasure_test/DPMORL.DeepSeaTreasure.LossNormLamda_0.1/policy-program-2 and environment: MO_deepSea
-running MO_deepSea
-initializing linear utility function
-reward_shape in Utility_Function_Linear 2
-num_total_policies = 3
-initializing linear utility function
-reward_shape in Utility_Function_Linear 2
-Deep Sea horizon: (not exposed by env)
-Dataset collected for model CAPS/DPMORL/experiments/DeepSeaTreasure_test/DPMORL.DeepSeaTreasure.LossNormLamda_0.1/policy-program-2. Starting explanation generation...
-Running AutoPred
-Explanations with SHAP feature selection
-apg_baseline inside explain_auto_pred: <CAPS.abstract.APG object at 0x7f68f52c0ee0>
-generating graph for model: CAPS/DPMORL/experiments/DeepSeaTreasure_test/DPMORL.DeepSeaTreasure.LossNormLamda_0.1/policy-program-2
-Starting graph generation...
-
- Computing SHAP values for clusters...
-  0%|          | 0/100 [00:00<?, ?it/s]  3%|▎         | 3/100 [00:00<00:04, 21.27it/s]  6%|▌         | 6/100 [00:00<00:04, 20.38it/s]  9%|▉         | 9/100 [00:00<00:04, 19.88it/s] 12%|█▏        | 12/100 [00:00<00:04, 20.10it/s] 15%|█▌        | 15/100 [00:00<00:04, 20.41it/s] 18%|█▊        | 18/100 [00:00<00:03, 20.96it/s] 21%|██        | 21/100 [00:01<00:03, 21.39it/s] 24%|██▍       | 24/100 [00:01<00:03, 21.67it/s] 27%|██▋       | 27/100 [00:01<00:03, 22.08it/s] 30%|███       | 30/100 [00:01<00:03, 22.18it/s] 33%|███▎      | 33/100 [00:01<00:02, 22.40it/s] 36%|███▌      | 36/100 [00:01<00:02, 22.29it/s] 39%|███▉      | 39/100 [00:01<00:02, 22.33it/s] 42%|████▏     | 42/100 [00:01<00:02, 22.64it/s] 45%|████▌     | 45/100 [00:02<00:02, 22.61it/s] 48%|████▊     | 48/100 [00:02<00:02, 22.75it/s] 51%|█████     | 51/100 [00:02<00:02, 22.81it/s] 54%|█████▍    | 54/100 [00:02<00:01, 23.15it/s] 57%|█████▋    | 57/100 [00:02<00:01, 22.56it/s] 60%|██████    | 60/100 [00:02<00:01, 22.60it/s] 63%|██████▎   | 63/100 [00:02<00:01, 22.83it/s] 66%|██████▌   | 66/100 [00:02<00:01, 22.90it/s] 69%|██████▉   | 69/100 [00:03<00:01, 22.77it/s] 72%|███████▏  | 72/100 [00:03<00:01, 22.86it/s] 75%|███████▌  | 75/100 [00:03<00:01, 22.95it/s] 78%|███████▊  | 78/100 [00:03<00:00, 23.02it/s] 81%|████████  | 81/100 [00:03<00:00, 23.15it/s] 84%|████████▍ | 84/100 [00:03<00:00, 23.29it/s] 87%|████████▋ | 87/100 [00:03<00:00, 23.18it/s] 90%|█████████ | 90/100 [00:04<00:00, 23.19it/s] 93%|█████████▎| 93/100 [00:04<00:00, 23.19it/s] 96%|█████████▌| 96/100 [00:04<00:00, 23.15it/s] 99%|█████████▉| 99/100 [00:04<00:00, 23.37it/s]100%|██████████| 100/100 [00:04<00:00, 22.47it/s]
-  0%|          | 0/40 [00:00<?, ?it/s]  8%|▊         | 3/40 [00:00<00:01, 23.79it/s] 15%|█▌        | 6/40 [00:00<00:01, 23.07it/s] 22%|██▎       | 9/40 [00:00<00:01, 22.70it/s] 30%|███       | 12/40 [00:00<00:01, 23.02it/s] 38%|███▊      | 15/40 [00:00<00:01, 23.60it/s] 45%|████▌     | 18/40 [00:00<00:00, 23.73it/s] 52%|█████▎    | 21/40 [00:00<00:00, 23.64it/s] 60%|██████    | 24/40 [00:01<00:00, 23.70it/s] 68%|██████▊   | 27/40 [00:01<00:00, 23.71it/s] 75%|███████▌  | 30/40 [00:01<00:00, 23.68it/s] 82%|████████▎ | 33/40 [00:01<00:00, 23.54it/s] 90%|█████████ | 36/40 [00:01<00:00, 23.54it/s] 98%|█████████▊| 39/40 [00:01<00:00, 23.48it/s]100%|██████████| 40/40 [00:01<00:00, 23.50it/s]
-  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 45.48it/s]
-  0%|          | 0/100 [00:00<?, ?it/s]  3%|▎         | 3/100 [00:00<00:04, 23.37it/s]  6%|▌         | 6/100 [00:00<00:04, 23.34it/s]  9%|▉         | 9/100 [00:00<00:03, 23.15it/s] 12%|█▏        | 12/100 [00:00<00:03, 23.31it/s] 15%|█▌        | 15/100 [00:00<00:03, 23.36it/s] 18%|█▊        | 18/100 [00:00<00:03, 22.84it/s] 21%|██        | 21/100 [00:00<00:03, 23.03it/s] 24%|██▍       | 24/100 [00:01<00:03, 23.29it/s] 27%|██▋       | 27/100 [00:01<00:03, 23.16it/s] 30%|███       | 30/100 [00:01<00:03, 23.27it/s] 33%|███▎      | 33/100 [00:01<00:02, 23.28it/s] 36%|███▌      | 36/100 [00:01<00:02, 23.11it/s] 39%|███▉      | 39/100 [00:01<00:02, 23.22it/s] 42%|████▏     | 42/100 [00:01<00:02, 23.39it/s] 45%|████▌     | 45/100 [00:01<00:02, 23.30it/s] 48%|████▊     | 48/100 [00:02<00:02, 23.40it/s] 51%|█████     | 51/100 [00:02<00:02, 23.41it/s] 54%|█████▍    | 54/100 [00:02<00:01, 23.56it/s] 57%|█████▋    | 57/100 [00:02<00:01, 23.35it/s] 60%|██████    | 60/100 [00:02<00:01, 23.36it/s] 63%|██████▎   | 63/100 [00:02<00:01, 23.22it/s] 66%|██████▌   | 66/100 [00:02<00:01, 23.17it/s] 69%|██████▉   | 69/100 [00:02<00:01, 22.77it/s] 72%|███████▏  | 72/100 [00:03<00:01, 22.67it/s] 75%|███████▌  | 75/100 [00:03<00:01, 22.86it/s] 78%|███████▊  | 78/100 [00:03<00:00, 23.18it/s] 81%|████████  | 81/100 [00:03<00:00, 23.32it/s] 84%|████████▍ | 84/100 [00:03<00:00, 23.38it/s] 87%|████████▋ | 87/100 [00:03<00:00, 23.41it/s] 90%|█████████ | 90/100 [00:03<00:00, 23.33it/s] 93%|█████████▎| 93/100 [00:04<00:00, 23.12it/s] 96%|█████████▌| 96/100 [00:04<00:00, 23.35it/s] 99%|█████████▉| 99/100 [00:04<00:00, 23.25it/s]100%|██████████| 100/100 [00:04<00:00, 23.22it/s]
-  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:00<00:00, 47.49it/s]
-  0%|          | 0/100 [00:00<?, ?it/s]  3%|▎         | 3/100 [00:00<00:04, 23.50it/s]  6%|▌         | 6/100 [00:00<00:03, 23.56it/s]  9%|▉         | 9/100 [00:00<00:03, 23.66it/s] 12%|█▏        | 12/100 [00:00<00:03, 23.69it/s] 15%|█▌        | 15/100 [00:00<00:03, 23.80it/s] 18%|█▊        | 18/100 [00:00<00:03, 23.46it/s] 21%|██        | 21/100 [00:00<00:03, 23.19it/s] 24%|██▍       | 24/100 [00:01<00:03, 22.69it/s] 27%|██▋       | 27/100 [00:01<00:03, 23.20it/s] 30%|███       | 30/100 [00:01<00:02, 23.34it/s] 33%|███▎      | 33/100 [00:01<00:02, 23.18it/s] 36%|███▌      | 36/100 [00:01<00:02, 23.34it/s] 39%|███▉      | 39/100 [00:01<00:02, 23.56it/s] 42%|████▏     | 42/100 [00:01<00:02, 23.55it/s] 45%|████▌     | 45/100 [00:01<00:02, 23.51it/s] 48%|████▊     | 48/100 [00:02<00:02, 23.43it/s] 51%|█████     | 51/100 [00:02<00:02, 23.58it/s] 54%|█████▍    | 54/100 [00:02<00:01, 23.46it/s] 57%|█████▋    | 57/100 [00:02<00:01, 23.33it/s] 60%|██████    | 60/100 [00:02<00:01, 23.41it/s] 63%|██████▎   | 63/100 [00:02<00:01, 23.63it/s] 66%|██████▌   | 66/100 [00:02<00:01, 23.63it/s] 69%|██████▉   | 69/100 [00:02<00:01, 23.52it/s] 72%|███████▏  | 72/100 [00:03<00:01, 23.35it/s] 75%|███████▌  | 75/100 [00:03<00:01, 22.82it/s] 78%|███████▊  | 78/100 [00:03<00:00, 23.22it/s] 81%|████████  | 81/100 [00:03<00:00, 23.53it/s] 84%|████████▍ | 84/100 [00:03<00:00, 23.91it/s] 87%|████████▋ | 87/100 [00:03<00:00, 23.80it/s] 90%|█████████ | 90/100 [00:03<00:00, 23.69it/s] 93%|█████████▎| 93/100 [00:03<00:00, 23.26it/s] 96%|█████████▌| 96/100 [00:04<00:00, 23.20it/s] 99%|█████████▉| 99/100 [00:04<00:00, 23.11it/s]100%|██████████| 100/100 [00:04<00:00, 23.37it/s]
-/mnt/c/Users/juanc/OneDrive/Escritorio/MORL-APG/MORL-APG/.venvs/caps_3.9/lib/python3.9/site-packages/grakel/graph.py:314: UserWarning: changing format from "adjacency" to "all"
-  warnings.warn('changing format from "adjacency" to "all"')
-Time taken for AutoPred: 62.446375370025635 seconds
-All policies have been tested and graphs collected. 3 graphs in total.
-All graphs collected:
-Weisfeiler-Lehman Kernel Matrix:
-        0      1      2
-  0  1.00   0.40   1.00
-  1  0.40   1.00   0.40
-  2  1.00   0.40   1.00
-Subgraph Matching Kernel Matrix:
-        0      1      2
-  0  1.00   0.93   1.00
-  1  0.93   1.00   0.93
-  2  1.00   0.93   1.00
-Avg. simillarity Matrix:
-        0      1      2
-  0  1.00   0.67   1.00
-  1  0.67   1.00   0.67
-  2  1.00   0.67   1.00
-Best graphs selected based on combined average similarity: policy_0 and policy_1
-policy 1 selected for explanation: 
- {'tree': <CAPS.CLTree.CLTree object at 0x7f692bb33d00>, 'height': 4, 'fidelity': None, 'state_features': ['lvl', 'pos', 'State Value', 'Action'], 'groups': [{'group': 1, 'translation': 'pos between 3 and 0', 'critical_value': 0.0, 'entropy': 0.01844105515449507, 'num_instances': 201, 'important_features': ['pos'], 'boundaries': {'lvl': (0.0, 0.0), 'pos': (3.0, 0.0), 'State Value': (0.2632635564629849, 0.0), 'Action': (3.0, 1.0)}}, {'group': 2, 'translation': 'lvl equal to 0', 'critical_value': 0.0, 'entropy': 0.0008736979740206152, 'num_instances': 40, 'important_features': ['lvl'], 'boundaries': {'lvl': (0.0, 0.0), 'pos': (3.0, 0.0), 'State Value': (0.44827517204506157, 0.2632635564629849), 'Action': (3.0, 1.0)}}, {'group': 3, 'translation': 'lvl between 1 and 0', 'critical_value': 1.0, 'entropy': 0.0007674766820855439, 'num_instances': 1, 'important_features': ['lvl'], 'boundaries': {'lvl': (1.0, 0.0), 'pos': (2.0, 2.0), 'State Value': (1.0, 0.0), 'Action': (3.0, 1.0)}}, {'group': 4, 'translation': 'lvl between 1 and 0', 'critical_value': 0.0, 'entropy': 0.0018776029982978887, 'num_instances': 164, 'important_features': ['lvl'], 'boundaries': {'lvl': (1.0, 0.0), 'pos': (3.0, 2.0), 'State Value': (1.0, 0.0), 'Action': (3.0, 1.0)}}, {'group': 5, 'translation': 'pos between 3 and 0', 'critical_value': 0.0, 'entropy': 0.029852010309696198, 'num_instances': 1, 'important_features': ['pos'], 'boundaries': {'lvl': (3.0, 1.0), 'pos': (3.0, 0.0), 'State Value': (0.607164328438009, 0.607164328438009), 'Action': (1.0, 1.0)}}, {'group': 6, 'translation': 'lvl between 3 and 1', 'critical_value': 0.0, 'entropy': 0.0758778792966885, 'num_instances': 293, 'important_features': ['lvl'], 'boundaries': {'lvl': (3.0, 1.0), 'pos': (3.0, 0.0), 'State Value': (1.0, 0.607164328438009), 'Action': (1.0, 1.0)}}], 'edges': [{'from_group': 1, 'to_group': 1, 'probability': 0.49751243781094434, 'action': 3}, {'from_group': 1, 'to_group': 4, 'probability': 0.5024875621890538, 'action': 3}, {'from_group': 2, 'to_group': 4, 'probability': 0.1, 'action': 3}, {'from_group': 2, 'to_group': 6, 'probability': 0.9000000000000005, 'action': 1}, {'from_group': 3, 'to_group': 4, 'probability': 1.0, 'action': 3}, {'from_group': 4, 'to_group': 4, 'probability': 0.5731707317073175, 'action': 3}, {'from_group': 4, 'to_group': 6, 'probability': 0.4268292682926832, 'action': 1}, {'from_group': 5, 'to_group': 6, 'probability': 1.0, 'action': 1}, {'from_group': 6, 'to_group': 6, 'probability': 0.6587030716723568, 'action': 1}, {'from_group': 6, 'to_group': 7, 'probability': 0.3412969283276447, 'action': 1}], 'feature_selection': {'method': 'shap', 'important_features': [['pos'], ['lvl'], ['lvl'], ['lvl'], ['pos'], ['lvl']]}}
-policy 2 selected for explanation: 
-{'tree': <CAPS.CLTree.CLTree object at 0x7f68f52c0c40>, 'height': 4, 'fidelity': None, 'state_features': ['lvl', 'pos', 'State Value', 'Action'], 'groups': [{'group': 1, 'translation': 'pos between 3 and 0', 'critical_value': 0.0, 'entropy': 0.01844105515449507, 'num_instances': 201, 'important_features': ['pos'], 'boundaries': {'lvl': (0.0, 0.0), 'pos': (3.0, 0.0), 'State Value': (0.2632635564629849, 0.0), 'Action': (3.0, 1.0)}}, {'group': 2, 'translation': 'lvl equal to 0', 'critical_value': 0.0, 'entropy': 0.0008736979740206152, 'num_instances': 40, 'important_features': ['lvl'], 'boundaries': {'lvl': (0.0, 0.0), 'pos': (3.0, 0.0), 'State Value': (0.44827517204506157, 0.2632635564629849), 'Action': (3.0, 1.0)}}, {'group': 3, 'translation': 'lvl between 1 and 0', 'critical_value': 1.0, 'entropy': 0.0007674766820855439, 'num_instances': 1, 'important_features': ['lvl'], 'boundaries': {'lvl': (1.0, 0.0), 'pos': (2.0, 2.0), 'State Value': (1.0, 0.0), 'Action': (3.0, 1.0)}}, {'group': 4, 'translation': 'lvl between 1 and 0', 'critical_value': 0.0, 'entropy': 0.0018776029982978887, 'num_instances': 164, 'important_features': ['lvl'], 'boundaries': {'lvl': (1.0, 0.0), 'pos': (3.0, 2.0), 'State Value': (1.0, 0.0), 'Action': (3.0, 1.0)}}, {'group': 5, 'translation': 'pos between 3 and 0', 'critical_value': 0.0, 'entropy': 0.029852010309696198, 'num_instances': 1, 'important_features': ['pos'], 'boundaries': {'lvl': (3.0, 1.0), 'pos': (3.0, 0.0), 'State Value': (0.607164328438009, 0.607164328438009), 'Action': (1.0, 1.0)}}, {'group': 6, 'translation': 'pos between 3 and 0', 'critical_value': 0.0, 'entropy': 0.0758778792966885, 'num_instances': 293, 'important_features': ['pos'], 'boundaries': {'lvl': (3.0, 1.0), 'pos': (3.0, 0.0), 'State Value': (1.0, 0.607164328438009), 'Action': (1.0, 1.0)}}], 'edges': [{'from_group': 1, 'to_group': 1, 'probability': 0.49751243781094434, 'action': 3}, {'from_group': 1, 'to_group': 4, 'probability': 0.5024875621890538, 'action': 3}, {'from_group': 2, 'to_group': 4, 'probability': 0.1, 'action': 3}, {'from_group': 2, 'to_group': 6, 'probability': 0.9000000000000005, 'action': 1}, {'from_group': 3, 'to_group': 4, 'probability': 1.0, 'action': 3}, {'from_group': 4, 'to_group': 4, 'probability': 0.5731707317073175, 'action': 3}, {'from_group': 4, 'to_group': 6, 'probability': 0.4268292682926832, 'action': 1}, {'from_group': 5, 'to_group': 6, 'probability': 1.0, 'action': 1}, {'from_group': 6, 'to_group': 6, 'probability': 0.6587030716723568, 'action': 1}, {'from_group': 6, 'to_group': 7, 'probability': 0.3412969283276447, 'action': 1}], 'feature_selection': {'method': 'shap', 'important_features': [['pos'], ['lvl'], ['lvl'], ['lvl'], ['pos'], ['pos']]}}
-
- Generating contrastive explanations for the selected graph pair...
-
-
---- Contrastive explanation for test state 0: {'x': 0, 'y': 0} ---
-state analysis test for policy_0: 1
-state analysis test for policy_1: 1
-Next probable action for policy_0: 3
-Next probable action for policy_1: 3
-
-
---- Contrastive explanation for test state 1: {'x': 1, 'y': 1} ---
-state analysis test for policy_0: 1
-state analysis test for policy_1: 1
-Next probable action for policy_0: 3
-Next probable action for policy_1: 3
-
-
---- Contrastive explanation for test state 2: {'x': 2, 'y': 2} ---
-state analysis test for policy_0: 1
-state analysis test for policy_1: 1
-Next probable action for policy_0: 3
-Next probable action for policy_1: 3
-
-
---- Contrastive explanation for test state 3: {'x': 3, 'y': 3} ---
-state analysis test for policy_0: 1
-state analysis test for policy_1: 1
-Next probable action for policy_0: 3
-Next probable action for policy_1: 3
-
-
---- Contrastive explanation for test state 4: {'x': 4, 'y': 4} ---
-state analysis test for policy_0: 1
-state analysis test for policy_1: 1
-Next probable action for policy_0: 3
-Next probable action for policy_1: 3
-
-
---- Contrastive explanation for test state 5: {'x': 5, 'y': 5} ---
-state analysis test for policy_0: 1
-state analysis test for policy_1: 1
-Next probable action for policy_0: 3
-Next probable action for policy_1: 3
-
-
---- Contrastive explanation for test state 6: {'x': 6, 'y': 7} ---
-state analysis test for policy_0: 1
-state analysis test for policy_1: 1
-Next probable action for policy_0: 3
-Next probable action for policy_1: 3
-
-
---- Contrastive explanation for test state 7: {'x': 10, 'y': 10} ---
-state analysis test for policy_0: 1
-state analysis test for policy_1: 1
-Next probable action for policy_0: 3
-Next probable action for policy_1: 3
-MCS mapping: {1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 7: 7}
-Common nodes: [(1, {'label': 'pos between 3 and 0', 'node_type': 'group'}), (2, {'label': 'lvl equal to 0', 'node_type': 'group'}), (3, {'label': 'lvl between 1 and 0', 'node_type': 'group'}), (4, {'label': 'lvl between 1 and 0', 'node_type': 'group'}), (5, {'label': 'pos between 3 and 0', 'node_type': 'group'}), (7, {})]
-Common edges: [(1, 1, {'action': 3, 'probability': 0.49751243781094434}), (1, 4, {'action': 3, 'probability': 0.5024875621890538}), (2, 4, {'action': 3, 'probability': 0.1}), (3, 4, {'action': 3, 'probability': 1.0}), (4, 4, {'action': 3, 'probability': 0.5731707317073175})]
-
-
---- Shared subgraph percentage for all nodes and edges between all graphs ---
-Best graphs selected based on combined kernel similarity: policy_0 and policy_1
-Weisfeiler-Lehman Kernel Matrix:
-        0      1      2
-  0  1.00   0.40   1.00
-  1  0.40   1.00   0.40
-  2  1.00   0.40   1.00
-Subgraph Matching Kernel Matrix:
-        0      1      2
-  0  1.00   0.93   1.00
-  1  0.93   1.00   0.93
-  2  1.00   0.93   1.00
-Avg. simillarity Matrix:
-        0      1      2
-  0  1.00   0.67   1.00
-  1  0.67   1.00   0.67
-  2  1.00   0.67   1.00
-Shared subgraph percentage for all nodes and edges between all graphs:
-nodes:
-           0         1         2
-  0  100.00%    85.71%   100.00%
-  1   85.71%   100.00%    85.71%
-  2  100.00%    85.71%   100.00%
-edges:
-           0         1         2
-  0  100.00%    50.00%   100.00%
-  1   50.00%   100.00%    50.00%
-  2  100.00%    50.00%   100.00%
-Shared percentage from g1 to g2 in nodes and edges between all graphs:
-nodes:
-           0         1         2
-  0  100.00%    85.71%   100.00%
-  1   85.71%   100.00%    85.71%
-  2  100.00%    85.71%   100.00%
-edges:
-           0         1         2
-  0  100.00%    50.00%   100.00%
-  1   50.00%   100.00%    50.00%
-  2  100.00%    50.00%   100.00%
-State: lvl equal to 0
-Only in Graph 1: [{'from': 2, 'to': 6, 'action': 1, 'probability': 0.9000000000000005, 'mapped_destination': None}]
-Only in Graph 2: [{'from': 2, 'to': 6, 'action': 1, 'probability': 0.9000000000000005, 'mapped_destination': None}]
-
-State: lvl between 1 and 0
-Only in Graph 1: [{'from': 4, 'to': 6, 'action': 1, 'probability': 0.4268292682926832, 'mapped_destination': None}]
-Only in Graph 2: [{'from': 4, 'to': 6, 'action': 1, 'probability': 0.4268292682926832, 'mapped_destination': None}]
-
-State: pos between 3 and 0
-Only in Graph 1: [{'from': 5, 'to': 6, 'action': 1, 'probability': 1.0, 'mapped_destination': None}]
-Only in Graph 2: [{'from': 5, 'to': 6, 'action': 1, 'probability': 1.0, 'mapped_destination': None}]
-
-
-
---- Summary of execution --- 
-
-
-        -- args used --  
-
-        Environment: MO_deepSea 
-
-        Number of episodes: 100 
-
-        Lambda value: 1 
-
-        Graph comparison criterion: combined 
-
-        used stored graphs: False 
-
-        -- times for each phase --  
-
-        Graph generation phase: 211.62 seconds 
-
-        Graph comparison phase: 0.02 seconds 
-
-        Action explanation generation phase: 0.00 seconds 
-
-        Edge explanation generation phase: 0.00 seconds 
-
-        Subgraph explanation generation phase: 0.00 seconds 
-
-        Subgraph percentage explanation generation phase: 0.01 seconds 
-
-        Total explanation generation phase: 0.01 seconds
-        
-
---- End of execution ---
-    
+Plotting return distributions for 3 policies...
+Traceback (most recent call last):
+  File "/mnt/c/Users/juanc/OneDrive/Escritorio/MORL-APG/morl-apg/run.py", line 77, in <module>
+    plot_policy_returns(
+  File "/mnt/c/Users/juanc/OneDrive/Escritorio/MORL-APG/morl-apg/plot_policies.py", line 109, in plot_policy_returns
+    episode_batches[:, 2],
+IndexError: index 2 is out of bounds for axis 1 with size 2

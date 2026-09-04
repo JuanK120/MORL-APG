@@ -4,13 +4,16 @@ import pickle
 import csv
 from config import argparser
 from CAPS.CAPS_main import CAPS_main
+from plot_policies import plot_policy_returns
 from graphs.plot_graph import plot_apg
 from graphs.compare_kernels import compare_explanation_graphs
 from graphs.utils import print_kernel_table, select_most_similar_pair, assign_cluster_to_state, get_next_probable_action
 from graphs.subgraph_search import get_maximum_common_subgraph, compare_transition_sets, get_transition_differences_at_common_nodes
 from graphs.subgraph_search import build_common_percentage_matrices,percentage_table_g1_in_g2, print_percentage_table
+
 from sample_states import test_states_ft, test_states_hw, test_states_dst
 from model_paths import paths_ft, paths_hw, paths_dst, paths_hw2
+from model_paths import dpmorl_output_dir_ft, dpmorl_output_dir_hw, dpmorl_output_dir_dst, dpmorl_output_dir_hw2
 import time
 
 def run_policies(paths, args):
@@ -52,22 +55,39 @@ if __name__ == '__main__':
 
     # Step 1: Collect initial parameters 
     args = argparser()
-  
+
+    test_name= f"{args.env}_{args.num_episodes}_{args.lmbda}_{args.compare_criterion}"
+
     if args.env == "MO_fruitTree":
         paths = paths_ft
+        dpmorl_output_dir = dpmorl_output_dir_ft
     elif args.env == "MO_highway":
         paths = paths_hw2
+        dpmorl_output_dir = dpmorl_output_dir_hw2
     elif args.env == "MO_deepSea":
         paths = paths_dst
+        dpmorl_output_dir = dpmorl_output_dir_dst
     else:
         raise ValueError(f"Unknown environment: {args.env}")
+
+    
+    if args.plot_returns == True:
+        plots_dir = f"outputs/plots/{test_name}"
+        os.makedirs(plots_dir, exist_ok=True)
+        plot_policy_returns(
+            env_name=args.env,
+            dpmorl_output_dir=dpmorl_output_dir,
+            save_dir=plots_dir,
+            batch_size=args.batch_size,
+            final_episodes=args.final_episodes
+        )
 
     # Step 2: Run the policy graph computation algorithm for each policy and collect the graphs
 
     all_graphs = {}
 
     time_graph_phase = time.time()
-    test_name= f"{args.env}_{args.num_episodes}_{args.lmbda}_{args.compare_criterion}"
+    
     if os.path.exists(f"outputs/graphs/{test_name}"):
         print(f"Directory {test_name} already exists.") 
         if args.use_existing:
@@ -134,21 +154,20 @@ if __name__ == '__main__':
         
         id_graph1, id_graph2 = select_most_similar_pair(avg_similarity)
 
-
-        print(f"Best graphs selected based on combined average similarity: {pol_names[id_graph1]} and {pol_names[id_graph2]}")
+        type_of_similarity = "combined average similarity"
     elif args.compare_criterion == "wl":  
 
         id_graph1, id_graph2 = select_most_similar_pair(K_wl)
 
-        print(f"Best graphs selected based on WL kernel similarity: {pol_names[id_graph1]} and {pol_names[id_graph2]}") 
+        type_of_similarity = "WL kernel similarity"
     elif args.compare_criterion == "sm":  
 
         id_graph1, id_graph2 = select_most_similar_pair(K_sm)
 
-        print(f"Best graphs selected based on SM kernel similarity: {pol_names[id_graph1]} and {pol_names[id_graph2]}")
+        type_of_similarity = "SM kernel similarity"
+    
 
-
-    print(f"policies selected for explanation: \n {graph_dicts[id_graph1]} \n {graph_dicts[id_graph2]}") 
+    print(f"policies selected for explanation based on {type_of_similarity}: \n {graph_dicts[id_graph1]} \n {graph_dicts[id_graph2]}") 
     
     time_comparison_phase = time.time() - time_comparison_phase
 
@@ -278,7 +297,10 @@ if __name__ == '__main__':
         )
 
     print(f"\n\n--- Action differences at common nodes between {pol_names[id_graph1]} and {pol_names[id_graph2]} ---")
-    print(action_differences)
+    print(action_differences, "\n\n")
+
+    #Node in Graph 1: {'tree': <CAPS.CLTree.CLTree object at 0x7f696e87a3a0>, 'height': 7, 'fidelity': None, 'state_features': ['lvl', 'pos', 'State Value', 'Action'], 'groups': [{'group': 1, 'translation': 'lvl equal to 0', 'critical_value': 1.0, 'entropy': 3.1167226552497596e-05, 'num_instances': 25, 'important_features': ['lvl'], 'boundaries': {'lvl': (0.0, 0.0), 'pos': (0.0, 0.0), 'State Value': (0.0, 0.0), 'Action': (1.0, 0.0)}}, {'group': 2, 'translation': 'lvl between 2 and 0', 'critical_value': 1.0, 'entropy': 2.1362481252289338e-05, 'num_instances': 899, 'important_features': ['lvl'], 'boundaries': {'lvl': (2.0, 0.0), 'pos': (0.0, 0.0), 'State Value': (0.44112709848045534, 0.0), 'Action': (1.0, 0.0)}}, {'group': 3, 'translation': 'lvl between 3 and 0', 'critical_value': 0.0, 'entropy': 4.3794402259032834e-05, 'num_instances': 490, 'important_features': ['lvl'], 'boundaries': {'lvl': (3.0, 0.0), 'pos': (1.0, 0.0), 'State Value': (0.44112709848045534, 0.0), 'Action': (0.0, 0.0)}}, {'group': 4, 'translation': 'lvl between 3 and 0', 'critical_value': 0.0, 'entropy': 0.002924352507964214, 'num_instances': 164, 'important_features': ['lvl'], 'boundaries': {'lvl': (3.0, 0.0), 'pos': (1.0, 0.0), 'State Value': (0.44112709848045534, 0.0), 'Action': (1.0, 0.0)}}, {'group': 5, 'translation': 'lvl between 3 and 0', 'critical_value': 0.0, 'entropy': 0.0063044289126992226, 'num_instances': 147, 'important_features': ['lvl'], 'boundaries': {'lvl': (3.0, 0.0), 'pos': (1.0, 0.0), 'State Value': (0.44112709848045534, 0.44112709848045534), 'Action': (0.0, 0.0)}}, {'group': 6, 'translation': 'lvl equal to 3', 'critical_value': 0.0, 'entropy': 0.0063044289126992226, 'num_instances': 114, 'important_features': ['lvl'], 'boundaries': {'lvl': (3.0, 3.0), 'pos': (1.0, 0.0), 'State Value': (0.44112709848045534, 0.44112709848045534), 'Action': (0.0, 0.0)}}, {'group': 7, 'translation': 'lvl equal to 3', 'critical_value': 0.0, 'entropy': 0.0063044289126992226, 'num_instances': 5, 'important_features': ['lvl'], 'boundaries': {'lvl': (3.0, 3.0), 'pos': (1.0, 1.0), 'State Value': (0.44112709848045534, 0.44112709848045534), 'Action': (0.0, 0.0)}}, {'group': 8, 'translation': 'lvl equal to 3', 'critical_value': 0.0, 'entropy': 0.0063044289126992226, 'num_instances': 3, 'important_features': ['lvl'], 'boundaries': {'lvl': (3.0, 3.0), 'pos': (1.0, 1.0), 'State Value': (0.44112709848045534, 0.44112709848045534), 'Action': (0.0, 0.0)}}, {'group': 9, 'translation': 'lvl equal to 3', 'critical_value': 0.0, 'entropy': 0.0063044289126992226, 'num_instances': 5, 'important_features': ['lvl'], 'boundaries': {'lvl': (3.0, 3.0), 'pos': (1.0, 1.0), 'State Value': (0.44112709848045534, 0.44112709848045534), 'Action': (1.0, 0.0)}}, {'group': 10, 'translation': 'lvl equal to 3', 'critical_value': 0.0, 'entropy': 0.0063044289126992226, 'num_instances': 3, 'important_features': ['lvl'], 'boundaries': {'lvl': (3.0, 3.0), 'pos': (5.0, 1.0), 'State Value': (0.44112709848045534, 0.44112709848045534), 'Action': (1.0, 0.0)}}, {'group': 11, 'translation': 'lvl equal to 3', 'critical_value': 0.0, 'entropy': 0.0063044289126992226, 'num_instances': 6, 'important_features': ['lvl'], 'boundaries': {'lvl': (3.0, 3.0), 'pos': (5.0, 1.0), 'State Value': (1.0, 0.44112709848045534), 'Action': (1.0, 0.0)}}, {'group': 12, 'translation': 'lvl between 5 and 3', 'critical_value': 0.0, 'entropy': 0.24658751710910354, 'num_instances': 1139, 'important_features': ['lvl'], 'boundaries': {'lvl': (5.0, 3.0), 'pos': (5.0, 1.0), 'State Value': (1.0, 0.44112709848045534), 'Action': (1.0, 0.0)}}], 'edges': [{'from_group': 1, 'to_group': 4, 'probability': 1.0000000000000002, 'action': 0}, {'from_group': 2, 'to_group': 4, 'probability': 0.4449388209121223, 'action': 0}, {'from_group': 2, 'to_group': 12, 'probability': 0.5550611790878752, 'action': 1}, {'from_group': 3, 'to_group': 4, 'probability': 0.9959183673469474, 'action': 0}, {'from_group': 3, 'to_group': 12, 'probability': 0.004081632653061225, 'action': 0}, {'from_group': 4, 'to_group': 4, 'probability': 0.5304878048780491, 'action': 0}, {'from_group': 4, 'to_group': 12, 'probability': 0.4695121951219515, 'action': 0}, {'from_group': 5, 'to_group': 12, 'probability': 1.0000000000000009, 'action': 0}, {'from_group': 6, 'to_group': 12, 'probability': 1.0000000000000022, 'action': 0}, {'from_group': 7, 'to_group': 12, 'probability': 1.0, 'action': 0}, {'from_group': 8, 'to_group': 12, 'probability': 1.0, 'action': 0}, {'from_group': 9, 'to_group': 12, 'probability': 1.0, 'action': 0}, {'from_group': 10, 'to_group': 12, 'probability': 1.0, 'action': 0}, {'from_group': 11, 'to_group': 12, 'probability': 0.9999999999999999, 'action': 0}, {'from_group': 12, 'to_group': 12, 'probability': 0.5610184372256373, 'action': 0}, {'from_group': 12, 'to_group': 13, 'probability': 0.43898156277436134, 'action': 0}], 'feature_selection': {'method': 'shap', 'important_features': [['lvl'], ['lvl'], ['lvl'], ['lvl'], ['lvl'], ['lvl'], ['lvl'], ['lvl'], ['lvl'], ['lvl'], ['lvl'], ['lvl']]}}]
+
     if not action_differences:
         print(
             "No action differences found at common nodes. \n"+
@@ -286,12 +308,19 @@ if __name__ == '__main__':
             "under the current graph representation."
         )
     else:
+        print(f""" differnces: {len(action_differences)} 
+        g1: {len(graph_dicts[id_graph1]['groups'])} 
+        g2: {len(graph_dicts[id_graph2]['groups'])}
+        List : 
+        """)
         for diff in action_differences:
-            print(
-                f"State: {diff['label']}\n"
-                f"Only in Graph 1: {diff['only_g1']}\n"
-                f"Only in Graph 2: {diff['only_g2']}\n"
-            )
+            print(f"Node id in Graph 1: {diff['node_g1']}")
+            print(f"Node in Graph 1: {graph_dicts[id_graph1]['groups'][diff['node_g1']]}")
+            print(f"Node id in Graph 2: {diff['node_g2']}")
+            print(f"Node in Graph 2: {graph_dicts[id_graph2]['groups'][diff['node_g2']]}")
+            print(f"State: {diff['label']}")
+            print(f"Only in Graph 1: {diff['only_g1']}")
+            print(f"Only in Graph 2: {diff['only_g2']}\n")
 
     output_file = f"outputs/action_differences/{test_name}/action_differences.csv"
 
@@ -300,7 +329,9 @@ if __name__ == '__main__':
     with open(output_file, "w", newline="") as f:
         writer = csv.writer(f)
         writer.writerow([
+            "node_id_g1",
             "node_g1",
+            "node_id_g2",
             "node_g2",
             "state",
             "only_g1",
@@ -310,7 +341,9 @@ if __name__ == '__main__':
         for diff in action_differences:
             writer.writerow([
                 diff["node_g1"],
+                graph_dicts[id_graph1]["groups"][diff['node_g1']],
                 diff["node_g2"],
+                graph_dicts[id_graph2]["groups"][diff['node_g2']],
                 diff["label"],
                 diff["only_g1"],
                 diff["only_g2"]

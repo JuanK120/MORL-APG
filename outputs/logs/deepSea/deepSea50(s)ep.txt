@@ -26,6 +26,6 @@ Avg. simillarity Matrix:
   1  1.00   1.00   1.00
   2  1.00   1.00   1.00
 Traceback (most recent call last):
-  File "/mnt/c/Users/juanc/OneDrive/Escritorio/MORL-APG/morl-apg/run.py", line 138, in <module>
+  File "/mnt/c/Users/juanc/OneDrive/Escritorio/MORL-APG/MORL-APG/run.py", line 138, in <module>
     print(f"Best graphs selected based on combined average similarity: {pol_names[id_graph1]} and {pol_names[id_graph2]}")
 TypeError: list indices must be integers or slices, not NoneType

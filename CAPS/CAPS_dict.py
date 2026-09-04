@@ -176,7 +176,7 @@ def explain(args, dataset, model_path, translator, num_feats, num_actions, fidel
 
     #print('----------------------------------------')
 
-def explain_auto_pred(args, dataset, model_path, translator, num_actions, attr_names, fidelity_fn=None, apg_baseline=None, mode="PPO", num_feats=0, shap_feature_selection=True,):
+def explain_auto_pred(args, dataset, model_path, translator, num_actions, attr_names, fidelity_fn=None, apg_baseline=None, mode="PPO", num_feats=0, shap_feature_selection=True,use_all_features=False):
 
     print(f"apg_baseline inside explain_auto_pred: {apg_baseline}", flush=True)
     #print("type(apg_baseline):", type(apg_baseline))
@@ -315,9 +315,16 @@ def explain_auto_pred(args, dataset, model_path, translator, num_actions, attr_n
         ###################################################
         ###################################################
 
-        # SHAP value computation for feature predicate reduction
-            
-        if shap_feature_selection:
+        if use_all_features:
+            print("\nUsing all features for predicate generation...")
+
+            # Every cluster gets all available features
+            important_features = [
+                list(feature_names)
+                for _ in cluster_state_indices
+            ]
+
+        elif shap_feature_selection:
                 #number_of_features_per_cluster = 4 # top x features by shap value to use for predicate generation (per cluster)
                 percentage_of_states_for_shap_training = 10 # sample x% of total dataset for SHAP training
                 percentage_of_states_per_cluster_for_shap = 20  # sample x% of each cluster for SHAP explanation

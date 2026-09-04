@@ -221,7 +221,8 @@ def CAPS_main(caps_args):
             apg_baseline=abstract_baseline,
             num_feats=num_feats,
             mode=args.alg,
-            shap_feature_selection=args.shap_selection
+            shap_feature_selection=args.shap_selection,
+            use_all_features=args.use_all_features
         )
         timestop = time.time()
         print(f'Time taken for AutoPred: {timestop - timestart} seconds') 
