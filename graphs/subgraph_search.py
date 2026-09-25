@@ -172,7 +172,15 @@ def get_transition_differences_at_common_nodes(g1, g2, mapping):
     """
 
     nx_g1 = graph_dict_to_nx(g1)
+    print("Graph 1: \n")
+    print(g1)
+    print(nx_g1.nodes(data=True))
+    print(nx_g1.edges(data=True))
     nx_g2 = graph_dict_to_nx(g2)
+    print("Graph 2: \n")
+    print(g2)
+    print(nx_g2.nodes(data=True))
+    print(nx_g2.edges(data=True))
 
     differences = []
  
@@ -246,6 +254,8 @@ def get_transition_differences_at_common_nodes(g1, g2, mapping):
                 "node_g1": node_g1,
                 "node_g2": node_g2,
                 "label": nx_g1.nodes[node_g1].get("label"),
+                "transitions_g1": transitions_g1,
+                "transitions_g2": transitions_g2,
                 "only_g1": only_g1,
                 "only_g2": only_g2
             })

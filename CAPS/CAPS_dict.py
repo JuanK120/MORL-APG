@@ -180,7 +180,8 @@ def explain_auto_pred(args, dataset, model_path, translator, num_actions, attr_n
 
     print(f"apg_baseline inside explain_auto_pred: {apg_baseline}", flush=True)
     #print("type(apg_baseline):", type(apg_baseline))
-    attr_names = translator.feature_names
+    ft_names = translator.feature_names
+    attr_names = ft_names
     attr_names.append('State Value')
     attr_names.append('Action')
     
@@ -229,7 +230,7 @@ def explain_auto_pred(args, dataset, model_path, translator, num_actions, attr_n
         cluster_v_scores.append(value_scores[selected_height])
 
         graph_info = {
-            "tree": cltree,
+            #"tree": cltree,
             "height": selected_height + 1,
             "fidelity": None,
             "state_features": attr_names,
@@ -320,7 +321,7 @@ def explain_auto_pred(args, dataset, model_path, translator, num_actions, attr_n
 
             # Every cluster gets all available features
             important_features = [
-                list(feature_names)
+                list(ft_names)
                 for _ in cluster_state_indices
             ]
 

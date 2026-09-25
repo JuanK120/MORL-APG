@@ -11,10 +11,13 @@ def plot_policy_returns(
     dpmorl_output_dir,
     save_dir,
     batch_size=1,
-    final_episodes=100
+    final_episodes=100,
+    reward_dims=None
 ):
     """
     Plot the return distributions of the trained DPMORL policies.
+
+    Supports environments with either 2 or 3 objectives.
 
     Parameters
     ----------
@@ -52,14 +55,85 @@ def plot_policy_returns(
         f"{len(file_paths)} policies..."
     )
 
+
+    # Detect total number of reward objectives in the data.
+    total_objectives = None
+
+    for file_path in file_paths:
+
+        data = np.load(file_path)
+
+        if "episode_vec_returns" in data:
+            episode_vec_returns = data["episode_vec_returns"]
+
+            if episode_vec_returns.ndim != 2:
+                continue
+
+            total_objectives = episode_vec_returns.shape[1]
+            break
+
+    if total_objectives is None:
+        print("No valid 'episode_vec_returns' arrays found.")
+        return
+
+
+    # Decide which reward dimensions to plot.
+    if reward_dims is None:
+
+        if total_objectives not in [2, 3]:
+            print(
+                f"Environment has {total_objectives} reward dimensions. "
+                f"Please specify 2 or 3 dimensions using reward_dims."
+            )
+            return
+
+        reward_dims = list(range(total_objectives))
+
+    else:
+
+        if len(reward_dims) not in [2, 3]:
+            print(
+                "reward_dims must contain exactly 2 or 3 dimensions."
+            )
+            return
+
+        if any(
+            dim < 0 or dim >= total_objectives
+            for dim in reward_dims
+        ):
+            print(
+                f"Invalid reward_dims {reward_dims}. "
+                f"Available dimensions are "
+                f"0-{total_objectives - 1}."
+            )
+            return
+
+        if len(set(reward_dims)) != len(reward_dims):
+            print(
+                "reward_dims must contain unique dimensions."
+            )
+            return
+
+
+    num_objectives = len(reward_dims)
+
+    print(
+        f"Detected {total_objectives} reward dimensions. "
+        f"Plotting dimensions {reward_dims}."
+    )
+
     colors = matplotlib.colormaps["gist_rainbow"](
         np.linspace(0, 1, len(file_paths))
     )
 
-    markers = ["o", "v", "^", "s", "p"]
+    markers = ["o", "v", "^", "s", "p", "*", "h", "D", "X", "<", ">"]
 
     fig = plt.figure(figsize=(10, 6))
-    ax = fig.add_subplot(111, projection="3d")
+    
+    if num_objectives == 3:
+        ax = fig.add_subplot(111, projection="3d")
+    else:
+        ax = fig.add_subplot(111)
 
     handles = []
     labels = []
@@ -77,15 +151,16 @@ def plot_policy_returns(
 
         episode_vec_returns = data["episode_vec_returns"]
 
-        # We only need the first three objectives for this 3D plot.
-        episode_vec_returns = episode_vec_returns[:, :3]
+        # Only keep the objectives we are plotting.
+        episode_vec_returns = episode_vec_returns[
+            :, reward_dims
+        ]
 
         # Take only the final episodes.
         final_returns = episode_vec_returns[
             -final_episodes * batch_size:
         ]
-
-        # Average episodes according to batch size.
+        
         episode_batches = [
             np.mean(
                 final_returns[i:i + batch_size],
@@ -103,16 +178,38 @@ def plot_policy_returns(
         if len(episode_batches) == 0:
             continue
 
-        scatter = ax.scatter(
-            episode_batches[:, 0],
-            episode_batches[:, 1],
-            episode_batches[:, 2],
-            alpha=0.6,
-            marker=markers[
-                (policy_index // 10) % len(markers)
-            ],
-            color=colors[policy_index]
+        marker = markers[
+            (policy_index // 10) % len(markers)
+        ]
+
+        print(
+            f"Policy {policy_index}: {len(episode_batches)} episode batches"
         )
+
+        if num_objectives == 3:
+            scatter = ax.scatter(
+                episode_batches[:, 0],
+                episode_batches[:, 1],
+                episode_batches[:, 2],
+                alpha=0.6,
+                marker=marker,
+                color=colors[policy_index],
+                s=40,
+                edgecolors="black",
+                linewidths=0.2
+            )
+        else:
+
+            scatter = ax.scatter(
+                episode_batches[:, 0],
+                episode_batches[:, 1],
+                alpha=0.6,
+                marker=marker,
+                color=colors[policy_index],
+                s=40,
+                edgecolors="black",
+                linewidths=0.2
+            )
 
         handles.append(scatter)
         labels.append(f"Policy {policy_index}")
@@ -121,9 +218,11 @@ def plot_policy_returns(
         f"{env_name} - Final Policy Return Distribution"
     )
 
-    ax.set_xlabel("Return 1")
-    ax.set_ylabel("Return 2")
-    ax.set_zlabel("Return 3")
+    ax.set_xlabel(f"Return {reward_dims[0]}")
+    ax.set_ylabel(f"Return {reward_dims[1]}")
+
+    if num_objectives == 3:
+        ax.set_zlabel(f"Return {reward_dims[2]}")
 
     ax.legend(
         handles,

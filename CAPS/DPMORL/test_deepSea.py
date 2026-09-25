@@ -88,7 +88,7 @@ def get_utility_function(reward_shape, idx=0, linear_utility=True, lamda=0.1, ke
     pretrained_utility_functions = []
     for path in pretrained_utility_paths:
         
-        model = Utility_Function_Parameterized(reward_shape=reward_shape, norm=norm, lamda=lamda, max_weight=0.5, keep_scale=keep_scale, size_factor=1)
+        model = Utility_Function_Parameterized(reward_shape=reward_shape, norm=norm, lamda=lamda, max_weight=0.5, keep_scale=keep_scale, size_factor=2)
         model.load_state_dict(torch.load(path))
         print("loaded utility: ", path)
         model.eval()
@@ -144,26 +144,26 @@ def compute_entropy_sb3(model, obs, action):
 
 def test(model_path, num_episodes=10, mode='ppo', augment_state=False, deterministic=True):
     #print(f'Starting Test') 
-
-    policy_name = f'program-{pol_idx}'
-
-    # Use DeepSeaTreasure experiment folder
-    utility_dir = 'CAPS/DPMORL/experiments/DeepSeaTreasure_test/DPMORL.DeepSeaTreasure.LossNormLamda_0.1'
-    os.makedirs(utility_dir, exist_ok=True)
-    
+ 
+       
     reward_shape = 2
     reward_dim_indices = list(range(int(reward_shape)))
-    #print(f'{reward_dim_indices = }, {reward_shape = }')
+   #print(f'{reward_dim_indices = }, {reward_shape = }')
     utility_function = get_utility_function(reward_shape, idx=pol_idx)
+   #utility_function = get_utility_function(2, idx=pol_idx)
 
     env, horizon = make_eval_env("deep-sea-treasure-v0", utility_function, reward_shape, reward_dim_indices, augment_state=augment_state)
      
-    if not os.path.exists(f'{utility_dir}/policy-{policy_name}.zip'): 
-        raise Exception(f'{policy_name} does not exist in {utility_dir}')
-    model = PPO.load(f'{utility_dir}/policy-{policy_name}')
+    print(f"{model_path}.zip is being loaded for testing.")
+    if not os.path.exists(f'{model_path}.zip'): 
+            raise f'{model_path} does not exist'
+    model = PPO.load(f'{model_path}.zip')
+    
     act_dim = env.action_space.n
     # observation space (vec env) -> single sub-env, use shape of env.observation_space
     obs = env.reset()
+    print(f"Observation space shape: {obs.shape}, Action space: {act_dim}. initial state {obs}")
+    print(f"obs x : {obs[0][0]}, obs y: {obs[0][1]}")
     num_feats = obs.shape[1]  # post-wrapper obs dim
 
     highlights_data = []

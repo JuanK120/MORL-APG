@@ -2,6 +2,7 @@ import time
 import os
 import pickle
 import csv
+import glob
 from config import argparser
 from CAPS.CAPS_main import CAPS_main
 from plot_policies import plot_policy_returns
@@ -16,13 +17,15 @@ from model_paths import paths_ft, paths_hw, paths_dst, paths_hw2
 from model_paths import dpmorl_output_dir_ft, dpmorl_output_dir_hw, dpmorl_output_dir_dst, dpmorl_output_dir_hw2
 import time
 
-def run_policies(paths, args):
+def run_policies(paths, args, experiment_name=None):
     for pol_idx, model_path in enumerate(paths):
         args.path = model_path 
         print(f"\nRunning policy {pol_idx}: {model_path}")
         explanation = CAPS_main(args)
+        print(f"Policy {pol_idx} explanation graph generated. {len(explanation['groups'])} nodes and {len(explanation['edges'])} edges.")
+        print (f"sample label for policy {pol_idx}: {explanation['groups'][0]}  ")
         all_graphs[f"policy_{pol_idx}"] = explanation
-        pkl_file_path = f"outputs/graphs/{args.env}_{args.num_episodes}_{args.lmbda}_{args.compare_criterion}/policy_{pol_idx}_graph.pkl"
+        pkl_file_path = f"outputs/graphs/{args.experiment_name}/{args.env}_{args.num_episodes}_{args.lmbda}_{args.compare_criterion}/policy_{pol_idx}_graph.pkl"
         
         with open(pkl_file_path, 'wb') as f:
             pickle.dump(explanation, f)
@@ -58,6 +61,7 @@ if __name__ == '__main__':
 
     test_name= f"{args.env}_{args.num_episodes}_{args.lmbda}_{args.compare_criterion}"
 
+    """
     if args.env == "MO_fruitTree":
         paths = paths_ft
         dpmorl_output_dir = dpmorl_output_dir_ft
@@ -69,10 +73,28 @@ if __name__ == '__main__':
         dpmorl_output_dir = dpmorl_output_dir_dst
     else:
         raise ValueError(f"Unknown environment: {args.env}")
+        """
 
-    
+    if args.env not in ["MO_fruitTree", "MO_highway", "MO_deepSea"]:
+        raise ValueError(f"Unknown environment: {args.env}. Please choose from 'MO_fruitTree', 'MO_highway', or 'MO_deepSea'.") 
+
+    env_name = args.env.replace("MO_", "")  # Remove the "MO_" prefix to get the environment name
+    if env_name == 'deepSea':
+        env_name = 'DeepSeaTreasure'  # Adjust for the specific case of DeepSeaTreasure
+
+    dpmorl_output_dir = f'CAPS/DPMORL/experiments/{args.experiment_name}/DPMORL.{env_name}.LossNormLamda_{args.lmbda}/'
+
+    paths = glob.glob(os.path.join(dpmorl_output_dir, "policy-program-*.zip"))
+
+    paths = [
+        path[:-4] if path.endswith(".zip") else path
+        for path in paths
+    ]
+    print(f"Found {len(paths)} policies in {dpmorl_output_dir}.")
+    num_pols = len(paths)
+
     if args.plot_returns == True:
-        plots_dir = f"outputs/plots/{test_name}"
+        plots_dir = f"outputs/plots/{args.experiment_name}/{test_name}"
         os.makedirs(plots_dir, exist_ok=True)
         plot_policy_returns(
             env_name=args.env,
@@ -88,16 +110,16 @@ if __name__ == '__main__':
 
     time_graph_phase = time.time()
     
-    if os.path.exists(f"outputs/graphs/{test_name}"):
+    if os.path.exists(f"outputs/graphs/{args.experiment_name}/{test_name}"):
         print(f"Directory {test_name} already exists.") 
         if args.use_existing:
             print(f"Using existing graphs from {test_name} as --use_existing flag is set to True. Checking for existing graphs...")
-            if len(os.listdir(f"outputs/graphs/{test_name}")) < len(paths):
+            if len(os.listdir(f"outputs/graphs/{args.experiment_name}/{test_name}")) < len(paths):
                 raise ValueError(f"The directory {test_name} is empty or contains "+
                       f"fewer files than expected but the --use_existing flag is  set to True. "+
                       f"Please check if the directory contains the expected graph files.")
             else:
-                print(f"""length of files in {test_name}: {len(os.listdir(f"outputs/graphs/{test_name}"))}, 
+                print(f"""length of files in {test_name}: {len(os.listdir(f"outputs/graphs/{args.experiment_name}/{test_name}"))}, 
                 expected: {len(paths)}.
                 Re-running the policies to collect new graphs""")
                 all_graphs = read_graphs_from_files(paths)
@@ -108,7 +130,7 @@ if __name__ == '__main__':
             print(f"All policies have been tested and graphs collected. {len(all_graphs)} graphs in total.")
     else:
         print(f"Directory {test_name} does not exist. Creating it and running the policies to collect new graphs.")
-        os.makedirs(f"outputs/graphs/{test_name}", exist_ok=True)
+        os.makedirs(f"outputs/graphs/{args.experiment_name}/{test_name}", exist_ok=True)
         all_graphs = run_policies(paths, args)
         print(f"All policies have been tested and graphs collected. {len(all_graphs)} graphs in total.")
 
@@ -117,7 +139,7 @@ if __name__ == '__main__':
         plot_apg(
             graph,
             title=f"{args.env}_{policy_name}",
-            save_path=f"outputs/graphs/{test_name}"
+            save_path=f"outputs/graphs/{args.experiment_name}/{test_name}"
         )
 
     time_graph_phase = time.time() - time_graph_phase
@@ -315,14 +337,14 @@ if __name__ == '__main__':
         """)
         for diff in action_differences:
             print(f"Node id in Graph 1: {diff['node_g1']}")
-            print(f"Node in Graph 1: {graph_dicts[id_graph1]['groups'][diff['node_g1']]}")
+            print(f"Node in Graph 1: {graph_dicts[id_graph1]['groups'][diff['node_g1']-1]}")
             print(f"Node id in Graph 2: {diff['node_g2']}")
             print(f"Node in Graph 2: {graph_dicts[id_graph2]['groups'][diff['node_g2']]}")
             print(f"State: {diff['label']}")
             print(f"Only in Graph 1: {diff['only_g1']}")
             print(f"Only in Graph 2: {diff['only_g2']}\n")
 
-    output_file = f"outputs/action_differences/{test_name}/action_differences.csv"
+    output_file = f"outputs/action_differences/{args.experiment_name}/{test_name}/action_differences.csv"
 
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
 
@@ -341,9 +363,9 @@ if __name__ == '__main__':
         for diff in action_differences:
             writer.writerow([
                 diff["node_g1"],
-                graph_dicts[id_graph1]["groups"][diff['node_g1']],
+                graph_dicts[id_graph1]["groups"][diff['node_g1']-1],
                 diff["node_g2"],
-                graph_dicts[id_graph2]["groups"][diff['node_g2']],
+                graph_dicts[id_graph2]["groups"][diff['node_g2']-1],
                 diff["label"],
                 diff["only_g1"],
                 diff["only_g2"]

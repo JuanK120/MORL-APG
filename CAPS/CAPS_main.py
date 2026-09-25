@@ -5,6 +5,7 @@ from torch.autograd import Variable
 import numpy as np
 import random
 import ray
+import gc
 from CAPS.CAPS_dict import explain, explain_auto_pred
 from CAPS.topin_baseline import gen_apg
 from CAPS.config import argparser
@@ -133,7 +134,7 @@ def CAPS_main(caps_args):
 
     elif args.env == 'MO_deepSea':
         feature_names = [
-            "lvl", "pos", 
+            "x", "y", 
         ]
         print(f'running MO_deepSea')
         data, model, num_feats, num_actions = test_deepSea(model_path, args.num_episodes, mode=args.alg)
@@ -226,6 +227,17 @@ def CAPS_main(caps_args):
         )
         timestop = time.time()
         print(f'Time taken for AutoPred: {timestop - timestart} seconds') 
+
+        del abstract_baseline
+        del dataset
+        del data
+        del model
+        del translator
+
+        gc.collect()
+
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache() 
     else:
         abstract_baseline = APG(num_actions, value_fn, translator)
         explanations=explain(args, dataset, model_path, translator, num_feats, num_actions, fidelity_fn, abstract_baseline, mode=args.alg)
